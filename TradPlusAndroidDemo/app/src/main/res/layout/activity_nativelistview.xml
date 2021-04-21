@@ -38,20 +38,9 @@
 
     </RadioGroup>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-        <Button
-            android:layout_width="wrap_content" android:id="@+id/btn_start" android:text="start"
-            android:layout_height="wrap_content" />
-        <Button
-            android:layout_width="wrap_content" android:id="@+id/btn_add" android:text="add datas"
-            android:layout_height="wrap_content" />
-        <CheckBox
-            android:layout_width="wrap_content" android:id="@+id/check_layout" android:text="是否有布局"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
+    <Button
+        android:layout_width="wrap_content" android:id="@+id/btn_add" android:text="add datas"
+        android:layout_height="wrap_content" />
 
     <RadioGroup android:visibility="gone"
         android:id="@+id/rg_fra_group_orientation"

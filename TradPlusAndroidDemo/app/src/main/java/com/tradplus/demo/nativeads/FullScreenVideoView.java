@@ -1,9 +1,9 @@
 package com.tradplus.demo.nativeads;
 
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.VideoView;
+
 
 public class FullScreenVideoView extends VideoView {
     public FullScreenVideoView(Context context) {

@@ -27,16 +27,6 @@
 
         </activity>
 
-        <!--Android X China-Mainland Traffic app required, Oversea Traffic app can be ignore-->
-        <provider
-            android:name="com.mbridge.msdk.foundation.tools.MBFileProvider"
-            android:authorities="${applicationId}.mbFileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/mb_provider_paths"/>
-        </provider>
 
         <!-- Google Play Services -->
         <meta-data
@@ -101,6 +91,11 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:launchMode="singleTask"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity
+            android:name=".nativeads.NativeCacheActivity"
             android:launchMode="singleTask"
             android:configChanges="keyboardHidden|orientation|screenSize" />
 

@@ -186,6 +186,24 @@
             android:layout_height="1dp"
             android:background="@android:color/background_dark" />
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/btn_box"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:text="自动reload广告">
+
+            </CheckBox>
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -256,7 +274,21 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/native_ad_cache"
+                android:layout_width="200.0dip"
+                android:layout_height="50.0dip"
+                android:gravity="center"
+                android:text="@string/NativeCache"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

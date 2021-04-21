@@ -7,6 +7,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,23 +23,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.OrientationHelper;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.dingmouren.layoutmanagergroup.viewpager.OnViewPagerListener;
 import com.dingmouren.layoutmanagergroup.viewpager.ViewPagerLayoutManager;
 import com.kwad.sdk.api.KsDrawAd;
-import com.tradplus.ads.base.bean.TPAdError;
-import com.tradplus.ads.base.bean.TPAdInfo;
-import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.common.IDrawNativeListVideoViewListener;
 import com.tradplus.ads.mobileads.TradPlusErrorCode;
 import com.tradplus.ads.mobileads.TradPlusView;
-import com.tradplus.ads.open.nativead.NativeAdListener;
-import com.tradplus.ads.open.nativead.TPNative;
 import com.tradplus.demo.R;
 import com.tradplus.utils.NetworkUtils;
 import com.tradplus.utils.TToast;
@@ -43,7 +37,6 @@ import com.tradplus.utils.TestAdUnitId;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -62,8 +55,6 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
     private Context mContext;
     private List<Item> datas = new ArrayList<>();
     private Handler mHandler = new Handler(Looper.getMainLooper());
-    private List<View> mDrawNativeAdList;
-    private TPNative mTPNative;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,78 +68,79 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         if (NetworkUtils.getNetworkType(this) == NetworkUtils.NetworkType.NONE) {
             return;
         }
+
+
         initView();
         initListener();
+
+
         mContext = this;
+        TradPlusView tradPlusView = new TradPlusView(this);
 
-        mTPNative = new TPNative(this, TestAdUnitId.DRAW_ADUNITID);
+        tradPlusView.setAdViewListener(fsAdViewListener);
 
-        mTPNative.setAdListener(nativeAdListener);
-        mTPNative.loadAd();
+        tradPlusView.setDrawNativeListVideoView(new IDrawNativeListVideoViewListener() {
+            @Override
+            public void updateAdView(List list) {
+                System.out.println("tradplus=========" + list.toString());
+                initAdView(list);
+            }
+        });
+
+        tradPlusView.setAdUnitId(TestAdUnitId.DRAW_ADUNITID);
+        tradPlusView.loadAd();
 
     }
 
-    final NativeAdListener nativeAdListener = new NativeAdListener() {
+    TradPlusView.FSAdViewListener fsAdViewListener = new TradPlusView.FSAdViewListener() {
         @Override
-        public void onAdClicked(TPAdInfo tpAdInfo) {
-            super.onAdClicked(tpAdInfo);
+        public void onAdViewLoaded(TradPlusView banner) {
+            Log.i(TAG, "onAdViewLoaded: ");
         }
 
         @Override
-        public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
-            super.onAdLoaded(tpAdInfo, tpBaseAd);
-            Log.i(TAG, "onAdLoaded: ");
-
-            mDrawNativeAdList = mTPNative.getDrawNativeAdList();
-            Log.i(TAG, "onAdLoaded: size" + mDrawNativeAdList.size());
-            initNativeADView(mDrawNativeAdList);
+        public void onAdViewFailed(TradPlusView banner, TradPlusErrorCode errorCode) {
+            Log.i(TAG, "onAdViewFailed: "+errorCode);
         }
 
         @Override
-        public void onAdImpression(TPAdInfo tpAdInfo) {
-            super.onAdImpression(tpAdInfo);
-            Log.i(TAG, "onAdImpression: ");
-
+        public void onAdViewClicked(TradPlusView banner) {
+            Log.i(TAG, "onAdViewClicked: ");
         }
 
         @Override
-        public void onAdShowFailed(TPAdError error, TPAdInfo tpAdInfo) {
-            super.onAdShowFailed(error, tpAdInfo);
-            Log.i(TAG, "onAdShowFailed: ");
+        public void onAdViewExpanded(TradPlusView banner) {
+            Log.i(TAG, "onAdViewExpanded: ");
         }
 
         @Override
-        public void onAdLoadFailed(TPAdError error) {
-            super.onAdLoadFailed(error);
-            Log.i(TAG, "onAdLoadFailed: ");
+        public void onAdViewCollapsed(TradPlusView banner) {
+            Log.i(TAG, "onAdViewCollapsed: ");
         }
 
         @Override
-        public void onAdClosed(TPAdInfo tpAdInfo) {
-            super.onAdClosed(tpAdInfo);
-            Log.i(TAG, "onAdClosed: ");
+        public void onAdsSourceLoaded(Object object) {
+            Log.i(TAG, "onAdsSourceLoaded: ");
         }
     };
 
-    private void initNativeADView(List<View> drawNativeAdList) {
-        if (drawNativeAdList == null || drawNativeAdList.size() <= 0) {
-            return;
-        }
+    private void initAdView(List ads) {
+        Log.i(TAG, "initAdView: "+ads);
         for (int i = 0; i < 5; i++) {
             int random = (int) (Math.random() * 100);
             int index = random % videos.length;
             datas.add(new Item(TYPE_COMMON_ITEM, null, videos[index], imgs[index]));
         }
-        for (View view : drawNativeAdList) {
-            int random = (int) (Math.random() * 100);
-            int index = random % videos.length;
-            if (index == 0) {
-                index++;
+        for (Object ad : ads) {
+            //点击监听器必须在getAdView之前调
+            if(ad instanceof TTNativeExpressAd) {
+                Log.i(TAG, "initAdView if: ");
+                initTaotiaoDrawList((TTNativeExpressAd)ad);
+            } else if(ad instanceof KsDrawAd){
+                Log.i(TAG, "initAdView else if: ");
+                initKWadDrawList((KsDrawAd)ad);
             }
-            datas.add(index, new Item(TYPE_AD_ITEM, view, -1, -1));
         }
-
-        mAdapter.notifyDataSetChanged();
     }
 
     private void initView() {
@@ -169,6 +161,27 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         return videoView;
     }
 
+    private void initKWadDrawList(KsDrawAd ksDrawAd) {
+        int random = (int) (Math.random() * 100);
+        int index = random % videos.length;
+        if (index == 0) {
+            index++;
+        }
+        datas.add(index, new Item(TYPE_AD_ITEM, ksDrawAd, -1, -1));
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void initTaotiaoDrawList(TTNativeExpressAd ad) {
+        ad.setCanInterruptVideoPlay(true);
+        int random = (int) (Math.random() * 100);
+        int index = random % videos.length;
+        if (index == 0) {
+            index++;
+        }
+        datas.add(index, new Item(TYPE_AD_ITEM, ad, -1, -1));
+        mAdapter.notifyDataSetChanged();
+        ad.render();
+    }
 
     private void initListener() {
         mLayoutManager.setOnViewPagerListener(new OnViewPagerListener() {
@@ -230,7 +243,7 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         final FrameLayout videoLayout = itemView.findViewById(R.id.video_layout);
 
         if (videoLayout == null) return;
-        Log.i(TAG, "playVideo 000: " + videoLayout.getChildAt(0).getClass().getName());
+        Log.i(TAG, "playVideo 000: "+videoLayout.getChildAt(0).getClass().getName());
         View view = videoLayout.getChildAt(0);
         if (view instanceof VideoView) {
             Log.i(TAG, "playVideo 111: " + view);
@@ -339,7 +352,14 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
                     view = getView();
                     ((VideoView) view).setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + item.videoId));
                 } else if (item.type == TYPE_AD_ITEM && item.ad != null) {
-                    view = item.ad;
+                    if (item.ad instanceof TTNativeExpressAd) {
+                        Log.i(TAG, "onBindViewHolder if: ");
+                        view = ((TTNativeExpressAd)item.ad).getExpressAdView();
+                    }else if(item.ad instanceof KsDrawAd){
+                        Log.i(TAG, "onBindViewHolder else if: ");
+                        view =  ((KsDrawAd) item.ad).getDrawView(DrawNativeExpressVideoActivity.this);
+                    }
+
                 }
             }
             holder.videoLayout.removeAllViews();
@@ -403,13 +423,17 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
 
     }
 
+    private void showToast(String msg) {
+        TToast.show(this, msg);
+    }
+
     private static class Item {
         public int type = 0;
-        public View ad;
+        public Object ad;
         public int videoId;
         public int ImgId;
 
-        public Item(int type, View ad, int videoId, int imgId) {
+        public Item(int type, Object ad, int videoId, int imgId) {
             this.type = type;
             this.ad = ad;
             this.videoId = videoId;
@@ -417,18 +441,5 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         }
     }
 
-    private String printConfigMap(Map<String, String> map) {
-        String s = "";
-        if (map != null) {
-            List<String> keys = new ArrayList(map.keySet());
-            for (int i = 0; i < keys.size(); i++) {
-                String key = keys.get(i);
-                String value = map.get(key);
-                s += "key = " + key + " value = " + value + ";";
-            }
-        }
-        return s;
-    }
 
 }
-

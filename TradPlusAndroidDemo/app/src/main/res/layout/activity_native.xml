@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-    <FrameLayout
-        android:id="@+id/ad_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+    <com.tradplus.ads.mobileads.TradPlusView
+        android:id="@+id/NativeView"
+        android:layout_width="320dp"
+        android:layout_height="340dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true">
+    </com.tradplus.ads.mobileads.TradPlusView>
 
 </RelativeLayout>

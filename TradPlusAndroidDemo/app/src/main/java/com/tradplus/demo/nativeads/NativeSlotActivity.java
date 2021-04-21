@@ -2,39 +2,31 @@ package com.tradplus.demo.nativeads;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import com.tradplus.ads.base.bean.TPAdError;
-import com.tradplus.ads.base.bean.TPAdInfo;
-import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.common.util.LogUtil;
-import com.tradplus.ads.mgr.nativead.TPCustomNativeAd;
+import com.tradplus.ads.mobileads.TradPlusErrorCode;
+import com.tradplus.ads.mobileads.TradPlusSlot;
+import com.tradplus.ads.mobileads.TradPlusView;
+import com.tradplus.ads.mobileads.TradPlusViewExt;
 import com.tradplus.ads.mobileads.util.TradPlusListNativeOption;
-import com.tradplus.ads.open.nativead.NativeAdListener;
-import com.tradplus.ads.open.nativead.TPNative;
 import com.tradplus.demo.R;
 import com.tradplus.utils.TestAdUnitId;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class NativeSlotActivity extends AppCompatActivity {
@@ -44,12 +36,11 @@ public class NativeSlotActivity extends AppCompatActivity {
     private RadioGroup mRadioGroupOri;
     private int mScrollOrientation = RecyclerView.VERTICAL;
     private RecyclerView mListView;
-    private List<TPCustomNativeAd> mData;
+    private List<TradPlusView> mData;
     private TPAdapter myAdapter;
-    private Button btn_add,btn_start;
-    private CheckBox check_layout;
+    private Button btn_add;
 
-    private static int LIST_ITEM_COUNT = 5;
+    private static int LIST_ITEM_COUNT = 30;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,51 +56,69 @@ public class NativeSlotActivity extends AppCompatActivity {
         initListView();
     }
 
-    private int loadAdNum = 0;
-    private void loadListAd(int startIndex){
-        for(int i = 0; i < LIST_ITEM_COUNT; i++) {
-            mData.add(null);
-        }
-        myAdapter.notifyDataSetChanged();
-        loadAdNum = startIndex;
+    private void loadListAd(){
+        /*
+         * 必选：AdUnitID广告位ID
+         *
+         * 必选：native_ad_list_item.xml 和 video_ad_list_item.xml布局文件，可在Demo中或者下载下来的zip文件中获取
+         *
+         * 注意：可自定义布局，但布局文件中View对应的id不可改变
+         *
+         * 可选：native_banner_ad_unit.xml 只有选择原生横幅的时候才需要添加
+         *
+         * 必选：获取广告个数，每次最优获取5条广告
+         */
+        TradPlusSlot tradPlusSlot = new TradPlusSlot.Builder()
+                .setUnitId(TestAdUnitId.NATIVE_ADUNITID)
+                .setLayoutName("native_ad_list_item")
+                .setLayoutNameEx("video_ad_list_item")
+                .setLayoutBannerName("native_banner_ad_unit") //可选
+                .setAdCount(5)
+                .build();
 
-        TPNative tpNative = new TPNative(this, TestAdUnitId.NATIVE_ADUNITID);
-        tpNative.setAdListener(new NativeAdListener() {
+        TradPlusViewExt tradPlusViewExt = new TradPlusViewExt();
+        tradPlusViewExt.loadFeedAd(this, tradPlusSlot, new TradPlusViewExt.TradPlusFeedListener() {
             @Override
-            public void onAdClicked(TPAdInfo tpAdInfo) {
-                LogUtil.ownShow("onAdClicked = " + tpAdInfo.toString());
-            }
-
-            @Override
-            public void onAdImpression(TPAdInfo tpAdInfo) {
-                LogUtil.ownShow("onAdImpression = " + tpAdInfo.toString());
-            }
-
-            @Override
-            public void onAdLoadFailed(TPAdError error) {
-                LogUtil.ownShow("onAdLoadFailed = " + error.getErrorMsg());
-            }
-
-            @Override
-            public void onAdClosed(TPAdInfo tpAdInfo) {
-            }
-
-            @Override
-            public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
-                loadAdNum++;
-
-                int index = option.getInterval() * loadAdNum - 1;
-                LogUtil.ownShow("random = " + index);
-                if(loadAdNum > mData.size() || index >= mData.size()) {
-                    loadAdNum--;
-                    return;
+            public void onFeedAdLoad(List<TradPlusView> ads) {
+                LogUtil.ownShow("TradPlusViews size = " + ads.size());
+                for (int i = 0; i < LIST_ITEM_COUNT; i++) {
+                    mData.add(null);
                 }
-                mData.set(index, tpNative.getNativeAd());
-                tpNative.loadAd();
+
+                int count = mData.size();
+                int index = 0;
+                for (TradPlusView ad : ads) {
+
+                    int random = index * option.getInterval() + count - LIST_ITEM_COUNT;
+                    LogUtil.ownShow("random = " + random);
+                    mData.set(random, ad);
+                    index++;
+                    myAdapter.notifyItemInserted(random);
+                }
+
+
                 myAdapter.notifyDataSetChanged();
             }
+
+            @Override
+            public void onClicked(String unitid, String networkName) {
+                //广告被点击
+            }
+
+            @Override
+            public void onError(TradPlusErrorCode errorCode) {
+                //广告加载失败
+            }
+
+            @Override
+            public void onAdsSourceLoad(List<Object> adsSource) {
+                LogUtil.ownShow("TradPlusViews adsSource size = " + adsSource.size());
+                for(Object ads : adsSource){
+                    LogUtil.ownShow("TradPlusViewSource networkname = " +ads);
+                    LogUtil.ownShow("TradPlusViewSource networkname = " +compareAdSources(ads));
+                }
+            }
         });
-        tpNative.loadAd();
     }
 
     private String compareAdSources(Object obj){
@@ -126,7 +135,7 @@ public class NativeSlotActivity extends AppCompatActivity {
         }else if(obj instanceof com.kwad.sdk.api.KsDrawAd){
             return "kwads";
         }else if(obj instanceof com.bytedance.sdk.openadsdk.TTNativeExpressAd){
-            return "pangle(cn)/toutiao";
+            return "pangle(cn)";
         }else if(obj instanceof com.qq.e.comm.pi.AdData){
             return "tencent ads";
         }else{
@@ -143,84 +152,12 @@ public class NativeSlotActivity extends AppCompatActivity {
         mListView.setAdapter(myAdapter);
 
 
-
+        loadListAd();
         btn_add = findViewById(R.id.btn_add);
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadListAd(loadAdNum);
-            }
-        });
-        btn_start = findViewById(R.id.btn_start);
-        btn_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadListAd(0);
-            }
-        });
-
-        check_layout = findViewById(R.id.check_layout);
-    }
-
-    private void initSelectMode() {
-        mRadioGroupManager = (RadioGroup) findViewById(R.id.rg_fra_group);
-        mRadioGroupOri = (RadioGroup) findViewById(R.id.rg_fra_group_orientation);
-
-
-        mRadioGroupManager.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (mListView == null || mData == null || myAdapter == null) {
-                    return;
-                }
-
-                RecyclerView.LayoutManager manager = null;
-                mRadioGroupOri.setVisibility(View.VISIBLE);
-                switch (checkedId) {
-                    case R.id.rb_fra_linear:
-                        manager = new LinearLayoutManager(NativeSlotActivity.this, mScrollOrientation, false);
-                        break;
-                    case R.id.rb_fra_grid:
-                        mRadioGroupOri.setVisibility(View.GONE);
-                        manager = new GridLayoutManager(NativeSlotActivity.this, 2);
-                        break;
-                    case R.id.rb_fra_staggered:
-                        manager = new StaggeredGridLayoutManager(2, mScrollOrientation);
-                        break;
-                }
-                if (manager != null) {
-                    mListView.setLayoutManager(manager);
-                    mData.clear();
-                    myAdapter.notifyDataSetChanged();
-                    loadListAd(0);
-                }
-            }
-        });
-
-        mRadioGroupOri.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (mListView == null || mData == null || myAdapter == null) {
-                    return;
-                }
-
-                RecyclerView.LayoutManager manager = mListView.getLayoutManager();
-                if (manager != null) {
-                    if (checkedId == R.id.rb_fra_orientation_v) {
-                        mScrollOrientation = RecyclerView.VERTICAL;
-                    } else if (checkedId == R.id.rb_fra_orientation_h) {
-                        mScrollOrientation = RecyclerView.HORIZONTAL;
-                    }
-
-                    if (manager instanceof LinearLayoutManager) {
-                        ((LinearLayoutManager) manager).setOrientation(mScrollOrientation);
-                    } else if (manager instanceof StaggeredGridLayoutManager) {
-                        ((StaggeredGridLayoutManager) manager).setOrientation(mScrollOrientation);
-                    }
-                    mData.clear();
-                    myAdapter.notifyDataSetChanged();
-                    loadListAd(0);
-                }
+                loadListAd();
             }
         });
     }
@@ -230,11 +167,11 @@ public class NativeSlotActivity extends AppCompatActivity {
         private static final int ITEM_VIEW_TYPE_NORMAL = 0;
         private static final int ITEM_VIEW_TYPE_TRADPLUS = 6;//竖版图片
 
-        private List<TPCustomNativeAd> mData;
+        private List<TradPlusView> mData;
         private Context mContext;
         private RecyclerView mRecyclerView;
 
-        public TPAdapter(Context context, List<TPCustomNativeAd> data) {
+        public TPAdapter(Context context, List<TradPlusView> data) {
             this.mContext = context;
             this.mData = data;
         }
@@ -255,29 +192,24 @@ public class NativeSlotActivity extends AppCompatActivity {
             if (holder instanceof NormalViewHolder) {
                 NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
                 normalViewHolder.idle.setText("Recycler item " + position);
-//                normalViewHolder.idle.setTextColor(getColorRandom());
             } else {
                 LogUtil.ownShow("-----position = "+position);
                 AdViewHolder adViewHolder = (AdViewHolder) holder;
-
-                TPCustomNativeAd tpNativeAd = mData.get(position);
+                TradPlusView tpView = mData.get(position);
                 ViewGroup adCardView = (ViewGroup) adViewHolder.itemView;
 
+                if (adCardView.getChildCount() > 0) {
+                    adCardView.removeAllViews();
+                }
+                if (tpView.getParent() != null) {
+                    ((ViewGroup) tpView.getParent()).removeView(tpView);
+                }
 
-
-                tpNativeAd.showAd(adCardView, R.layout.native_ad_list_item, "");
+                // Add the banner ad to the ad view.
+                adCardView.addView(tpView);
 
             }
         }
-
-        private int getColorRandom() {
-            int a = Double.valueOf(13 * 255).intValue();
-            int r = Double.valueOf(13 * 255).intValue();
-            int g = Double.valueOf(13 * 255).intValue();
-            int b = Double.valueOf(13 * 255).intValue();
-            return Color.argb(a, r, g, b);
-        }
-
 
         @Override
         public int getItemCount() {
@@ -288,21 +220,16 @@ public class NativeSlotActivity extends AppCompatActivity {
         @Override
         public int getItemViewType(int position) {
             if (mData != null) {
-//                int count = mData.size();
-//                if (position >= count) {
-//                    return ITEM_VIEW_TYPE_LOAD_MORE;
-//                } else {
-                TPCustomNativeAd ad = mData.get(position);
+                TradPlusView ad = mData.get(position);
                 if (ad == null) {
                     return ITEM_VIEW_TYPE_NORMAL;
                 } else {
                     return ITEM_VIEW_TYPE_TRADPLUS;
                 }
-//                }
-
             }
             return super.getItemViewType(position);
         }
+
 
         private class AdViewHolder extends RecyclerView.ViewHolder {
             LinearLayout tradPlusView;
@@ -326,18 +253,5 @@ public class NativeSlotActivity extends AppCompatActivity {
             }
         }
 
-    }
-
-    private String printConfigMap(Map<String, String> map){
-        String s = "";
-        if(map != null) {
-            List<String> keys = new ArrayList(map.keySet());
-            for (int i = 0; i < keys.size(); i++) {
-                String key = keys.get(i);
-                String value = map.get(key);
-                s += "key = "+key+" value = "+value+";";
-            }
-        }
-        return s;
     }
 }
