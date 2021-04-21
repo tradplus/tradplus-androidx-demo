@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Demo_v6.2.2.1</string>
+    <string name="init_sdk">SDK初始化</string>
+    <string name="init_custom_sdk"> SDK初始化 自定义GDPR</string>
+    <string name="gdpr_upload_data">GDPR数据是否上报</string>
+    <string name="change_gdpr_select">更改GDPR数据上报选择</string>
+    <string name="load_ad">进入加载广告页面</string>
+    <string name="Banner">Banner横幅</string>
+    <string name="Interstitial">Interstitial插屏</string>
+    <string name="RewardedVideo">RewardedVideo激励视频</string>
+    <string name="OfferWall">OfferWall积分墙</string>
+    <string name="AdvancedNative">Native原生</string>
+    <string name="NativeListView">NativeSlot原生信息流</string>
+    <string name="NativeBanner">NativeBanner原生横幅</string>
+    <string name="NativeDraw">DrawVideo信息流</string>
+    <string name="Splash">Splash开屏</string>
+
+
+    <string name="click_to_skip">点击跳过</string>
+
+
+</resources>

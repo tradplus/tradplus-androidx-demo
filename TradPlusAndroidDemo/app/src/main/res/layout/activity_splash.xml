@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_splash_rr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashActivity">
+    <!-- 2.预设开屏图片区域： -->
+    <!-- 开发者可以把自家App设计开屏图片摆放在这里，本示例中放置了一张静态图片。!-->
+    <!-- 注意1：直接将此图放在广告容器的下面即可，始终不要将广告容器splash_container的设为invisible，否则将不会展示广告无法计费，返回错误码600。-->
+    <!-- 注意2：建议开发者使用自己的开屏图片资源，而不是联盟的@drawable/splash_holder，资源规格可参照@drawable/splash_holder -->
+
+    <!-- 4.自定义跳过按钮区域：开发者可以根据需要自己实现不同样式的跳过按钮 -->
+    <!-- 注意1：根据广告法规定，跳过按钮必须在屏幕当中出现。因此广告展示的时候，必须让将SkipView显示出来，即visible，否则将SDK将不展示广告，返回错误码608。。 -->
+    <!-- 注意2：SDK除了会检查跳过按钮的可见性，还将检测它的尺寸，其尺寸不得小于3dp*3dp，否则将SDK将不展示广告，返回错误码608。 -->
+    <TextView
+        android:id="@+id/skip_view"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/background_circle"
+        android:gravity="center"
+        android:text="@string/click_to_skip"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <!-- 3.开屏广告容器区域：-->
+    <!-- 注意：该区域高度不得小于400dp。 -->
+    <FrameLayout
+        android:id="@+id/splash_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <com.tradplus.ads.mobileads.TradPlusView
+        android:id="@+id/splash_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

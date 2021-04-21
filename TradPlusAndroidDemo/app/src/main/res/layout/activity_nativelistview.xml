@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup android:visibility="gone"
+        android:id="@+id/rg_fra_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rb_fra_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="线性LinearLayoutManager"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/rb_fra_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网格GridLayoutManager"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/rb_fra_staggered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="瀑布流StaggeredGridLayoutManager"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <Button
+            android:layout_width="wrap_content" android:id="@+id/btn_start" android:text="start"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="wrap_content" android:id="@+id/btn_add" android:text="add datas"
+            android:layout_height="wrap_content" />
+        <CheckBox
+            android:layout_width="wrap_content" android:id="@+id/check_layout" android:text="是否有布局"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <RadioGroup android:visibility="gone"
+        android:id="@+id/rg_fra_group_orientation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_fra_orientation_v"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="垂直滚动"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
+
+        <RadioButton
+            android:id="@+id/rb_fra_orientation_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="水平滚动"
+            android:textColor="@android:color/black"
+            android:textSize="13sp" />
+
+    </RadioGroup>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <SurfaceView
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+</LinearLayout>
