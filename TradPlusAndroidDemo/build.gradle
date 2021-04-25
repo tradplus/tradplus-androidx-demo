@@ -4,6 +4,42 @@ buildscript {
     repositories {
         google()
         jcenter()
+        //TradPlus androidx
+        maven { url 'https://dl.bintray.com/tradplus/androidx'}
+        //Chartboost
+        maven { url  "https://chartboostmobile.bintray.com/Chartboost" }
+        //Adcolony
+        maven { url "https://adcolony.bintray.com/AdColony" }
+        //IronSource
+        maven { url "https://dl.bintray.com/ironsource-mobile/android-sdk" }
+        //Mopub
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+        //Tapjoy
+        maven {
+            name "Tapjoy's maven repo"
+            url "https://tapjoy.bintray.com/maven"
+        }
+        //Non-listed GP market applications Mintegral 国内
+        maven {
+            url "https://dl.bintray.com/mintegral-official/Andorid_ad_SDK_for_china"
+        }
+        //Fyber
+        maven { url  "https://fyber.bintray.com/marketplace"}
+        //Maio
+        maven{ url "https://imobile-maio.github.io/maven" }
+
+        //Launch GP market application Mintegral 国外
+//    maven {
+//        url  "https://dl.bintray.com/mintegral-official/mintegral_ad_sdk_android_for_oversea"
+//    }
+        //Ogury
+        maven { url 'https://maven.ogury.co'}
+        //AppNext
+        maven { url "http://dl.appnext.com/" }
+        //聚量传媒
+        maven {  url "http://nexus.deemob.com/repository/maven-public/" }
+        //Smaato
+        maven { url "https://s3.amazonaws.com/smaato-sdk-releases/" }
         
     }
 
@@ -19,7 +55,42 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        //TradPlus androidx
+        maven { url 'https://dl.bintray.com/tradplus/androidx'}
+        //Chartboost
+        maven { url  "https://chartboostmobile.bintray.com/Chartboost" }
+        //Adcolony
+        maven { url "https://adcolony.bintray.com/AdColony" }
+        //IronSource
+        maven { url "https://dl.bintray.com/ironsource-mobile/android-sdk" }
+        //Mopub
+        maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+        //Tapjoy
+        maven {
+            name "Tapjoy's maven repo"
+            url "https://tapjoy.bintray.com/maven"
+        }
+        //Non-listed GP market applications Mintegral 国内
+        maven {
+            url "https://dl.bintray.com/mintegral-official/Andorid_ad_SDK_for_china"
+        }
+        //Fyber
+        maven { url  "https://fyber.bintray.com/marketplace"}
+        //Maio
+        maven{ url "https://imobile-maio.github.io/maven" }
+
+        //Launch GP market application Mintegral 国外
+//    maven {
+//        url  "https://dl.bintray.com/mintegral-official/mintegral_ad_sdk_android_for_oversea"
+//    }
+        //Ogury
+        maven { url 'https://maven.ogury.co'}
+        //AppNext
+        maven { url "http://dl.appnext.com/" }
+        //聚量传媒
+        maven {  url "http://nexus.deemob.com/repository/maven-public/" }
+        //Smaato
+        maven { url "https://s3.amazonaws.com/smaato-sdk-releases/" }
     }
 }
 
