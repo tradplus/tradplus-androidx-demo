@@ -57,11 +57,6 @@
             android:name="applovin.sdk.key"
             android:value="-Xtl_oRuS0L4WSmxnIHXusTCoMrq2cslufstvSvGFnVQWLcoeZCu-_NXWZE0c6-QqiZ-BIFRxm6zBs2zwByKPb" />
 
-        <!-- StartApp -->
-        <!-- StartApp 后台获取 -->
-        <meta-data
-            android:name="com.startapp.sdk.APPLICATION_ID"
-            android:value="210176017" />
 
         <activity
             android:name=".banners.BannerActivity"
