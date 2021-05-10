@@ -45,6 +45,8 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
                 Log.i(TAG, "onAdLoaded: ");
+                //展示广告
+                tpSplash.showAd();
             }
         });
 

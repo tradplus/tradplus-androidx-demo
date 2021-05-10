@@ -99,23 +99,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         CheckBox isChild = (CheckBox) findViewById(R.id.is_child);
-        Log.i("privacy", "onCreate coppa: "+TradPlusSdk.isCOPPAChild(MainActivity.this)+":ccpa:"+(TradPlusSdk.getCCPADataCollection(this) == TradPlusSdk.PRIVACY_ACCEPT_KEY));
-        isChild.setChecked(TradPlusSdk.isCOPPAChild(MainActivity.this) == TradPlusSdk.PRIVACY_ACCEPT_KEY);
+        Log.i("privacy", "onCreate coppa: "+TradPlusSdk.isCCPADoNotSell(MainActivity.this));
+        isChild.setChecked(TradPlusSdk.isCCPADoNotSell(MainActivity.this) == TradPlusSdk.PRIVACY_ACCEPT_KEY);
         isChild.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 Log.i("isChild", "onCheckedChanged: " + b);
-                TradPlusSdk.setCOPPAChild(MainActivity.this, b);
+                TradPlusSdk.setCCPADoNotSell(MainActivity.this, b);
             }
         });
 
         cbCCPA = (CheckBox) findViewById(R.id.do_not_sell);
-        cbCCPA.setChecked(TradPlusSdk.getCCPADataCollection(MainActivity.this) == TradPlusSdk.PRIVACY_ACCEPT_KEY);
+        cbCCPA.setChecked(TradPlusSdk.isCCPADoNotSell(MainActivity.this) == TradPlusSdk.PRIVACY_ACCEPT_KEY);
         cbCCPA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 Log.i("cbCCPA", "onCheckedChanged: " + b);
-                TradPlusSdk.setCCPADataCollection(MainActivity.this, b);
+                TradPlusSdk.setCCPADoNotSell(MainActivity.this, b);
             }
         });
     }
@@ -156,13 +156,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btn_gdpr_neu:
-                TradPlusSdk.setGDPRUploadDataLevel(MainActivity.this,TradPlusSdk.NONPERSONALIZED);
+                TradPlusSdk.setGDPRDataCollection(MainActivity.this,TradPlusSdk.NONPERSONALIZED);
                 if (gdpr_container != null) {
                     gdpr_container.setVisibility(View.GONE);
                 }
                 break;
             case R.id.btn_gdpr_yeu:
-                TradPlusSdk.setGDPRUploadDataLevel(MainActivity.this,TradPlusSdk.PERSONALIZED);
+                TradPlusSdk.setGDPRDataCollection(MainActivity.this,TradPlusSdk.PERSONALIZED);
                 if (gdpr_container != null) {
                     gdpr_container.setVisibility(View.GONE);
                 }
