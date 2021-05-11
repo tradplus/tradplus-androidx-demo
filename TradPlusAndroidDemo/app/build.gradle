@@ -39,8 +39,6 @@ repositories {
     maven {
         url 'https://artifact.bytedance.com/repository/pangle'
     }
-    //聚量传媒
-    maven {  url "http://nexus.deemob.com/repository/maven-public/" }
 
     flatDir {
         dirs 'libs'
@@ -281,9 +279,6 @@ dependencies {
     implementation 'com.mbridge.msdk.china:mbnativeadvanced:15.5.12'
 
 
-    // Juliang
-    implementation 'com.joomob.android.sdk:common:1.0.9.0'
-    implementation 'com.tradplusad.joomob:tradplus-joomob:35.6.4.0.1'
 
     //交叉推广
     implementation 'com.tradplusad.crosspro:tradplus-crosspromotion:27.6.4.0.1'
