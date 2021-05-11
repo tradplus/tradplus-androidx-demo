@@ -50,16 +50,16 @@ dependencies {
 //    }
 
     // TradPlus
-    implementation 'com.tradplus.ads:tradplus-sdk:5.6.4.1'
+    implementation 'com.tradplusad:tradplus-sdk:5.6.4.1'
 
 
     // Admob
     implementation 'com.google.android.gms:play-services-ads:19.5.0'
-    implementation 'com.tradplus.ads.google:tradplus-googlex:2.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-googlex:2.5.6.4.1'
 
 
     // Vungle
-    implementation 'com.tradplus.ads.vungle:tradplus-vunglex:7.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-vunglex:7.5.6.4.1'
     implementation 'com.vungle:publisher-sdk-android:6.9.1'
     implementation 'com.google.android.gms:play-services-basement:17.3.0'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
@@ -67,11 +67,11 @@ dependencies {
 
     // Facebook
     implementation 'com.facebook.android:audience-network-sdk:6.2.0'
-    implementation 'com.tradplus.ads.facebook:tradplus-facebook:1.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-facebook:1.5.6.4.1'
 
 
     // Mopub
-    implementation 'com.tradplus.ads.mopub:tradplus-mopubx:3.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-mopubx:3.5.6.4.1'
     implementation('com.mopub:mopub-sdk:5.15.0') {
         transitive = true
     }
@@ -79,41 +79,41 @@ dependencies {
 
     // Applovin
     implementation 'com.applovin:applovin-sdk:9.14.12'
-    implementation 'com.tradplus.ads.applovin:tradplus-applovin:9.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-applovin:9.5.6.4.1'
 
 
     // Ironsource
     implementation 'com.ironsource.sdk:mediationsdk:7.0.3.1'
-    implementation 'com.tradplus.ads.ironsource:tradplus-ironsource:10.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-ironsource:10.5.6.4.1'
 
 
     // Tapjoy
     implementation 'com.tapjoy:tapjoy-android-sdk:12.7.1@aar'
-    implementation 'com.tradplus.ads.tapjoy:tradplus-tapjoy:6.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-tapjoy:6.5.6.4.1'
 
 
     // Adcolony
     implementation 'com.adcolony:sdk:4.2.4'
-    implementation 'com.tradplus.ads.adcolony:tradplus-adcolony:4.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-adcolony:4.5.6.4.1'
 
 
     // Pangle 头条穿山甲（国外），国内穿山甲Toutiao的三方广告SDK只能选择一个
 //    implementation 'com.bytedance.sdk:pangle-sdk:3.4.1.1'
-//    implementation 'com.tradplus.ads.tt_fpangolin:tradplus-tt_fpangolin:19.5.6.4.1'
+//    implementation 'com.tradplusad:tradplus-pangle:19.5.6.4.1'
 
 
     // UnityAds
-    implementation 'com.tradplus.ads.tradplus-unity:tradplus-unity:5.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-unity:5.5.6.4.1'
 
 
     // Chartboost
-    implementation 'com.tradplus.ads.chartboostx:tradplus-chartboostx:15.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-chartboostx:15.5.6.4.1'
 //    implementation 'com.google.android.gms:play-services-base:17.4.0'
     implementation 'com.chartboost:chartboost-sdk:8.1.0'
 
 
     // Inmobix
-    implementation 'com.tradplus.ads.inmobix:tradplus-inmobix:23.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-inmobix:23.5.6.4.1'
     implementation 'com.inmobi.monetization:inmobi-ads:9.1.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
 //    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
@@ -121,63 +121,37 @@ dependencies {
     implementation 'androidx.browser:browser:1.0.0'
 
 
-    // Mintegral
-//    implementation 'com.tradplus.ads.mintegral:tradplus-mintegralx_overseas:18.5.6.4.1'
-//    implementation 'com.mintegral.msdk.oversea:mtgnative:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:nativeex:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:playercommon:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:videocommon:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:mtgjscommon:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:common:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:videojs:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:reward:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:interstitialvideo:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:interstitial:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:mtgsplash:15.2.21'
-//    implementation 'com.mintegral.msdk.oversea:mtgbanner:15.2.21'
-
-
-    // Helium
-    implementation 'com.tradplus.ads.helium:tradplus-helium:30.5.6.4.1'
-    implementation 'com.chartboost:helium:2.2.0'
-    implementation 'com.chartboost:helium-facebook:2.2.0'
-//    implementation 'com.facebook.android:audience-network-sdk:6.2.0'
-    implementation 'org.greenrobot:eventbus:3.2.0'
-//    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.google.android.gms:play-services-base:17.5.0'
-
-
     // Fyber
     implementation 'com.fyber.vamp:core-sdk:7.7.4'
     implementation 'com.fyber.vamp:video-kit:7.7.4'
     implementation 'com.fyber.vamp:mraid-kit:7.7.4'
 //    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.tradplus.ads.fyber:tradplus-fyber:24.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-fyber:24.5.6.4.1'
     // Maio
     //如果引入Admob源则不需要重复引入'com.google.android.gms:play-services-ads:19.5.0'
     implementation 'com.google.android.gms:play-services-ads:19.5.0'
-    implementation 'com.tradplus.ads.maio:tradplus-maio:31.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-maio:31.5.6.4.1'
 
 
     // Criteo
     implementation 'com.criteo.publisher:criteo-publisher-sdk:4.1.0'
 //    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
 //    implementation 'com.google.android.gms:play-services-base:17.0.0'
-    implementation 'com.tradplus.ads.criteo:tradplus-criteo:32.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-criteo:32.5.6.4.1'
 
 
     // MyTarget
     implementation 'com.my.target:mytarget-sdk:5.11.6'
-    implementation 'com.tradplus.ads.mytarget:tradplus-mytarget:33.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-mytarget:33.5.6.4.1'
 
 
     // Ogury
     implementation 'co.ogury:ogury-sdk:5.0.5'
-    implementation 'com.tradplus.ads.ogury:tradplus-ogury:34.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-ogury:34.5.6.4.1'
 
 
     // Appnext
-    implementation 'com.tradplus.ads.appnext:tradplus-appnext:36.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-appnext:36.5.6.4.1'
 //    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
     // Mandatory
@@ -195,14 +169,14 @@ dependencies {
 
 
     // Kidoz
-    implementation 'com.tradplus.ads.kidoz:tradplus-kidoz:37.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-kidoz:37.5.6.4.1'
 //    implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'com.kidoz.sdk:KidozSDK:8.9.0@aar'
 //    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 
     //Smaato
-    implementation 'com.tradplus.ads.smaato:tradplus-smaato:38.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-smaato:38.5.6.4.1'
     implementation 'com.smaato.android.sdk:smaato-sdk:21.5.8'
     implementation 'com.smaato.android.sdk:smaato-sdk-banner:21.5.8'
     implementation 'com.smaato.android.sdk:smaato-sdk-interstitial:21.5.8'
@@ -212,49 +186,26 @@ dependencies {
     //-------国内源------
     //海外穿山甲Pangle和国内穿山甲Toutiao的三方广告SDK 只能二而选一
     // Toutiao
-    implementation 'com.tradplus.ads.toutiao:tradplus-toutiao:17.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-toutiao:17.5.6.4.1'
     implementation(name: 'open_ad_sdk_cn_v3.5.0.3', ext: 'aar')
 
 
     // Kuaishou
-    implementation 'com.tradplus.ads.kwad:tradplus-kwad:20.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-kwad:20.5.6.4.1'
 
     // Sigmob
-    implementation 'com.tradplus.ads.sigmob:tradplus-sigmob:21.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-sigmob:21.5.6.4.1'
 
 
     // Youdao
-    implementation 'com.tradplus.ads.youdao:tradplus-youdao:25.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-youdao:25.5.6.4.1'
 
 
     // Tencent
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.5.2@aar'
-    implementation 'com.tradplus.ads.txadnet:tradplus-txadnet:16.5.6.4.1'
+    implementation 'com.tradplusad:tradplus-txadnet:16.5.6.4.1'
     implementation(name: 'GDTSDK.unionNormal.4.330.1200', ext: 'aar')
 
-
-    // Mintegral
-    implementation 'com.tradplus.ads.mintegral:tradplus-mintegralx_cn:18.5.6.4.1'
-    implementation 'com.mintegral.msdk.china:mtgnative:15.2.22'
-    implementation 'com.mintegral.msdk.china:nativeex:15.2.22'
-    implementation 'com.mintegral.msdk.china:playercommon:15.2.22'
-    implementation 'com.mintegral.msdk.china:videocommon:15.2.22'
-    implementation 'com.mintegral.msdk.china:mtgjscommon:15.2.22'
-    implementation 'com.mintegral.msdk.china:chinacommon:15.2.22'
-    implementation 'com.mintegral.msdk.china:mtgbanner:15.2.22'
-    // Be sure to add mtgdownloads library when you select “APK” option to Yes in the “Add APP” popmenu on Mintegral dashboard.
-    implementation 'com.mintegral.msdk.china:mtgdownloads:15.2.22'
-    implementation 'com.mintegral.msdk.china:videojs:15.2.22'
-    implementation 'com.mintegral.msdk.china:reward:15.2.22'
-    implementation 'com.mintegral.msdk.china:interstitialvideo:15.2.22'
-    implementation 'com.mintegral.msdk.china:interstitial:15.2.22'
-    implementation 'com.mintegral.msdk.china:mtgsplash:15.2.22'
-    implementation 'com.mintegral.msdk.china:mtgbanner:15.2.22'
-
-
-    // Juliang
-    implementation 'com.joomob.android.sdk:common:1.0.9.0'
-    implementation 'com.tradplus.ads.joomob:tradplus-joomob:35.5.6.4.1'
 
     //其他 无需引入
     implementation(name: 'circleimageview-2.2.0', ext: 'aar')
