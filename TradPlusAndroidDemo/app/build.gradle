@@ -141,6 +141,7 @@ dependencies {
 
     // UnityAds
     implementation 'com.tradplusad:tradplus-unity:5.6.4.1.1'
+    implementation(name: 'unity-ads-3.7.1', ext: 'aar')
 
 
     // Chartboost
@@ -185,6 +186,7 @@ dependencies {
     //如果引入Admob源则不需要重复引入'com.google.android.gms:play-services-ads:19.5.0'
 //    implementation 'com.google.android.gms:play-services-ads:19.5.0'
     implementation 'com.tradplusad:tradplus-maio:31.6.4.1.1'
+    implementation(name: 'maio_1.1.13', ext: 'aar')
 
 
     // Criteo
@@ -246,14 +248,17 @@ dependencies {
 
     // Kuaishou
     implementation 'com.tradplusad:tradplus-kwad:20.6.4.1.1'
+    implementation(name: 'kssdk-ad-nds-3.3.8', ext: 'aar')
 
     // Sigmob
     implementation 'com.tradplusad:tradplus-sigmob:21.6.4.1.1'
+    implementation(name: 'windAd-2.21.0', ext: 'aar')
 
 
     // Youdao
     implementation 'com.tradplusad:tradplus-youdao:25.6.4.1.1'
-
+    implementation(name: 'youdaosdk_4.1.6', ext: 'aar')
+    implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
 
     // Tencent
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.6.5.2@aar'
