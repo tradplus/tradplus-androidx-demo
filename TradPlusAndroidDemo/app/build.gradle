@@ -88,7 +88,7 @@ dependencies {
     // TradPlus
     implementation 'com.tradplusad:tradplus-sdk:6.4.1.1'
     implementation 'com.tradplusad:tradplus-core:6.4.1.1'
-    implementation 'com.tradplusad:tradplus:6.4.1.1'
+    implementation 'com.tradplusad:tradplus:6.4.1.11'
 
     // Admob
     implementation 'com.google.android.gms:play-services-ads:20.0.0'
