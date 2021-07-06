@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,42 +38,33 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * nativeslot是标准原生的一种使用场景，不是一种广告类型。就是在listview或者recyclerview中展示native广告（这里只做基础演示，原理类似，具体要根据开发者的场景来做调试）
+ * 这种场景开发者可能会有一次请求多个广告的需求，所以写这个demo做演示
+ * native的更多详细功能请参考NativeActivity中的用法
+ */
 public class NativeSlotActivity extends AppCompatActivity {
-
-    private TradPlusListNativeOption option;
-    private RadioGroup mRadioGroupManager;
-    private RadioGroup mRadioGroupOri;
-    private int mScrollOrientation = RecyclerView.VERTICAL;
+    private static final String AD_TAG = "ad";
     private RecyclerView mListView;
-    private List<TPCustomNativeAd> mData;
+    private List<TPCustomNativeAd> mAdData = new ArrayList<>();
+    private List<Object> mItemData = new ArrayList<>();
     private TPAdapter myAdapter;
-    private Button btn_add,btn_start;
-    private CheckBox check_layout;
+    private Button btn_add;
 
-    private static int LIST_ITEM_COUNT = 5;
+    private static final int LIST_ITEM_COUNT = 5;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nativelistview);
 
-
-        //参数一interval，表示间隔
-        //参数二maxLength 表示当前列表可支持的最大行数
-        option = new TradPlusListNativeOption(6,50);
-        LIST_ITEM_COUNT = option.getMaxLength();
-
+        // init list content
+        addContent(0);
         initListView();
+        loadOneAd();
     }
 
-    private int loadAdNum = 0;
-    private void loadListAd(int startIndex){
-        for(int i = 0; i < LIST_ITEM_COUNT; i++) {
-            mData.add(null);
-        }
-        myAdapter.notifyDataSetChanged();
-        loadAdNum = startIndex;
-
+    private void loadOneAd(){
         TPNative tpNative = new TPNative(this, TestAdUnitId.NATIVE_ADUNITID);
         tpNative.setAdListener(new NativeAdListener() {
             @Override
@@ -96,147 +88,61 @@ public class NativeSlotActivity extends AppCompatActivity {
 
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
-                loadAdNum++;
-
-                int index = option.getInterval() * loadAdNum - 1;
-                LogUtil.ownShow("random = " + index);
-                if(loadAdNum > mData.size() || index >= mData.size()) {
-                    loadAdNum--;
-                    return;
-                }
-                mData.set(index, tpNative.getNativeAd());
-                tpNative.loadAd();
+                // 保存ad，并通知adapter更新数据
+                mAdData.add(tpNative.getNativeAd());
                 myAdapter.notifyDataSetChanged();
             }
         });
         tpNative.loadAd();
     }
 
-    private String compareAdSources(Object obj){
-        if(obj instanceof com.mopub.nativeads.StaticNativeAd){
-            return "mopub";
-        }else if(obj instanceof com.google.android.gms.ads.formats.NativeContentAd){
-            return "admob";
-        }else if(obj instanceof com.google.android.gms.ads.formats.UnifiedNativeAd){
-            return "admob new";
-        }else if(obj instanceof com.facebook.ads.NativeAd){
-            return "facebook";
-        }else if(obj instanceof com.facebook.ads.NativeBannerAd){
-            return "facebook nativebanner";
-        }else if(obj instanceof com.kwad.sdk.api.KsDrawAd){
-            return "kwads";
-        }else if(obj instanceof com.bytedance.sdk.openadsdk.TTNativeExpressAd){
-            return "pangle(cn)/toutiao";
-        }else if(obj instanceof com.qq.e.comm.pi.AdData){
-            return "tencent ads";
-        }else{
-            return "unknown";
-        }
-    }
-
     @SuppressWarnings("RedundantCast")
     private void initListView() {
         mListView = (RecyclerView) findViewById(R.id.my_list);
         mListView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        mData = new ArrayList<>();
-        myAdapter = new TPAdapter(this, mData);
+        myAdapter = new TPAdapter(this, mItemData, mAdData);
         mListView.setAdapter(myAdapter);
 
-
-
+        // 模拟更新数据
         btn_add = findViewById(R.id.btn_add);
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadListAd(loadAdNum);
+                int index = mItemData.size();
+                addContent(index);
+                myAdapter.notifyDataSetChanged();
             }
         });
-        btn_start = findViewById(R.id.btn_start);
-        btn_start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadListAd(0);
-            }
-        });
-
-        check_layout = findViewById(R.id.check_layout);
     }
 
-    private void initSelectMode() {
-        mRadioGroupManager = (RadioGroup) findViewById(R.id.rg_fra_group);
-        mRadioGroupOri = (RadioGroup) findViewById(R.id.rg_fra_group_orientation);
-
-
-        mRadioGroupManager.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (mListView == null || mData == null || myAdapter == null) {
-                    return;
-                }
-
-                RecyclerView.LayoutManager manager = null;
-                mRadioGroupOri.setVisibility(View.VISIBLE);
-                switch (checkedId) {
-                    case R.id.rb_fra_linear:
-                        manager = new LinearLayoutManager(NativeSlotActivity.this, mScrollOrientation, false);
-                        break;
-                    case R.id.rb_fra_grid:
-                        mRadioGroupOri.setVisibility(View.GONE);
-                        manager = new GridLayoutManager(NativeSlotActivity.this, 2);
-                        break;
-                    case R.id.rb_fra_staggered:
-                        manager = new StaggeredGridLayoutManager(2, mScrollOrientation);
-                        break;
-                }
-                if (manager != null) {
-                    mListView.setLayoutManager(manager);
-                    mData.clear();
-                    myAdapter.notifyDataSetChanged();
-                    loadListAd(0);
-                }
+    /**
+     * 模拟数据更新
+     * 提前把广告位置做好标记，占位
+     * @param startIndex 初始位
+     */
+    private void addContent(int startIndex) {
+        for(int i = startIndex; i < startIndex + 20; i++) {
+            if(i % LIST_ITEM_COUNT == 0) {
+                mItemData.add(AD_TAG);
+            } else {
+                mItemData.add("index:" + i);
             }
-        });
-
-        mRadioGroupOri.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (mListView == null || mData == null || myAdapter == null) {
-                    return;
-                }
-
-                RecyclerView.LayoutManager manager = mListView.getLayoutManager();
-                if (manager != null) {
-                    if (checkedId == R.id.rb_fra_orientation_v) {
-                        mScrollOrientation = RecyclerView.VERTICAL;
-                    } else if (checkedId == R.id.rb_fra_orientation_h) {
-                        mScrollOrientation = RecyclerView.HORIZONTAL;
-                    }
-
-                    if (manager instanceof LinearLayoutManager) {
-                        ((LinearLayoutManager) manager).setOrientation(mScrollOrientation);
-                    } else if (manager instanceof StaggeredGridLayoutManager) {
-                        ((StaggeredGridLayoutManager) manager).setOrientation(mScrollOrientation);
-                    }
-                    mData.clear();
-                    myAdapter.notifyDataSetChanged();
-                    loadListAd(0);
-                }
-            }
-        });
+        }
     }
 
     public class TPAdapter extends RecyclerView.Adapter {
 
         private static final int ITEM_VIEW_TYPE_NORMAL = 0;
-        private static final int ITEM_VIEW_TYPE_TRADPLUS = 6;//竖版图片
+        private static final int ITEM_VIEW_TYPE_TRADPLUS = 6;//ad
 
-        private List<TPCustomNativeAd> mData;
+        private List<TPCustomNativeAd> mAds;
+        private List<Object> mContents;
         private Context mContext;
-        private RecyclerView mRecyclerView;
 
-        public TPAdapter(Context context, List<TPCustomNativeAd> data) {
+        public TPAdapter(Context context, List<Object> data, List<TPCustomNativeAd> ads) {
             this.mContext = context;
-            this.mData = data;
+            this.mContents = data;
+            this.mAds = ads;
         }
 
         @NonNull
@@ -251,55 +157,55 @@ public class NativeSlotActivity extends AppCompatActivity {
         @SuppressLint("SetTextI18n")
         @Override
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-            int count = mData.size();
             if (holder instanceof NormalViewHolder) {
                 NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
-                normalViewHolder.idle.setText("Recycler item " + position);
-//                normalViewHolder.idle.setTextColor(getColorRandom());
+                normalViewHolder.idle.setText((String)mContents.get(position));
             } else {
+                // 这里有两种情况，一种是有广告，一种是没广告，没广告的时候需要把占位的item隐藏
                 LogUtil.ownShow("-----position = "+position);
                 AdViewHolder adViewHolder = (AdViewHolder) holder;
-
-                TPCustomNativeAd tpNativeAd = mData.get(position);
                 ViewGroup adCardView = (ViewGroup) adViewHolder.itemView;
-
-
-
-                tpNativeAd.showAd(adCardView, R.layout.native_ad_list_item, "");
-
+                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) adCardView.getLayoutParams();
+                if(mContents.get(position) instanceof String) {
+                    params.height = 0;
+                    params.width = 0;
+                    adCardView.setVisibility(View.GONE);
+                } else if(mContents.get(position) instanceof TPCustomNativeAd) {
+                    TPCustomNativeAd tpNativeAd = (TPCustomNativeAd) mContents.get(position);
+                    params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+                    params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
+                    adCardView.setVisibility(View.VISIBLE);
+                    tpNativeAd.showAd(adCardView, R.layout.native_ad_list_item, "");
+                }
+                adCardView.setLayoutParams(params);
             }
         }
 
-        private int getColorRandom() {
-            int a = Double.valueOf(13 * 255).intValue();
-            int r = Double.valueOf(13 * 255).intValue();
-            int g = Double.valueOf(13 * 255).intValue();
-            int b = Double.valueOf(13 * 255).intValue();
-            return Color.argb(a, r, g, b);
-        }
-
-
         @Override
         public int getItemCount() {
-            int count = mData == null ? 0 : mData.size();
+            int count = mContents == null ? 0 : mContents.size();
             return count;
         }
 
         @Override
         public int getItemViewType(int position) {
-            if (mData != null) {
-//                int count = mData.size();
-//                if (position >= count) {
-//                    return ITEM_VIEW_TYPE_LOAD_MORE;
-//                } else {
-                TPCustomNativeAd ad = mData.get(position);
-                if (ad == null) {
+            if(mContents != null && position < mContents.size()) {
+                if(mContents.get(position) instanceof String) {
+                    // 如果是广告占位标致，证明还没填充广告，需要从广告的list中拿出一个来添加到list中
+                    if(AD_TAG.equals(mContents.get(position))) {
+                        if(mAds != null && mAds.size() > 0) {
+                            TPCustomNativeAd temp = mAds.get(0);
+                            mAds.remove(temp);
+                            mContents.set(position, temp);
+                            // 消耗掉一个广告后，加载下一个
+                            loadOneAd();
+                        }
+                        return ITEM_VIEW_TYPE_TRADPLUS;
+                    }
                     return ITEM_VIEW_TYPE_NORMAL;
-                } else {
+                } else if(mContents.get(position) instanceof TPCustomNativeAd) {
                     return ITEM_VIEW_TYPE_TRADPLUS;
                 }
-//                }
-
             }
             return super.getItemViewType(position);
         }
@@ -326,18 +232,5 @@ public class NativeSlotActivity extends AppCompatActivity {
             }
         }
 
-    }
-
-    private String printConfigMap(Map<String, String> map){
-        String s = "";
-        if(map != null) {
-            List<String> keys = new ArrayList(map.keySet());
-            for (int i = 0; i < keys.size(); i++) {
-                String key = keys.get(i);
-                String value = map.get(key);
-                s += "key = "+key+" value = "+value+";";
-            }
-        }
-        return s;
     }
 }

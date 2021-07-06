@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +48,10 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * draw信息流广告，一般是广告平台会返回一个list<View>，类似抖音中的广告一样，可以在视频流里插入广告
+ * 目前支持draw信息流的平台比较少，具体看TradPlus后台的配置
+ */
 public class DrawNativeExpressVideoActivity extends AppCompatActivity {
 
     private static final String TAG = "DrawExpressActivity";
@@ -68,21 +73,29 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // 设置全屏
         try {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         } catch (Throwable ignore) {
         }
+
         setContentView(R.layout.activity_draw_native_video);
+
+        // 查看网络设置
         if (NetworkUtils.getNetworkType(this) == NetworkUtils.NetworkType.NONE) {
             return;
         }
+
+
         initView();
         initListener();
         mContext = this;
 
+        // 加载draw信息流广告（加载方法和普通native一样，只是loaded结果不同）
+        // 这里的adunitid必须使用draw信息流的id，不能用普通native的
         mTPNative = new TPNative(this, TestAdUnitId.DRAW_ADUNITID);
-
         mTPNative.setAdListener(nativeAdListener);
         mTPNative.loadAd();
 
@@ -99,8 +112,11 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
             super.onAdLoaded(tpAdInfo, tpBaseAd);
             Log.i(TAG, "onAdLoaded: ");
 
+            // 获取draw信息流的结果
             mDrawNativeAdList = mTPNative.getDrawNativeAdList();
             Log.i(TAG, "onAdLoaded: size" + mDrawNativeAdList.size());
+
+            // 解析并展示view
             initNativeADView(mDrawNativeAdList);
         }
 
@@ -134,11 +150,15 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         if (drawNativeAdList == null || drawNativeAdList.size() <= 0) {
             return;
         }
+
+        // mock测试数据
         for (int i = 0; i < 5; i++) {
             int random = (int) (Math.random() * 100);
             int index = random % videos.length;
             datas.add(new Item(TYPE_COMMON_ITEM, null, videos[index], imgs[index]));
         }
+
+        // 把广告随机插入到视频流的位置
         for (View view : drawNativeAdList) {
             int random = (int) (Math.random() * 100);
             int index = random % videos.length;
@@ -148,6 +168,7 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
             datas.add(index, new Item(TYPE_AD_ITEM, view, -1, -1));
         }
 
+        // 通知更新
         mAdapter.notifyDataSetChanged();
     }
 
@@ -430,5 +451,25 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         return s;
     }
 
+    public class FullScreenVideoView extends VideoView {
+        public FullScreenVideoView(Context context) {
+            super(context);
+        }
+
+        public FullScreenVideoView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        public FullScreenVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
+            super(context, attrs, defStyleAttr);
+        }
+
+        @Override
+        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+            int width = getDefaultSize(0, widthMeasureSpec);
+            int height = getDefaultSize(0, heightMeasureSpec);
+            setMeasuredDimension(width, height);
+        }
+    }
 }
 
