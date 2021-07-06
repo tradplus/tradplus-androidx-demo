@@ -299,4 +299,11 @@ dependencies {
     implementation(name: 'circleimageview-2.2.0', ext: 'aar')
     implementation(name: 'LayoutManagerGroup', ext: 'aar')
 
+    //百度
+    implementation 'com.tradplusad:tradplus-baidu:43.6.7.0'
+    implementation files ('libs/android-query-full.0.26.7.jar')
+    implementation(name:'Baidu_MobAds_SDK-release_v9.12',ext:'aar')
+    implementation(name:'oaid_sdk_1.0.22',ext:'aar')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
 }
