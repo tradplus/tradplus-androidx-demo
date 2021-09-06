@@ -88,13 +88,13 @@ public class SplashActivity extends AppCompatActivity {
                 //======================================================================================================
                 // 这里一定要注意，需要判断一下是否已经进入app内部，如果加载时间过长，已经进入到app内部，这次load结果就不展示了
                 //======================================================================================================
-                tpSplash.showAd();
+                // 需要传入一个容器（容器一般要求全屏或者至少占屏幕75%以上，其余部分可以展示app的logo信息）
+                tpSplash.showAd(findViewById(R.id.splash_container));
             }
         });
 
         // 开始加载开屏
-        // 需要传入一个容器（容器一般要求全屏或者至少占屏幕75%以上，其余部分可以展示app的logo信息）
-        tpSplash.loadAd(findViewById(R.id.splash_container));
+        tpSplash.loadAd(null);
     }
 
 

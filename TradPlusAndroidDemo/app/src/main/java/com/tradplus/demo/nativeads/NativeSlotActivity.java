@@ -175,7 +175,7 @@ public class NativeSlotActivity extends AppCompatActivity {
                     params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
                     params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
                     adCardView.setVisibility(View.VISIBLE);
-                    tpNativeAd.showAd(adCardView, R.layout.native_ad_list_item, "");
+                    tpNativeAd.showAd(adCardView, R.layout.tp_native_ad_list_item, "");
                 }
                 adCardView.setLayoutParams(params);
             }

@@ -71,7 +71,7 @@ public class NativeActivity extends AppCompatActivity {
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
-                tpNative.getNativeAd().showAd(adContainer, R.layout.native_ad_list_item,"");
+                tpNative.getNativeAd().showAd(adContainer, R.layout.tp_native_ad_list_item,"");
             }
 
             @Override
@@ -210,14 +210,14 @@ public class NativeActivity extends AppCompatActivity {
             @Override
             public ViewGroup createAdLayoutView() {
                 LayoutInflater inflater = (LayoutInflater) NativeActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                return (ViewGroup) inflater.inflate(R.layout.native_ad_list_item, null);
+                return (ViewGroup) inflater.inflate(R.layout.tp_native_ad_list_item, null);
             }
 
             @Override
             public ViewGroup renderAdView(TPNativeAdView tpNativeAdView) {
                 ViewGroup viewGroup = createAdLayoutView();
 
-                ImageView imageView = viewGroup.findViewById(R.id.mopub_native_main_image);
+                ImageView imageView = viewGroup.findViewById(R.id.tp_mopub_native_main_image);
                 if(imageView != null) {
                     if(tpNativeAdView.getMediaView() != null) {
                         // 如果三方广告平台有mediaview，需要用三方提供的mediaview来替换原来布局中的imageview
@@ -236,7 +236,7 @@ public class NativeActivity extends AppCompatActivity {
                     }
                 }
 
-                ImageView iconView = viewGroup.findViewById(R.id.native_icon_image);
+                ImageView iconView = viewGroup.findViewById(R.id.tp_native_icon_image);
                 if(iconView != null) {
                     if(tpNativeAdView.getIconImage() != null) {
                         iconView.setImageDrawable(tpNativeAdView.getIconImage());
@@ -245,23 +245,23 @@ public class NativeActivity extends AppCompatActivity {
                     }
                 }
 
-                TextView titleView = viewGroup.findViewById(R.id.native_title);
+                TextView titleView = viewGroup.findViewById(R.id.tp_native_title);
                 if(titleView != null && tpNativeAdView.getTitle() != null) {
                     titleView.setText(tpNativeAdView.getTitle());
                 }
 
-                TextView subTitleView = viewGroup.findViewById(R.id.native_text);
+                TextView subTitleView = viewGroup.findViewById(R.id.tp_native_text);
                 if(subTitleView != null && tpNativeAdView.getSubTitle() != null) {
                     subTitleView.setText(tpNativeAdView.getSubTitle());
                 }
 
-                Button callToActionView = viewGroup.findViewById(R.id.native_cta_btn);
+                Button callToActionView = viewGroup.findViewById(R.id.tp_native_cta_btn);
                 if(callToActionView != null && tpNativeAdView.getCallToAction() != null) {
                     callToActionView.setText(tpNativeAdView.getCallToAction());
                 }
 
                 // facebook会需要一个adchoice的容器来填充adchoice
-                FrameLayout adChoiceView = viewGroup.findViewById(R.id.ad_choices_container);
+                FrameLayout adChoiceView = viewGroup.findViewById(R.id.tp_ad_choices_container);
 
                 // 把主要的元素设置给三方广告平台，第二个参数是是否可以点击
                 setImageView(imageView, true);
@@ -298,6 +298,6 @@ public class NativeActivity extends AppCompatActivity {
         }
 
         // show 广告
-        customNativeAd.showAd(adContainer, R.layout.native_ad_list_item, "adSceneId");
+        customNativeAd.showAd(adContainer, R.layout.tp_native_ad_list_item, "adSceneId");
     }
 }

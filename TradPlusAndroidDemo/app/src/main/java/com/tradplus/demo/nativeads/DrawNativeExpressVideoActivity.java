@@ -33,7 +33,6 @@ import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.common.IDrawNativeListVideoViewListener;
-import com.tradplus.ads.mobileads.TradPlusErrorCode;
 import com.tradplus.ads.mobileads.TradPlusView;
 import com.tradplus.ads.open.nativead.NativeAdListener;
 import com.tradplus.ads.open.nativead.TPNative;

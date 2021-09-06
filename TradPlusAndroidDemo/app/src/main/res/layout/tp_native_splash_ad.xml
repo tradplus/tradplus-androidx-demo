@@ -96,7 +96,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/tp_bg_bottom_clickbtn"
                         android:gravity="center"
                         android:minWidth="80dp"
                         android:minHeight="40dp"

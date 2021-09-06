@@ -196,14 +196,14 @@ public class NativeBannerViewActivity extends AppCompatActivity {
         @Override
         public ViewGroup createAdLayoutView() {
             LayoutInflater inflater = (LayoutInflater) NativeBannerViewActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            return (ViewGroup) inflater.inflate(R.layout.native_banner_ad_unit, null);
+            return (ViewGroup) inflater.inflate(R.layout.tp_native_banner_ad_unit, null);
         }
 
         @Override
         public ViewGroup renderAdView(TPNativeAdView tpNativeAdView) {
             ViewGroup viewGroup = createAdLayoutView();
 
-            ImageView iconView = viewGroup.findViewById(R.id.native_icon_image);
+            ImageView iconView = viewGroup.findViewById(R.id.tp_native_icon_image);
             if(iconView != null) {
                 if(tpNativeAdView.getIconImage() != null) {
                     iconView.setImageDrawable(tpNativeAdView.getIconImage());
@@ -212,23 +212,23 @@ public class NativeBannerViewActivity extends AppCompatActivity {
                 }
             }
 
-            TextView titleView = viewGroup.findViewById(R.id.native_title);
+            TextView titleView = viewGroup.findViewById(R.id.tp_native_title);
             if(titleView != null && tpNativeAdView.getTitle() != null) {
                 titleView.setText(tpNativeAdView.getTitle());
             }
 
-            TextView subTitleView = viewGroup.findViewById(R.id.native_text);
+            TextView subTitleView = viewGroup.findViewById(R.id.tp_native_text);
             if(subTitleView != null && tpNativeAdView.getSubTitle() != null) {
                 subTitleView.setText(tpNativeAdView.getSubTitle());
             }
 
-            Button callToActionView = viewGroup.findViewById(R.id.native_cta_btn);
+            Button callToActionView = viewGroup.findViewById(R.id.tp_native_cta_btn);
             if(callToActionView != null && tpNativeAdView.getCallToAction() != null) {
                 callToActionView.setText(tpNativeAdView.getCallToAction());
             }
 
             // facebook会需要一个adchoice的容器来填充adchoice
-            FrameLayout adChoiceView = viewGroup.findViewById(R.id.ad_choices_container);
+            FrameLayout adChoiceView = viewGroup.findViewById(R.id.tp_ad_choices_container);
 
             // 把主要的元素设置给三方广告平台，第二个参数是是否可以点击
             setIconView(iconView, true);
