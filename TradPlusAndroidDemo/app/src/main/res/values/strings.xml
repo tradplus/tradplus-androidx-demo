@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Demo_v6.9.60.1</string>
+    <string name="app_name">Demo_v6.9.80.1</string>
     <string name="init_sdk">SDK初始化</string>
     <string name="init_custom_sdk"> SDK初始化 自定义GDPR</string>
     <string name="gdpr_upload_data">GDPR数据是否上报</string>

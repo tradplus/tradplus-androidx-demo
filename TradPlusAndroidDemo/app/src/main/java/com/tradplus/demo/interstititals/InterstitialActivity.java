@@ -129,6 +129,11 @@ public class InterstitialActivity extends AppCompatActivity  {
                 Log.i(TAG, "onAdClosed: 广告"+ tpAdInfo.adSourceName +"被关闭");
 
             }
+
+            @Override
+            public void onAdVideoError(TPAdInfo tpAdInfo) {
+                Log.i(TAG, "onAdClosed: 广告"+ tpAdInfo.adSourceName +"展示失败");
+            }
         });
 
         // 监听每一层广告的加载情况，非特殊需求可以不实现
