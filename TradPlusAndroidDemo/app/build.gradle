@@ -206,7 +206,7 @@ dependencies {
 
     // Kidoz
     implementation 'com.tradplusad:tradplus-kidoz:37.6.9.80.1'
-//    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'com.kidoz.sdk:KidozSDK:8.9.0@aar'
 //    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
