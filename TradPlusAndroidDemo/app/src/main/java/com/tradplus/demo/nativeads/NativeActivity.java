@@ -71,7 +71,7 @@ public class NativeActivity extends AppCompatActivity {
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
-                tpNative.getNativeAd().showAd(adContainer, R.layout.tp_native_ad_list_item,"");
+                tpNative.showAd(adContainer, R.layout.tp_native_ad_list_item,"");
             }
 
             @Override
@@ -277,6 +277,7 @@ public class NativeActivity extends AppCompatActivity {
     }
 
     private void getNativeAdInfoAndShowAd() {
+        // 从TP缓存中获取TPCustomNativeAd，getNativeAd后就会自行clean
         TPCustomNativeAd customNativeAd = tpNative.getNativeAd();
 
         String id = customNativeAd.getCustomNetworkId();  // 广告源的id
