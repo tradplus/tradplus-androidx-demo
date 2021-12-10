@@ -277,7 +277,8 @@ public class NativeActivity extends AppCompatActivity {
     }
 
     private void getNativeAdInfoAndShowAd() {
-        // 从TP缓存中获取TPCustomNativeAd，getNativeAd后就会自行clean
+        // 获取TP的缓存对象，获取后就会从TradPlus的缓存池中删除，所以不能重复调用，
+        // 需要将get到的TPCustomNativeAd对象保存下来进行处理
         TPCustomNativeAd customNativeAd = tpNative.getNativeAd();
 
         String id = customNativeAd.getCustomNetworkId();  // 广告源的id
