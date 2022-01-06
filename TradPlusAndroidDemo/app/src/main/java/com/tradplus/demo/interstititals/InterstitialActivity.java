@@ -131,7 +131,7 @@ public class InterstitialActivity extends AppCompatActivity  {
             }
 
             @Override
-            public void onAdVideoError(TPAdInfo tpAdInfo) {
+            public void onAdVideoError(TPAdInfo tpAdInfo, TPAdError tpAdError) {
                 Log.i(TAG, "onAdClosed: 广告"+ tpAdInfo.adSourceName +"展示失败");
             }
         });
@@ -167,9 +167,10 @@ public class InterstitialActivity extends AppCompatActivity  {
             }
 
             @Override
-            public void onBiddingEnd(TPAdInfo tpAdInfo) {
+            public void onBiddingEnd(TPAdInfo tpAdInfo, TPAdError tpAdError) {
 
             }
+
         });
     }
 }

@@ -27,7 +27,7 @@ import com.tradplus.demo.rewarded.RewardedVideoActivity;
 import com.tradplus.utils.TestAdUnitId;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private Button gdpr_view;
     private Button initSDK;
@@ -118,8 +118,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 TradPlusSdk.setCCPADoNotSell(MainActivity.this, b);
             }
         });
+
+        ((CheckBox) findViewById(R.id.is_personad)).setOnCheckedChangeListener(this);
+        ((CheckBox) findViewById(R.id.is_privacyUser)).setOnCheckedChangeListener(this);
     }
 
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+        switch (compoundButton.getId()) {
+            case R.id.is_personad:
+                //个性化推荐广告开关；默认是开启状态 true
+                TradPlusSdk.setOpenPersonalizedAd(isChecked);
+                break;
+            case R.id.is_privacyUser:
+                // 隐私信息控制开关；默认是开启状态 true
+                TradPlusSdk.setPrivacyUserAgree(isChecked);
+                break;
+        }
+    }
 
     @Override
     public void onClick(View view) {

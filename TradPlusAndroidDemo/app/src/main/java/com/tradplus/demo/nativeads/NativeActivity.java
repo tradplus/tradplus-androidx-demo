@@ -184,7 +184,7 @@ public class NativeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onBiddingEnd(TPAdInfo tpAdInfo) {
+            public void onBiddingEnd(TPAdInfo tpAdInfo, TPAdError tpAdError) {
 
             }
         });

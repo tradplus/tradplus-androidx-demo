@@ -140,9 +140,10 @@ public class RewardedVideoActivity extends AppCompatActivity  {
             }
 
             @Override
-            public void onAdVideoError(TPAdInfo tpAdInfo) {
+            public void onAdVideoError(TPAdInfo tpAdInfo, TPAdError tpAdError) {
 
             }
+
         });
 
         // 监听每一层广告的加载情况，非特殊需求可以不实现
@@ -176,7 +177,7 @@ public class RewardedVideoActivity extends AppCompatActivity  {
             }
 
             @Override
-            public void onBiddingEnd(TPAdInfo tpAdInfo) {
+            public void onBiddingEnd(TPAdInfo tpAdInfo, TPAdError tpAdError) {
 
             }
         });

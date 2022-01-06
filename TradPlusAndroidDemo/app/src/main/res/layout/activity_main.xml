@@ -179,7 +179,30 @@
                 android:layout_height="50dp"
                 android:text="ccpa"
                 android:textSize="16sp"/>
+
         </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/is_personad"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.0"
+            android:checked="true"
+            android:gravity="center"
+            android:text="开启个性化广告"
+            android:textSize="16sp" />
+
+        <CheckBox
+            android:id="@+id/is_privacyUser"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1.0"
+            android:checked="true"
+            android:gravity="center"
+            android:text="获取三方隐私权限"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
