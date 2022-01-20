@@ -144,6 +144,11 @@ public class RewardedVideoActivity extends AppCompatActivity  {
 
             }
 
+            @Override
+            public void onAdPlayAgainReward(TPAdInfo tpAdInfo) {
+                // "在看一个" 奖励回调
+            }
+
         });
 
         // 监听每一层广告的加载情况，非特殊需求可以不实现

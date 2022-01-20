@@ -1,5 +1,6 @@
 package com.tradplus.demo.nativeads;
 
+import android.app.Activity;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -7,8 +8,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.AttributeSet;
+
+
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,16 +31,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bytedance.sdk.openadsdk.TTNativeExpressAd;
 import com.dingmouren.layoutmanagergroup.viewpager.OnViewPagerListener;
 import com.dingmouren.layoutmanagergroup.viewpager.ViewPagerLayoutManager;
-import com.kwad.sdk.api.KsDrawAd;
+import com.qq.e.ads.nativ.MediaView;
+import com.qq.e.ads.nativ.NativeUnifiedADData;
+import com.qq.e.ads.nativ.widget.NativeAdContainer;
+import com.qq.e.comm.constants.AdPatternType;
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
-import com.tradplus.ads.common.IDrawNativeListVideoViewListener;
+import com.tradplus.ads.common.serialization.JSON;
+import com.tradplus.ads.common.util.DeviceUtils;
+import com.tradplus.ads.mgr.nativead.TPCustomNativeAd;
+import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.nativead.NativeAdListener;
 import com.tradplus.ads.open.nativead.TPNative;
 import com.tradplus.demo.R;
 import com.tradplus.utils.NetworkUtils;
-import com.tradplus.utils.TToast;
 import com.tradplus.utils.TestAdUnitId;
 
 import java.util.ArrayList;
@@ -46,15 +54,13 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * draw信息流广告，一般是广告平台会返回一个list<View>，类似抖音中的广告一样，可以在视频流里插入广告
- * 目前支持draw信息流的平台比较少，具体看TradPlus后台的配置
- */
-public class DrawNativeExpressVideoActivity extends AppCompatActivity {
+
+public class DrawNativeExpressVideoActivity extends Activity {
 
     private static final String TAG = "DrawExpressActivity";
     private static final int TYPE_COMMON_ITEM = 1;
     private static final int TYPE_AD_ITEM = 2;
+    private static final int TYPE_UNIFIED_AD_ITEM = 3;
     private RecyclerView mRecyclerView;
     private LinearLayout mBottomLayout;
     private RelativeLayout mTopLayout;
@@ -108,39 +114,41 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         @Override
         public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
             super.onAdLoaded(tpAdInfo, tpBaseAd);
-            Log.i(TAG, "onAdLoaded: ");
-
-            // 获取draw信息流的结果
-            mDrawNativeAdList = mTPNative.getDrawNativeAdList();
-            Log.i(TAG, "onAdLoaded: size" + mDrawNativeAdList.size());
-
-            // 解析并展示view
-            initNativeADView(mDrawNativeAdList);
+            Log.i("TradPlusData", "onAdLoaded:" + JSON.toJSONString(tpAdInfo));
+            TPCustomNativeAd tpCustomNativeAd = mTPNative.getNativeAd();
+            if (tpAdInfo.adSourceName.equals("Tencent Ads")) {
+                List<Object> drawNativeAdObjectList = tpCustomNativeAd.getDrawNativeAdObjectList();
+                initNativeUnifiedADView(drawNativeAdObjectList);
+            } else {
+                mDrawNativeAdList = tpCustomNativeAd.getDrawNativeAdList();
+                Log.i(TAG, "onAdLoaded: size" + mDrawNativeAdList.size());
+                initNativeADView(mDrawNativeAdList);
+            }
         }
 
         @Override
         public void onAdImpression(TPAdInfo tpAdInfo) {
             super.onAdImpression(tpAdInfo);
-            Log.i(TAG, "onAdImpression: ");
+            Log.i("TradPlusData", "onAdImpression:" + JSON.toJSONString(tpAdInfo));
 
         }
 
         @Override
         public void onAdShowFailed(TPAdError error, TPAdInfo tpAdInfo) {
             super.onAdShowFailed(error, tpAdInfo);
-            Log.i(TAG, "onAdShowFailed: ");
+            Log.i("TradPlusData", "onAdShowFailed:" + JSON.toJSONString(tpAdInfo));
         }
 
         @Override
         public void onAdLoadFailed(TPAdError error) {
             super.onAdLoadFailed(error);
-            Log.i(TAG, "onAdLoadFailed: ");
+
         }
 
         @Override
         public void onAdClosed(TPAdInfo tpAdInfo) {
             super.onAdClosed(tpAdInfo);
-            Log.i(TAG, "onAdClosed: ");
+            Log.i("TradPlusData", "onAdClosed:" + JSON.toJSONString(tpAdInfo));
         }
     };
 
@@ -166,7 +174,27 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
             datas.add(index, new Item(TYPE_AD_ITEM, view, -1, -1));
         }
 
-        // 通知更新
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void initNativeUnifiedADView(List<Object> drawNativeAdList) {
+        if (drawNativeAdList == null || drawNativeAdList.size() <= 0) {
+            return;
+        }
+        for (int i = 0; i < 5; i++) {
+            int random = (int) (Math.random() * 100);
+            int index = random % videos.length;
+            datas.add(new Item(TYPE_COMMON_ITEM, null, videos[index], imgs[index]));
+        }
+        for (Object o : drawNativeAdList) {
+            int random = (int) (Math.random() * 100);
+            int index = random % videos.length;
+            if (index == 0) {
+                index++;
+            }
+            datas.add(index, new Item(TYPE_UNIFIED_AD_ITEM, o, -1, -1));
+        }
+
         mAdapter.notifyDataSetChanged();
     }
 
@@ -343,7 +371,13 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_pager, parent, false);
+            View view;
+            if(viewType == TYPE_UNIFIED_AD_ITEM){
+                view = LayoutInflater.from(mContext).inflate(R.layout.activity_native_unified_ad_full_screen, parent, false);
+            }else{
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_pager, parent, false);
+
+            }
             return new ViewHolder(view);
         }
 
@@ -353,22 +387,27 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
             Item item = null;
             if (datas != null) {
                 item = datas.get(position);
-                if (item.type == TYPE_COMMON_ITEM) {
-                    holder.img_thumb.setImageResource(item.ImgId);
-                    view = getView();
-                    ((VideoView) view).setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + item.videoId));
-                } else if (item.type == TYPE_AD_ITEM && item.ad != null) {
-                    view = item.ad;
+                if (item.type == TYPE_UNIFIED_AD_ITEM && item.adObject != null) {
+                    initADItemView(position,holder);
+                }else {
+                    if (item.type == TYPE_COMMON_ITEM) {
+                        holder.img_thumb.setImageResource(item.ImgId);
+                        view = getView();
+                        ((VideoView) view).setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + item.videoId));
+                    } else if (item.type == TYPE_AD_ITEM && item.ad != null) {
+                        view = item.ad;
+                    }
+                    holder.videoLayout.removeAllViews();
+                    if (view.getParent() != null) {
+                        ((ViewGroup) view.getParent()).removeView(view);
+                    }
+                    holder.videoLayout.addView(view);
+                    if (item != null) {
+                        changeUIVisibility(holder, item.type);
+                    }
                 }
             }
-            holder.videoLayout.removeAllViews();
-            if (view.getParent() != null) {
-                ((ViewGroup) view.getParent()).removeView(view);
-            }
-            holder.videoLayout.addView(view);
-            if (item != null) {
-                changeUIVisibility(holder, item.type);
-            }
+
         }
 
         @Override
@@ -384,8 +423,58 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onViewAttachedToWindow(@NonNull ViewHolder holder) {
+        public void onViewAttachedToWindow(ViewHolder holder) {
             super.onViewAttachedToWindow(holder);
+        }
+
+        private void initADItemView(int position, final ViewHolder holder) {
+            Item item = datas.get(position);
+            final NativeUnifiedADData ad = (NativeUnifiedADData) item.adObject;
+            // 视频广告
+            if (ad.getAdPatternType() == AdPatternType.NATIVE_VIDEO) {
+                holder.poster.setVisibility(View.INVISIBLE);
+                holder.mediaView.setVisibility(View.VISIBLE);
+            } else {
+                holder.poster.setVisibility(View.VISIBLE);
+                holder.mediaView.setVisibility(View.INVISIBLE);
+            }
+            List<View> clickableViews = new ArrayList<>();
+            List<View> customClickableViews = new ArrayList<>();
+//            if (mBindToCustomView) {
+//                customClickableViews.addAll(holder.adInfoView.getClickableViews());
+//            } else {
+//                clickableViews.addAll(holder.adInfoView.getClickableViews());
+//            }
+            ArrayList<ImageView>imageViews = new ArrayList<>();
+            if(ad.getAdPatternType() == AdPatternType.NATIVE_2IMAGE_2TEXT ||
+                    ad.getAdPatternType() == AdPatternType.NATIVE_1IMAGE_2TEXT){
+                // 双图双文、单图双文：注册mImagePoster的点击事件
+                clickableViews.add(holder.poster);
+                imageViews.add(holder.poster);
+            }
+            FrameLayout.LayoutParams adLogoParams = new FrameLayout.LayoutParams(DeviceUtils.dip2px(mContext
+                    , 46),
+                    DeviceUtils.dip2px(mContext, 14));
+            adLogoParams.gravity = Gravity.END | Gravity.BOTTOM;
+            adLogoParams.rightMargin = DeviceUtils.dip2px(mContext, 10);
+            adLogoParams.bottomMargin = DeviceUtils.dip2px(mContext, 10);
+            //作为customClickableViews传入，点击不进入详情页，直接下载或进入落地页，图文、视频广告均生效，
+            ad.bindAdToView(DrawNativeExpressVideoActivity.this, holder.container, adLogoParams,
+                    clickableViews, customClickableViews);
+
+            if (!imageViews.isEmpty()) {
+                ad.bindImageViews(imageViews, 0);
+            }
+            if (holder.mediaView != null) {
+                try {
+                    ad.bindMediaView(holder.mediaView,null, null);
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
+            }
+
+//            setAdListener(holder, ad);
+//            holder.adInfoView.updateAdAction(ad);
         }
 
 
@@ -397,6 +486,10 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
             FrameLayout videoLayout;
             LinearLayout verticalIconLauout;
 
+            public MediaView mediaView;
+            public ImageView poster;
+            public NativeAdContainer container;
+
             public ViewHolder(View itemView) {
                 super(itemView);
                 img_thumb = itemView.findViewById(R.id.img_thumb);
@@ -405,6 +498,10 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
                 rootView = itemView.findViewById(R.id.root_view);
                 verticalIconLauout = itemView.findViewById(R.id.vertical_icon);
                 img_head_icon = itemView.findViewById(R.id.head_icon);
+
+                mediaView = itemView.findViewById(R.id.gdt_media_view);
+                poster = itemView.findViewById(R.id.img_poster);
+                container = itemView.findViewById(R.id.native_ad_container);
 
             }
         }
@@ -427,10 +524,19 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         public View ad;
         public int videoId;
         public int ImgId;
+        public Object adObject;
+
+
 
         public Item(int type, View ad, int videoId, int imgId) {
             this.type = type;
             this.ad = ad;
+            this.videoId = videoId;
+            ImgId = imgId;
+        }
+        public Item(int type, Object adObject, int videoId, int imgId) {
+            this.type = type;
+            this.adObject = adObject;
             this.videoId = videoId;
             ImgId = imgId;
         }
@@ -449,25 +555,4 @@ public class DrawNativeExpressVideoActivity extends AppCompatActivity {
         return s;
     }
 
-    public class FullScreenVideoView extends VideoView {
-        public FullScreenVideoView(Context context) {
-            super(context);
-        }
-
-        public FullScreenVideoView(Context context, AttributeSet attrs) {
-            super(context, attrs);
-        }
-
-        public FullScreenVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
-            super(context, attrs, defStyleAttr);
-        }
-
-        @Override
-        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            int width = getDefaultSize(0, widthMeasureSpec);
-            int height = getDefaultSize(0, heightMeasureSpec);
-            setMeasuredDimension(width, height);
-        }
-    }
 }
-
