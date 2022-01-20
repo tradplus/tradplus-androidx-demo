@@ -120,7 +120,6 @@ dependencies {
     // Pangle 头条穿山甲（国外），国内穿山甲Toutiao的三方广告SDK只能选择一个
 //    implementation(name: 'open_ad_sdk_V4.1.1.4', ext: 'aar')
 
-
     // UnityAds
     implementation 'com.tradplusad:tradplus-unity:5.7.3.0.1'
     implementation(name: 'unity-ads-4.0.0', ext: 'aar')
