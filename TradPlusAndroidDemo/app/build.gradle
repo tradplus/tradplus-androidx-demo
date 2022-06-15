@@ -53,7 +53,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 7
-        versionName "7.4.0.1"
+        versionName "7.9.0.01"
     }
 
     buildTypes {
@@ -73,67 +73,63 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.0'
 
     // TradPlus
-    implementation 'com.tradplusad:tradplus:7.4.0.1'
+    implementation "com.tradplusad:tradplus:${tradplus_version}"
 
     // Admob
-    implementation 'com.google.android.gms:play-services-ads:20.5.0'
-    implementation 'com.tradplusad:tradplus-googlex:2.7.4.0.1'
-
+//    implementation ("com.google.android.gms:play-services-ads:${googlex_version}"){
+//        exclude module:"play-services-measurement-sdk-api"
+//    }
+    implementation "com.google.android.gms:play-services-ads:${googlex_version}"
+    implementation "com.tradplusad:tradplus-googlex:2.${tradplus_version}"
 
     // Vungle
-    implementation 'com.tradplusad:tradplus-vunglex:7.7.4.0.1'
-    implementation 'com.vungle:publisher-sdk-android:6.10.2'
+    implementation "com.tradplusad:tradplus-vunglex:7.${tradplus_version}"
+    implementation "com.vungle:publisher-sdk-android:${vunglex_version}"
     implementation 'com.google.android.gms:play-services-basement:17.3.0'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
 
 
     // Facebook
-    implementation 'com.facebook.android:audience-network-sdk:6.8.0'
-    implementation 'com.tradplusad:tradplus-facebook:1.7.4.0.1'
-
-
-    // Mopub
-    implementation 'com.tradplusad:tradplus-mopubx:3.7.4.0.1'
-    implementation('com.mopub:mopub-sdk:5.17.0') {
-        transitive = true
-    }
+    implementation "com.facebook.android:audience-network-sdk:${facebook_version}"
+    implementation "com.tradplusad:tradplus-facebook:1.${tradplus_version}"
 
     // Applovin
-    implementation 'com.applovin:applovin-sdk:10.3.5'
-    implementation 'com.tradplusad:tradplus-applovin:9.7.4.0.1'
+    implementation "com.applovin:applovin-sdk:${max_version}"
+    implementation "com.tradplusad:tradplus-applovin:9.${tradplus_version}"
 
 
     // Ironsource
-    implementation 'com.ironsource.sdk:mediationsdk:7.1.12.1'
-    implementation 'com.tradplusad:tradplus-ironsource:10.7.4.0.1'
+    implementation "com.ironsource.sdk:mediationsdk:${ironsource_version}"
+    implementation "com.tradplusad:tradplus-ironsource:10.${tradplus_version}"
 
 
     // Tapjoy
-    implementation 'com.tapjoy:tapjoy-android-sdk:12.8.0@aar'
-    implementation 'com.tradplusad:tradplus-tapjoy:6.7.4.0.1'
+    implementation "com.tapjoy:tapjoy-android-sdk:${tapjoy_version}@aar"
+    implementation "com.tradplusad:tradplus-tapjoy:6.${tradplus_version}"
 
     // Adcolony
-    implementation 'com.adcolony:sdk:4.5.0'
-    implementation 'com.tradplusad:tradplus-adcolony:4.7.4.0.1'
+    implementation "com.adcolony:sdk:${adcolony_version}"
+    implementation "com.tradplusad:tradplus-adcolony:4.${tradplus_version}"
 
 
     // Pangle 头条穿山甲（国外），国内穿山甲Toutiao的三方广告SDK只能选择一个
-//    implementation(name: 'open_ad_sdk_V4.1.1.4', ext: 'aar')
+    implementation "com.tradplusad:tradplus-pangle:19.${tradplus_version}"
+//    implementation(name: 'open_ad_sdk_V4.5.0.3', ext: 'aar')
 
 
     // UnityAds
-    implementation 'com.tradplusad:tradplus-unity:5.7.4.0.1'
-    implementation(name: 'unity-ads-4.0.0', ext: 'aar')
+    implementation "com.tradplusad:tradplus-unity:5.${tradplus_version}"
+    implementation "com.unity3d.ads:unity-ads:${unity_version}"
 
 
     // Chartboost
-    implementation 'com.tradplusad:tradplus-chartboostx:15.7.4.0.1'
+    implementation "com.tradplusad:tradplus-chartboostx:15.${tradplus_version}"
 //    implementation 'com.google.android.gms:play-services-base:17.4.0'
-    implementation 'com.chartboost:chartboost-sdk:8.2.0'
+    implementation "com.chartboost:chartboost-sdk:${chartboost_version}"
 
     // Inmobix
-    implementation 'com.tradplusad:tradplus-inmobix:23.7.4.0.1'
-    implementation 'com.inmobi.monetization:inmobi-ads:9.2.1'
+    implementation "com.tradplusad:tradplus-inmobix:23.${tradplus_version}"
+    implementation "com.inmobi.monetization:inmobi-ads:${inmobi_version}"
     implementation 'com.squareup.picasso:picasso:2.71828'
 //    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
@@ -141,149 +137,119 @@ dependencies {
 
 
     // Mintegral
-//    implementation 'com.tradplusad:tradplus-mintegralx_overseas:18.7.4.0.1'
-//    implementation 'com.mbridge.msdk.oversea:reward:15.8.01'
-//    implementation 'com.mbridge.msdk.oversea:mbbanner:15.8.01'
-//    implementation 'com.mbridge.msdk.oversea:mbnativeadvanced:15.8.01'
-//    implementation 'com.mbridge.msdk.oversea:interstitialvideo:15.8.01'
-//    implementation 'com.mbridge.msdk.oversea:mbsplash:15.8.01'
-//    implementation 'com.mbridge.msdk.oversea:interactiveads:15.8.01'
-//    implementation 'com.mbridge.msdk.oversea:interstitial:15.8.01'
-//    implementation 'com.mbridge.msdk.oversea:mbnative:15.8.01'
-//    implementation 'com.mbridge.msdk.oversea:mbbid:15.8.01'
+    implementation "com.tradplusad:tradplus-mintegralx_overseas:18.${tradplus_version}"
+    implementation "com.mbridge.msdk.oversea:reward:${mtg_os_version}"
+    implementation "com.mbridge.msdk.oversea:mbsplash:${mtg_os_version}"
+    implementation "com.mbridge.msdk.oversea:mbbanner:${mtg_os_version}"
+    implementation "com.mbridge.msdk.oversea:mbnative:${mtg_os_version}"
+    implementation "com.mbridge.msdk.oversea:mbnativeadvanced:${mtg_os_version}"
+    implementation "com.mbridge.msdk.oversea:newinterstitial:${mtg_os_version}"
+    implementation "com.mbridge.msdk.oversea:mbbid:${mtg_os_version}"
 
     // Fyber
-    implementation 'com.fyber.vamp:core-sdk:7.8.3'
-    implementation 'com.fyber.vamp:video-kit:7.8.3'
-    implementation 'com.fyber.vamp:mraid-kit:7.8.3'
+    implementation "com.fyber:marketplace-sdk:${fyber_version}"
 //    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.tradplusad:tradplus-fyber:24.7.4.0.1'
+    implementation "com.tradplusad:tradplus-fyber:24.${tradplus_version}"
     // Maio
-    //如果引入Admob源则不需要重复引入'com.google.android.gms:play-services-ads:19.5.0'
-//    implementation 'com.google.android.gms:play-services-ads:19.5.0'
-    implementation 'com.tradplusad:tradplus-maio:31.7.4.0.1'
-    implementation(name: 'maio_1.1.13', ext: 'aar')
+    //如果引入Admob源则不需要重复引入
+//    implementation 'com.google.android.gms:play-services-ads:21.1.0'
+    implementation "com.tradplusad:tradplus-maio:31.${tradplus_version}"
+    implementation(name: 'maio_1.1.16', ext: 'aar')
 
 
     // Criteo
-    implementation 'com.criteo.publisher:criteo-publisher-sdk:4.4.0'
+    implementation "com.criteo.publisher:criteo-publisher-sdk:${criteo_version}"
 //    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
 //    implementation 'com.google.android.gms:play-services-base:17.0.0'
-    implementation 'com.tradplusad:tradplus-criteo:32.7.4.0.1'
+    implementation "com.tradplusad:tradplus-criteo:32.${tradplus_version}"
 
 
     // MyTarget
-    implementation 'com.my.target:mytarget-sdk:5.14.4'
-    implementation 'com.tradplusad:tradplus-mytarget:33.7.4.0.1'
-
+    implementation "com.my.target:mytarget-sdk:${mytarget_version}"
+    implementation "com.tradplusad:tradplus-mytarget:33.${tradplus_version}"
 
     // Ogury
-    implementation 'co.ogury:ogury-sdk:5.0.5'
-    implementation 'com.tradplusad:tradplus-ogury:34.7.4.0.1'
-
-
-    // Appnext
-    implementation 'com.tradplusad:tradplus-appnext:36.7.4.0.1'
-//    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'androidx.annotation:annotation:1.1.0'
-    // Mandatory
-    implementation 'androidx.work:work-runtime:2.4.0'
-    // Mandatory
-    implementation 'com.github.bumptech.glide:glide:4.11.0' // Mandatory
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    // Mandatory
-    //For the Interstitial and Rewarded/Fullscreen video ad unit:
-    implementation 'com.appnext.sdk:ads:2.6.0.473'
-    //For the Banners ad unit:
-    implementation 'com.appnext.sdk:banners:2.6.0.473'
-    //For the New Native Ads ad unit:
-    implementation 'com.appnext.sdk:native-ads2:2.6.0.473'
+    implementation "co.ogury:ogury-sdk:${ogury_version}"
+    implementation "com.tradplusad:tradplus-ogury:34.${tradplus_version}"
 
 
     // Kidoz
-    implementation 'com.tradplusad:tradplus-kidoz:37.7.4.0.1'
+    implementation "com.tradplusad:tradplus-kidoz:37.${tradplus_version}"
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'com.kidoz.sdk:KidozSDK:8.9.0@aar'
 //    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    // StartApp
+    implementation "com.tradplusad:tradplus-startapp:28.${tradplus_version}"
+    implementation "com.startapp:inapp-sdk:${startapp_version}"
 
     //Smaato
-    implementation 'com.tradplusad:tradplus-smaato:38.7.4.0.1'
-    implementation 'com.smaato.android.sdk:smaato-sdk:21.6.7'
-    implementation 'com.smaato.android.sdk:smaato-sdk-banner:21.6.7'
-    implementation 'com.smaato.android.sdk:smaato-sdk-interstitial:21.6.7'
-    implementation 'com.smaato.android.sdk:smaato-sdk-rewarded-ads:21.6.7'
-    implementation 'com.smaato.android.sdk:smaato-sdk-native:21.6.7'
+    implementation "com.tradplusad:tradplus-smaato:38.${tradplus_version}"
+    implementation "com.smaato.android.sdk:smaato-sdk:${smaato_version}"
+    implementation "com.smaato.android.sdk:smaato-sdk-banner:${smaato_version}"
+    implementation "com.smaato.android.sdk:smaato-sdk-interstitial:${smaato_version}"
+    implementation "com.smaato.android.sdk:smaato-sdk-rewarded-ads:${smaato_version}"
+    implementation "com.smaato.android.sdk:smaato-sdk-native:${smaato_version}"
+
+    // Huawei
+    implementation "com.tradplusad:tradplus-huawei:41.${tradplus_version}"
+    implementation "com.huawei.hms:ads:${huaiwei_os_version}"
+    implementation "com.huawei.hms:ads-consent:${huaiwei_os_version}"
 
     //-------国内源------
     //海外穿山甲Pangle和国内穿山甲Toutiao的三方广告SDK 只能二而选一
     // Toutiao
-    implementation 'com.tradplusad:tradplus-toutiao:17.7.4.0.1'
-    implementation(name: 'open_ad_sdk_cn_V4.2.0.3', ext: 'aar')
+    implementation "com.tradplusad:tradplus-toutiao:17.${tradplus_version}"
+    implementation(name: 'open_ad_sdk_cn_V4.5.1.1', ext: 'aar')
 
 
     // Kuaishou
-    implementation 'com.tradplusad:tradplus-kwad:20.7.4.0.1'
-    implementation(name: 'kssdk-ad-3.3.19.2', ext: 'aar')
+    implementation "com.tradplusad:tradplus-kwad:20.${tradplus_version}"
+    implementation(name: 'kssdk-ad-3.3.24', ext: 'aar')
 
     // Sigmob
-    implementation 'com.tradplusad:tradplus-sigmob:21.7.4.0.1'
-    implementation(name: 'windAd-3.5.1', ext: 'aar')
+    implementation "com.tradplusad:tradplus-sigmob:21.${tradplus_version}"
+    implementation(name: 'wind-sdk-4.3.1', ext: 'aar')
+    implementation(name: 'wind-common-1.3.2', ext: 'aar')
 
 
     // Youdao
-    implementation 'com.tradplusad:tradplus-youdao:25.7.4.0.1'
-    implementation(name: 'youdaosdk_4.2.10', ext: 'aar')
+    implementation "com.tradplusad:tradplus-youdao:25.${tradplus_version}"
+    implementation(name: 'youdaosdk_4.2.16', ext: 'aar')
 //    implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
 
     // Tencent
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
-    implementation 'com.tradplusad:tradplus-txadnet:16.7.4.0.1'
-    implementation(name: 'GDTSDK.unionNormal.4.441.1311', ext: 'aar')
+    implementation "com.tradplusad:tradplus-txadnet:16.${tradplus_version}"
+    implementation(name: 'GDTSDK.unionNormal.4.464.1334', ext: 'aar')
 
-
-    // Mintegral
-    implementation 'com.tradplusad:tradplus-mintegralx_cn:18.7.4.0.1'
-    implementation 'com.mbridge.msdk.china:reward:15.8.02'
-    implementation 'com.mbridge.msdk.china:mbnativeadvanced:15.8.02'
-    implementation 'com.mbridge.msdk.china:mbbanner:15.8.02'
-    implementation 'com.mbridge.msdk.china:interactiveads:15.8.02'
-    implementation 'com.mbridge.msdk.china:mbsplash:15.8.02'
-    implementation 'com.mbridge.msdk.china:interstitialvideo:15.8.02'
-    implementation 'com.mbridge.msdk.china:mbnative:15.8.02'
-    implementation 'com.mbridge.msdk.china:interstitial:15.8.02'
-    implementation 'com.mbridge.msdk.china:mbbid:15.8.02'
-
-
-    // Huawei
-    implementation "com.tradplusad:tradplus-huawei:41.7.4.0.1"
-    implementation 'com.huawei.hms:ads:3.4.45.308'
-    implementation 'com.huawei.hms:ads-consent:3.4.45.308'
 
     //交叉推广
-    implementation 'com.tradplusad:tradplus-crosspromotion:27.7.4.0.1'
+    implementation "com.tradplusad:tradplus-crosspromotion:27.${tradplus_version}"
 //    使用交叉推广并且在国内发布，同时需要引入
-//    implementation 'com.tradplusad:tradplus-china_pluginx:7.4.0.1'
-    //其他 无需引入
-    implementation(name: 'circleimageview-2.2.0', ext: 'aar')
-    implementation(name: 'LayoutManagerGroup', ext: 'aar')
+//    implementation 'com.tradplusad:tradplus-china_pluginx:7.${tradplus_version}"
+
 
     //百度
-    implementation 'com.tradplusad:tradplus-baidu:43.7.4.0.1'
-    implementation files ('libs/android-query-full.0.26.7.jar')
-    implementation(name:'Baidu_MobAds_SDK-release_v9.183',ext:'aar')
-    implementation(name:'oaid_sdk_1.0.22',ext:'aar')
+    implementation "com.tradplusad:tradplus-baidu:43.${tradplus_version}"
+    implementation files('libs/android-query-full.0.26.7.jar')
+    implementation(name: 'Baidu_MobAds_SDK-release_v9.213', ext: 'aar')
+//    implementation(name:'msa_mdid_1.0.13',ext:'aar')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     //米盟
-    implementation 'com.tradplusad:tradplus-mimo:46.7.4.0.1'
-    implementation(name: 'mimo-ad-sdk-5.1.4', ext: 'aar')
+    implementation "com.tradplusad:tradplus-mimo:46.${tradplus_version}"
+    implementation(name: 'mimo-ad-sdk-5.1.7', ext: 'aar')
 //    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     //游可赢
-    implementation "com.tradplusad:tradplus-klevin:44.7.4.0.1"
-    implementation(name: 'klevinSDK_2.4.2.4', ext: 'aar')
+    implementation "com.tradplusad:tradplus-klevin:44.${tradplus_version}"
+    implementation(name: 'klevinSDK_2.8.0.8', ext: 'aar')
+
+    //其他 无需引入
+    implementation(name: 'circleimageview-2.2.0', ext: 'aar')
+    implementation(name: 'LayoutManagerGroup', ext: 'aar')
 
 }

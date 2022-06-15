@@ -54,17 +54,6 @@
             android:value="-Xtl_oRuS0L4WSmxnIHXusTCoMrq2cslufstvSvGFnVQWLcoeZCu-_NXWZE0c6-QqiZ-BIFRxm6zBs2zwByKPb" />
 
 
-        <!--Android X China-Mainland Traffic app required, Oversea Traffic app can be ignore-->
-        <provider
-            android:name="com.mbridge.msdk.foundation.tools.MBFileProvider"
-            android:authorities="${applicationId}.mbFileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/mb_provider_paths"/>
-        </provider>
-
         <!--file_paths.xml已经添加到Mimo Adapter中-->
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -78,7 +67,7 @@
 
         <!--sigmob_provider_paths.xml已经添加到Sigmob Adapter中-->
         <provider
-            android:name="com.sigmob.sdk.SigmobXFileProvider"
+            android:name="com.sigmob.sdk.SigmobFileProvider"
             android:authorities="${applicationId}.sigprovider"
             android:exported="false"
             android:grantUriPermissions="true"

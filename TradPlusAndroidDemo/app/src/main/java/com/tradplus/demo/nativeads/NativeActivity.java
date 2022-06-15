@@ -174,8 +174,13 @@ public class NativeActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onLoadAdStart(TPAdInfo tpAdInfo) {
+            public void onAdStartLoad(String s) {
+                // 每次调用load方法时返回的回调，包含自动加载等触发时机。V7.9.0 新增。
+            }
 
+            @Override
+            public void oneLayerLoadStart(TPAdInfo tpAdInfo) {
+                // 每层waterfall 向三方广告源发起请求前，触发的回调。V7.9.0 新增。
             }
 
             @Override
@@ -285,9 +290,7 @@ public class NativeActivity extends AppCompatActivity {
         String name = customNativeAd.getCustomNetworkName(); // 广告源的名称
 
         Object obj = customNativeAd.getCustomNetworkObj(); // 广告源对应的native对象，通过强转可以获取到三方广告的信息
-        if(obj instanceof com.mopub.nativeads.StaticNativeAd){
-
-        }else if(obj instanceof com.google.android.gms.ads.formats.UnifiedNativeAd){
+        if(obj instanceof com.google.android.gms.ads.formats.UnifiedNativeAd){
 
         }else if(obj instanceof com.facebook.ads.NativeAd){
 
