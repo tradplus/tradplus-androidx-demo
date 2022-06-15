@@ -76,9 +76,6 @@ dependencies {
     implementation "com.tradplusad:tradplus:${tradplus_version}"
 
     // Admob
-//    implementation ("com.google.android.gms:play-services-ads:${googlex_version}"){
-//        exclude module:"play-services-measurement-sdk-api"
-//    }
     implementation "com.google.android.gms:play-services-ads:${googlex_version}"
     implementation "com.tradplusad:tradplus-googlex:2.${tradplus_version}"
 
