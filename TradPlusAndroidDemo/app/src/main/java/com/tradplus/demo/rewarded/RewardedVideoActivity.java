@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
+import com.tradplus.ads.mobileads.util.AppKeyManager;
 import com.tradplus.ads.mobileads.util.SegmentUtils;
 import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.reward.RewardAdListener;
@@ -21,6 +22,7 @@ import com.tradplus.demo.R;
 import com.tradplus.utils.TestAdUnitId;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -89,7 +91,7 @@ public class RewardedVideoActivity extends AppCompatActivity  {
          *
          * 2、参数3：自动reload模式，true 开启 ，false 关闭（详细请参考接入文档或者类和方法的注释）
          */
-        mTpReward = new TPReward(this,TestAdUnitId.REWRDVIDEO_ADUNITID,false);
+        mTpReward = new TPReward(this,TestAdUnitId.REWRDVIDEO_ADUNITID,true);
 
         //进入广告场景，广告场景ID后台创建
         // 广告场景是用来统计进入广告场景的次数和进入场景后展示广告的次数，所以请在准确的位置调用
