@@ -354,6 +354,10 @@ public class DrawNativeExpressVideoActivity extends Activity {
             mLayoutManager.setOnViewPagerListener(null);
         }
         mHandler.removeCallbacksAndMessages(null);
+
+        if(mTPNative != null){
+            mTPNative.onDestroy();
+        }
     }
 
     @Override

@@ -161,4 +161,13 @@ public class BannerActivity extends AppCompatActivity {
 //        tpBanner.setVisibility(View.GONE);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(tpBanner != null){
+            tpBanner.onDestroy();
+        }
+    }
+
 }

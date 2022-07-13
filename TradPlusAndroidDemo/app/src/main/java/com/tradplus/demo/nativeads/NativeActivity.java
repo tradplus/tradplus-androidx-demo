@@ -305,4 +305,5 @@ public class NativeActivity extends AppCompatActivity {
         // show 广告
         customNativeAd.showAd(adContainer, R.layout.tp_native_ad_list_item, "adSceneId");
     }
+
 }

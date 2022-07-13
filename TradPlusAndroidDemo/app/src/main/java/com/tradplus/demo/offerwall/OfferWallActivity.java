@@ -123,6 +123,9 @@ public class OfferWallActivity extends AppCompatActivity {
     protected void onDestroy() {
         //释放资源
         super.onDestroy();
+        if(tpOfferWall != null){
+            tpOfferWall.onDestroy();
+        }
     }
 
 

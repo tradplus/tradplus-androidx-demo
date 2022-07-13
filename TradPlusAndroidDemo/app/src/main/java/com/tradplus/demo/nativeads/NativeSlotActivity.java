@@ -233,4 +233,12 @@ public class NativeSlotActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        for(int i = 0; i < mAdData.size();i++){
+            mAdData.get(i).onDestroy();
+        }
+    }
 }

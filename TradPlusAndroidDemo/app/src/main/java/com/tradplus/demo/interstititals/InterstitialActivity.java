@@ -178,4 +178,13 @@ public class InterstitialActivity extends AppCompatActivity  {
 
         });
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(mTPInterstitial != null){
+            mTPInterstitial.onDestroy();
+        }
+    }
 }

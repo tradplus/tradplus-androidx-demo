@@ -51,7 +51,7 @@ public class NativeBannerViewActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // v6.4.5以后才有
-//        tpNativeBanner.onDestroy();
+        tpNativeBanner.onDestroy();
     }
 
     /**

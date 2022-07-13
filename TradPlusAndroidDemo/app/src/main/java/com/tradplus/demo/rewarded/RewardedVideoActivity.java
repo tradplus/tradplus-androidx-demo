@@ -194,5 +194,14 @@ public class RewardedVideoActivity extends AppCompatActivity  {
             }
         });
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(mTpReward != null){
+            mTpReward.onDestroy();
+        }
+    }
 }
 
