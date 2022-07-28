@@ -53,7 +53,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 7
-        versionName "7.9.0.01"
+        versionName "8.1.0.1"
     }
 
     buildTypes {
@@ -111,7 +111,7 @@ dependencies {
 
     // Pangle 头条穿山甲（国外），国内穿山甲Toutiao的三方广告SDK只能选择一个
     implementation "com.tradplusad:tradplus-pangle:19.${tradplus_version}"
-//    implementation(name: 'open_ad_sdk_V4.5.0.3', ext: 'aar')
+//    implementation(name: 'open_ad_sdk_V4.5.0.5', ext: 'aar')
 
 
     // UnityAds
@@ -134,6 +134,7 @@ dependencies {
 
 
     // Mintegral
+//    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "com.tradplusad:tradplus-mintegralx_overseas:18.${tradplus_version}"
     implementation "com.mbridge.msdk.oversea:reward:${mtg_os_version}"
     implementation "com.mbridge.msdk.oversea:mbsplash:${mtg_os_version}"
@@ -197,12 +198,13 @@ dependencies {
     //海外穿山甲Pangle和国内穿山甲Toutiao的三方广告SDK 只能二而选一
     // Toutiao
     implementation "com.tradplusad:tradplus-toutiao:17.${tradplus_version}"
-    implementation(name: 'open_ad_sdk_cn_V4.5.1.1', ext: 'aar')
+    implementation(name: 'open_ad_sdk_cn_V4.6.0.2', ext: 'aar')
 
 
     // Kuaishou
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "com.tradplusad:tradplus-kwad:20.${tradplus_version}"
-    implementation(name: 'kssdk-ad-3.3.24', ext: 'aar')
+    implementation(name: 'kssdk-ad-3.3.26', ext: 'aar')
 
     // Sigmob
     implementation "com.tradplusad:tradplus-sigmob:21.${tradplus_version}"
@@ -216,9 +218,9 @@ dependencies {
 //    implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
 
     // Tencent
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:+'
     implementation "com.tradplusad:tradplus-txadnet:16.${tradplus_version}"
-    implementation(name: 'GDTSDK.unionNormal.4.464.1334', ext: 'aar')
+    implementation(name: 'GDTSDK.unionNormal.4.471.1341', ext: 'aar')
 
 
     //交叉推广
@@ -230,7 +232,7 @@ dependencies {
     //百度
     implementation "com.tradplusad:tradplus-baidu:43.${tradplus_version}"
     implementation files('libs/android-query-full.0.26.7.jar')
-    implementation(name: 'Baidu_MobAds_SDK-release_v9.213', ext: 'aar')
+    implementation(name: 'Baidu_MobAds_SDK-release_v9.222', ext: 'aar')
 //    implementation(name:'msa_mdid_1.0.13',ext:'aar')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
@@ -243,7 +245,7 @@ dependencies {
 
     //游可赢
     implementation "com.tradplusad:tradplus-klevin:44.${tradplus_version}"
-    implementation(name: 'klevinSDK_2.8.0.8', ext: 'aar')
+    implementation(name: 'klevinSDK_2.9.0.9', ext: 'aar')
 
     //其他 无需引入
     implementation(name: 'circleimageview-2.2.0', ext: 'aar')

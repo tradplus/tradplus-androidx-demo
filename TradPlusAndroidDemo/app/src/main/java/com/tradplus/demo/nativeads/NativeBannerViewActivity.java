@@ -70,18 +70,22 @@ public class NativeBannerViewActivity extends AppCompatActivity {
                 Log.i(TAG, "onAdClicked: " + tpAdInfo.adSourceName + "被点击了");
             }
 
+            @Override
             public void onAdLoaded(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
             }
 
+            @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdImpression: "+ tpAdInfo.adSourceName + "展示");
             }
 
+            @Override
             public void onAdLoadFailed(TPAdError tpAdInfo) {
                 Log.i(TAG, "onAdLoadFailed:加载失败: code : "+ tpAdInfo.getErrorCode() + ", msg :" + tpAdInfo.getErrorMsg());
             }
 
+            @Override
             public void onAdClosed(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdClosed: "+ tpAdInfo.adSourceName + "被关闭");
             }
