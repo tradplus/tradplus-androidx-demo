@@ -274,11 +274,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-        //初始化SDK
-        TradPlusSdk.initSdk(this.getApplicationContext(), TestAdUnitId.APPID);
-//        TradPlusSdk.setIsCNLanguageLog(true);//Log中文模式
         //设置测试模式，正式上线前注释
         TestDeviceUtil.getInstance().setNeedTestDevice(true);
+//        TradPlusSdk.setIsCNLanguageLog(true);//Log中文模式
+        //初始化SDK
+        TradPlusSdk.initSdk(this.getApplicationContext(), TestAdUnitId.APPID);
 
     }
 
@@ -334,11 +334,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i("ccpa", "failed: ");
             }
         });
-        //初始化SDK
-        TradPlusSdk.initSdk(this.getApplicationContext(), TestAdUnitId.APPID);
-//        TradPlusSdk.setIsCNLanguageLog(true);//Log中文模式
         //设置测试模式，正式上线前注释
         TestDeviceUtil.getInstance().setNeedTestDevice(true);
+//        TradPlusSdk.setIsCNLanguageLog(true);//Log中文模式
+        //初始化SDK
+        TradPlusSdk.initSdk(this.getApplicationContext(), TestAdUnitId.APPID);
     }
 
     @Override
