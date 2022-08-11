@@ -64,52 +64,55 @@ public class NativeBannerViewActivity extends AppCompatActivity {
     private void showNativeBanner() {
         // 也可以把TPNativeBanner写在xml中，findViewById的方式来初始化，这样就省略了addView操作
         tpNativeBanner = new TPNativeBanner(NativeBannerViewActivity.this);
-        tpNativeBanner.setAdListener(new BannerAdListener(){
+        tpNativeBanner.setAdListener(new BannerAdListener() {
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdClicked: " + tpAdInfo.adSourceName + "被点击了");
             }
 
+            @Override
             public void onAdLoaded(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
             }
 
+            @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdImpression: "+ tpAdInfo.adSourceName + "展示");
+                Log.i(TAG, "onAdImpression: " + tpAdInfo.adSourceName + "展示");
             }
 
+            @Override
             public void onAdLoadFailed(TPAdError tpAdInfo) {
-                Log.i(TAG, "onAdLoadFailed:加载失败: code : "+ tpAdInfo.getErrorCode() + ", msg :" + tpAdInfo.getErrorMsg());
+                Log.i(TAG, "onAdLoadFailed:加载失败: code : " + tpAdInfo.getErrorCode() + ", msg :" + tpAdInfo.getErrorMsg());
             }
 
+            @Override
             public void onAdClosed(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdClosed: "+ tpAdInfo.adSourceName + "被关闭");
+                Log.i(TAG, "onAdClosed: " + tpAdInfo.adSourceName + "被关闭");
             }
 
         });
         adContainer.addView(tpNativeBanner);
-        tpNativeBanner.loadAd(TestAdUnitId.NATIVEBANNER_ADUNITID);
+        // Only 配置Admob nativebanner
+        tpNativeBanner.loadAd(TestAdUnitId.NATIVEBANNER_ADMOB);
 
     }
 
 
-
     /**
      * ==============================================================================================================
-     *                                       以下是高级用法，一般情况下用不到
+     * 以下是高级用法，一般情况下用不到
      * ==============================================================================================================
      */
 
 
-
     private void showCustomNativeBanner() {
         tpNativeBanner = new TPNativeBanner(NativeBannerViewActivity.this);
-        tpNativeBanner.setAdListener(new BannerAdListener(){
+        tpNativeBanner.setAdListener(new BannerAdListener() {
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdClicked: " + tpAdInfo.adSourceName + "被点击了");
             }
-
+            @Override
             public void onAdLoaded(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
                 // 如果在load前调用了closeAutoShow关闭了自动展示，那么在loaded后进行自渲染操作
@@ -119,17 +122,17 @@ public class NativeBannerViewActivity extends AppCompatActivity {
                 // 或者在load前调用closeAutoShow关闭了自动展示，那么loaded后在需要的时候调用showAd
 //                tpNativeBanner.showAd();
             }
-
+            @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdImpression: "+ tpAdInfo.adSourceName + "展示");
+                Log.i(TAG, "onAdImpression: " + tpAdInfo.adSourceName + "展示");
             }
-
+            @Override
             public void onAdLoadFailed(TPAdError tpAdInfo) {
-                Log.i(TAG, "onAdLoadFailed:加载失败: code : "+ tpAdInfo.getErrorCode() + ", msg :" + tpAdInfo.getErrorMsg());
+                Log.i(TAG, "onAdLoadFailed:加载失败: code : " + tpAdInfo.getErrorCode() + ", msg :" + tpAdInfo.getErrorMsg());
             }
-
+            @Override
             public void onAdClosed(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdClosed: "+ tpAdInfo.adSourceName + "被关闭");
+                Log.i(TAG, "onAdClosed: " + tpAdInfo.adSourceName + "被关闭");
             }
 
         });
@@ -173,14 +176,14 @@ public class NativeBannerViewActivity extends AppCompatActivity {
         TPBaseAd tpBaseAd = tpNativeBanner.getBannerAd();
         Object obj = tpBaseAd.getNetworkObj(); // 获取三方的广告对象，可以强转成对应广告平台的对象(具体参考native中的示例)
         int type = tpBaseAd.getNativeAdType(); // 获取广告类型，模板类型，自渲染类型，list类型等，可以分别获取对应的信息
-        if(type == TPBaseAd.AD_TYPE_NATIVE_EXPRESS) {
+        if (type == TPBaseAd.AD_TYPE_NATIVE_EXPRESS) {
             View view = tpBaseAd.getRenderView();// 获取模板渲染时候三方广告平台渲染好的view
             tpNativeBanner.addView(view);
         } else if (type == TPBaseAd.AD_TYPE_NORMAL_NATIVE) {
             TPNativeAdView tpNativeAdView = tpBaseAd.getTPNativeView();// 获取自渲染时详细的素材信息，
             ViewGroup tempAdView = customAdRender.renderAdView(tpNativeAdView); // 自渲染出需要的view
             ViewGroup adCustomContainer = tpBaseAd.getCustomAdContainer(); // 获取三方广告平台的广告容器（部分三方平台会要求广告先add到平台的容器中，不这样做广告是不计费的）
-            if(adCustomContainer != null) {
+            if (adCustomContainer != null) {
                 // 如果三方广告平台有容器，需要把渲染好的view添加到三方广告平台的容器里，然后再加到tpNativeBanner中
                 adCustomContainer.addView(tempAdView);
                 tpNativeBanner.addView(adCustomContainer);
@@ -204,26 +207,26 @@ public class NativeBannerViewActivity extends AppCompatActivity {
             ViewGroup viewGroup = createAdLayoutView();
 
             ImageView iconView = viewGroup.findViewById(R.id.tp_native_icon_image);
-            if(iconView != null) {
-                if(tpNativeAdView.getIconImage() != null) {
+            if (iconView != null) {
+                if (tpNativeAdView.getIconImage() != null) {
                     iconView.setImageDrawable(tpNativeAdView.getIconImage());
-                } else if(tpNativeAdView.getIconImageUrl() != null){
+                } else if (tpNativeAdView.getIconImageUrl() != null) {
                     TPImageLoader.getInstance().loadImage(iconView, tpNativeAdView.getIconImageUrl());
                 }
             }
 
             TextView titleView = viewGroup.findViewById(R.id.tp_native_title);
-            if(titleView != null && tpNativeAdView.getTitle() != null) {
+            if (titleView != null && tpNativeAdView.getTitle() != null) {
                 titleView.setText(tpNativeAdView.getTitle());
             }
 
             TextView subTitleView = viewGroup.findViewById(R.id.tp_native_text);
-            if(subTitleView != null && tpNativeAdView.getSubTitle() != null) {
+            if (subTitleView != null && tpNativeAdView.getSubTitle() != null) {
                 subTitleView.setText(tpNativeAdView.getSubTitle());
             }
 
             Button callToActionView = viewGroup.findViewById(R.id.tp_native_cta_btn);
-            if(callToActionView != null && tpNativeAdView.getCallToAction() != null) {
+            if (callToActionView != null && tpNativeAdView.getCallToAction() != null) {
                 callToActionView.setText(tpNativeAdView.getCallToAction());
             }
 
