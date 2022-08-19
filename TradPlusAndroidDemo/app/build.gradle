@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
 
 repositories {
+    google()
     mavenCentral()
     jcenter()
-    google()
+
     //IronSource
     maven { url 'https://android-sdk.is.com/' }
     //Tapjoy
@@ -45,13 +46,13 @@ android {
         targetCompatibility 1.8
     }
 
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 31
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.tradplus.demo"
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 7
         versionName "8.1.0.1"
     }
