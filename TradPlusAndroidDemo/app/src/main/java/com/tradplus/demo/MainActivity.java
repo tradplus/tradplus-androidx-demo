@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button gdpr_neu,gdpr_yeu;
     private Button custom_gdpr_sdk_init;
     private CheckBox btn_box;
-    private Button native_ad_cache,splash_ads,draw_video_view,nativelist_ad,native_advanced_btn,rewarded_video_btn,offerwall_ad,interstitial_ad,banner_btn,nativebanner_ad;
+    private Button native_ad_cache,splash_ads,draw_video_view,nativelist_ad,native_advanced_btn,rewarded_video_btn,
+            offerwall_ad,interstitial_ad,banner_btn,nativebanner_ad,interactive_ad;
     private CheckBox gpdrChild;
     private CheckBox cbCCPA;
 
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         banner_btn.setOnClickListener(this);
         nativebanner_ad = (Button)findViewById(R.id.nativebanner_ad);
         nativebanner_ad.setOnClickListener(this);
+        interactive_ad = (Button)findViewById(R.id.interactive_ads);
+        interactive_ad.setOnClickListener(this);
 
         //欧盟GDPR等协议，发海外需要添加
         gpdrChild.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -217,6 +220,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.offerwall_ad:
                 startActivity(new Intent(MainActivity.this, OfferWallActivity.class));
+                break;
+            case R.id.interactive_ads:
+                startActivity(new Intent(MainActivity.this, InterActiveActivity.class));
                 break;
         }
     }

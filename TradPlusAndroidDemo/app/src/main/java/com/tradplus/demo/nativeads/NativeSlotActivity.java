@@ -65,7 +65,7 @@ public class NativeSlotActivity extends AppCompatActivity {
     }
 
     private void loadOneAd(){
-        TPNative tpNative = new TPNative(this, TestAdUnitId.NATIVE_ADUNITID);
+        TPNative tpNative = new TPNative(this, "96BDD224E7B15FDC69223C4D62A38847");
         tpNative.setAdListener(new NativeAdListener() {
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {

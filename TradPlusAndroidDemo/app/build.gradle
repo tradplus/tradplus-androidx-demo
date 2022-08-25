@@ -25,8 +25,6 @@ repositories {
     }
     //Ogury
     maven { url 'https://maven.ogury.co'}
-    //AppNext
-    maven { url "http://dl.appnext.com/" }
     //smaato
     maven {
         url "https://s3.amazonaws.com/smaato-sdk-releases/"
@@ -85,7 +83,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-basement:17.3.0'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
 
-
     // Facebook
     implementation "com.facebook.android:audience-network-sdk:${facebook_version}"
     implementation "com.tradplusad:tradplus-facebook:1.${tradplus_version}"
@@ -94,11 +91,9 @@ dependencies {
     implementation "com.applovin:applovin-sdk:${max_version}"
     implementation "com.tradplusad:tradplus-applovin:9.${tradplus_version}"
 
-
     // Ironsource
     implementation "com.ironsource.sdk:mediationsdk:${ironsource_version}"
     implementation "com.tradplusad:tradplus-ironsource:10.${tradplus_version}"
-
 
     // Tapjoy
     implementation "com.tapjoy:tapjoy-android-sdk:${tapjoy_version}@aar"
@@ -108,30 +103,18 @@ dependencies {
     implementation "com.adcolony:sdk:${adcolony_version}"
     implementation "com.tradplusad:tradplus-adcolony:4.${tradplus_version}"
 
-
     // Pangle 头条穿山甲（国外），国内穿山甲Toutiao的三方广告SDK只能选择一个
     implementation "com.tradplusad:tradplus-pangle:19.${tradplus_version}"
-//    implementation(name: 'open_ad_sdk_V4.5.0.5', ext: 'aar')
-
+//    implementation(name: 'open_ad_sdk_V4.5.0.7', ext: 'aar')
 
     // UnityAds
     implementation "com.tradplusad:tradplus-unity:5.${tradplus_version}"
     implementation "com.unity3d.ads:unity-ads:${unity_version}"
 
-
     // Chartboost
     implementation "com.tradplusad:tradplus-chartboostx:15.${tradplus_version}"
 //    implementation 'com.google.android.gms:play-services-base:17.4.0'
     implementation "com.chartboost:chartboost-sdk:${chartboost_version}"
-
-    // Inmobix
-    implementation "com.tradplusad:tradplus-inmobix:23.${tradplus_version}"
-    implementation "com.inmobi.monetization:inmobi-ads:${inmobi_version}"
-    implementation 'com.squareup.picasso:picasso:2.71828'
-//    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'androidx.browser:browser:1.0.0'
-
 
     // Mintegral
 //    implementation 'androidx.recyclerview:recyclerview:1.1.0'
@@ -153,7 +136,6 @@ dependencies {
 //    implementation 'com.google.android.gms:play-services-ads:21.1.0'
     implementation "com.tradplusad:tradplus-maio:31.${tradplus_version}"
     implementation(name: 'maio_1.1.16', ext: 'aar')
-
 
     // Criteo
     implementation "com.criteo.publisher:criteo-publisher-sdk:${criteo_version}"
@@ -198,13 +180,13 @@ dependencies {
     //海外穿山甲Pangle和国内穿山甲Toutiao的三方广告SDK 只能二而选一
     // Toutiao
     implementation "com.tradplusad:tradplus-toutiao:17.${tradplus_version}"
-    implementation(name: 'open_ad_sdk_cn_V4.6.0.2', ext: 'aar')
+    implementation(name: 'open_ad_sdk_cn_V4.6.0.7', ext: 'aar')
 
 
     // Kuaishou
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "com.tradplusad:tradplus-kwad:20.${tradplus_version}"
-    implementation(name: 'kssdk-ad-3.3.26', ext: 'aar')
+    implementation(name: 'kssdk-ad-3.3.27', ext: 'aar')
 
     // Sigmob
     implementation "com.tradplusad:tradplus-sigmob:21.${tradplus_version}"
@@ -232,23 +214,27 @@ dependencies {
     //百度
     implementation "com.tradplusad:tradplus-baidu:43.${tradplus_version}"
     implementation files('libs/android-query-full.0.26.7.jar')
-    implementation(name: 'Baidu_MobAds_SDK-release_v9.222', ext: 'aar')
+    implementation(name: 'Baidu_MobAds_SDK-release_v9.23', ext: 'aar')
 //    implementation(name:'msa_mdid_1.0.13',ext:'aar')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     //米盟
     implementation "com.tradplusad:tradplus-mimo:46.${tradplus_version}"
-    implementation(name: 'mimo-ad-sdk-5.1.7', ext: 'aar')
+    implementation(name: 'mimo-ad-sdk-5.1.9', ext: 'aar')
 //    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     //游可赢
     implementation "com.tradplusad:tradplus-klevin:44.${tradplus_version}"
-    implementation(name: 'klevinSDK_2.9.0.9', ext: 'aar')
+    implementation(name: 'klevinSDK_2.9.1.5', ext: 'aar')
 
     //其他 无需引入
     implementation(name: 'circleimageview-2.2.0', ext: 'aar')
     implementation(name: 'LayoutManagerGroup', ext: 'aar')
+
+    //AdFly
+    implementation 'pub.adfly:adfly-sdk:0.14.3'
+    implementation "com.tradplusad:tradplus-adfly:52.${tradplus_version}"
 
 }

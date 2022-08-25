@@ -118,6 +118,13 @@
             android:launchMode="singleTask"
             android:configChanges="keyboardHidden|orientation|screenSize" />
 
+
+        <activity
+            android:name=".InterActiveActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:launchMode="singleTask"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <activity
             android:name=".nativeads.DrawNativeExpressVideoActivity"
             android:launchMode="singleTask"

@@ -16,6 +16,7 @@ public class TestAdUnitId {
     public static final String BANNER_ADUNITID = "A24091715B4FCD50C0F2039A5AF7C4BB";
     public static final String DRAW_ADUNITID = "59FFF246664BFB28925A5BC7F8466206";
     public static final String SPLASH_ADUNITID = "D9118E91DD06DF6D322369455CAED618" ;
+    public static final String INTERACTIVE_ADUNITID = "153A71C4FE40D41B728B35BFC0B31650" ;
 
 
     public static final String ENTRY_AD_REWARD = "177010A4403105" ;

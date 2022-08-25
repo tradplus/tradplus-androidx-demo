@@ -105,6 +105,16 @@ public class OfferWallActivity extends AppCompatActivity {
             public void awardCurrencyFailed(String s) {
                 // 增加积分失败
             }
+
+            @Override
+            public void setUserIdSuccess() {
+                // V8.2.0.1 增加 设置UserId成功
+            }
+
+            @Override
+            public void setUserIdFailed(String s) {
+                // V8.2.0.1 增加 设置UserId失败
+            }
         });
         tpOfferWall.setAdListener(new OfferWallAdListener() {
             @Override
@@ -135,6 +145,11 @@ public class OfferWallActivity extends AppCompatActivity {
             @Override
             public void onAdReward(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdReward: ");
+            }
+
+            @Override
+            public void onAdVideoError(TPAdInfo tpAdInfo, TPAdError tpAdError) {
+                // V8.2.0.1 增加 广告展示失败
             }
         });
     }
