@@ -51,7 +51,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 7
-        versionName "8.1.0.1"
+        versionName "8.4.0.1"
     }
 
     buildTypes {
@@ -186,7 +186,7 @@ dependencies {
     // Kuaishou
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "com.tradplusad:tradplus-kwad:20.${tradplus_version}"
-    implementation(name: 'kssdk-ad-3.3.27', ext: 'aar')
+    implementation(name: 'kssdk-ad-3.3.28', ext: 'aar')
 
     // Sigmob
     implementation "com.tradplusad:tradplus-sigmob:21.${tradplus_version}"
@@ -227,7 +227,7 @@ dependencies {
 
     //游可赢
     implementation "com.tradplusad:tradplus-klevin:44.${tradplus_version}"
-    implementation(name: 'klevinSDK_2.9.1.5', ext: 'aar')
+    implementation(name: 'klevinSDK_2.9.1.6', ext: 'aar')
 
     //其他 无需引入
     implementation(name: 'circleimageview-2.2.0', ext: 'aar')

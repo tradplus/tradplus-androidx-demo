@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Demo_v8.3.1.1</string>
+    <string name="app_name">Demo_v8.4.0.1</string>
     <string name="init_sdk">SDK初始化</string>
+    <string name="check_area">查看地区</string>
     <string name="init_custom_sdk"> SDK初始化 自定义GDPR</string>
     <string name="gdpr_upload_data">GDPR数据是否上报</string>
     <string name="change_gdpr_select">更改GDPR数据上报选择</string>
