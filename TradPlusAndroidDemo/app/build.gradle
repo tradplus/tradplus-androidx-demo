@@ -52,7 +52,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 7
-        versionName "8.1.10.1"
+        versionName "8.1.11.1"
     }
 
     buildTypes {
