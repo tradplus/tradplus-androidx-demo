@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -22,14 +25,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.tradplus.ads.base.adapter.nativead.TPNativeAdView;
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
+import com.tradplus.ads.base.common.TPImageLoader;
 import com.tradplus.ads.common.util.LogUtil;
 import com.tradplus.ads.mgr.nativead.TPCustomNativeAd;
 import com.tradplus.ads.mobileads.util.TradPlusListNativeOption;
 import com.tradplus.ads.open.nativead.NativeAdListener;
 import com.tradplus.ads.open.nativead.TPNative;
+import com.tradplus.ads.open.nativead.TPNativeAdRender;
 import com.tradplus.demo.R;
 import com.tradplus.utils.TestAdUnitId;
 
@@ -175,7 +181,80 @@ public class NativeSlotActivity extends AppCompatActivity {
                     params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
                     params.width = RelativeLayout.LayoutParams.MATCH_PARENT;
                     adCardView.setVisibility(View.VISIBLE);
-                    tpNativeAd.showAd(adCardView, R.layout.tp_native_ad_list_item, "");
+                    tpNativeAd.showAd(adCardView,new TPNativeAdRender() {
+
+                        // 获取广告布局文件，用自定义渲染的方式可以自己写布局的id
+                        @Override
+                        public ViewGroup createAdLayoutView() {
+                            LayoutInflater inflater = (LayoutInflater) NativeSlotActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                            return (ViewGroup) inflater.inflate(R.layout.tp_native_ad_list_item, null);
+                        }
+
+                        @Override
+                        public ViewGroup renderAdView(TPNativeAdView tpNativeAdView) {
+                            ViewGroup viewGroup = createAdLayoutView();
+
+                            ImageView imageView = viewGroup.findViewById(R.id.tp_mopub_native_main_image);
+                            if(imageView != null) {
+                                if(tpNativeAdView.getMediaView() != null) {
+                                    // 如果三方广告平台有mediaview，需要用三方提供的mediaview来替换原来布局中的imageview
+                                    ViewGroup.LayoutParams params = imageView.getLayoutParams();
+                                    ViewParent viewParent = imageView.getParent();
+                                    if(viewParent != null) {
+                                        ((ViewGroup)viewParent).removeView(imageView);
+                                         if (tpNativeAdView.getMediaView().getParent() != null) {
+                                             ((ViewGroup)tpNativeAdView.getMediaView().getParent()).removeView(tpNativeAdView.getMediaView());
+                                         }
+                                        ((ViewGroup)viewParent).addView(tpNativeAdView.getMediaView(), params);
+                                    }
+                                } else if(tpNativeAdView.getMainImage() != null) {
+                                    // 部分三方平台返回的是drawable，可以直接设置
+                                    imageView.setImageDrawable(tpNativeAdView.getMainImage());
+                                } else if(tpNativeAdView.getMainImageUrl() != null) {
+                                    // 其他三方平台返回的是图片的url，需要先下载图片再填充到view中
+                                    TPImageLoader.getInstance().loadImage(imageView, tpNativeAdView.getMainImageUrl());
+                                }
+                            }
+
+                            ImageView iconView = viewGroup.findViewById(R.id.tp_native_icon_image);
+                            if(iconView != null) {
+                                if(tpNativeAdView.getIconImage() != null) {
+                                    iconView.setImageDrawable(tpNativeAdView.getIconImage());
+                                } else if(tpNativeAdView.getIconImageUrl() != null){
+                                    TPImageLoader.getInstance().loadImage(iconView, tpNativeAdView.getIconImageUrl());
+                                }
+                            }
+
+                            TextView titleView = viewGroup.findViewById(R.id.tp_native_title);
+                            if(titleView != null && tpNativeAdView.getTitle() != null) {
+                                titleView.setText(tpNativeAdView.getTitle());
+                            }
+
+                            TextView subTitleView = viewGroup.findViewById(R.id.tp_native_text);
+                            if(subTitleView != null && tpNativeAdView.getSubTitle() != null) {
+                                subTitleView.setText(tpNativeAdView.getSubTitle());
+                            }
+
+                            Button callToActionView = viewGroup.findViewById(R.id.tp_native_cta_btn);
+                            if(callToActionView != null && tpNativeAdView.getCallToAction() != null) {
+                                callToActionView.setText(tpNativeAdView.getCallToAction());
+                            }
+
+                            // facebook会需要一个adchoice的容器来填充adchoice
+                            FrameLayout adChoiceView = viewGroup.findViewById(R.id.tp_ad_choices_container);
+
+                            // 把主要的元素设置给三方广告平台，第二个参数是是否可以点击
+                            setImageView(imageView, true);
+                            setIconView(iconView, true);
+                            setTitleView(titleView, true);
+                            setSubTitleView(subTitleView, true);
+                            setCallToActionView(callToActionView, true);
+                            setAdChoicesContainer(adChoiceView, false);
+
+                            return viewGroup;
+                        }
+                    }, "");
                 }
                 adCardView.setLayoutParams(params);
             }

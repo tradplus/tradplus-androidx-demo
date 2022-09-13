@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "740678270457",
+    "project_id": "android-demo-6725a",
+    "storage_bucket": "android-demo-6725a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740678270457:android:62785f06795f12ff291128",
+        "android_client_info": {
+          "package_name": "com.unstall.meetdeleteapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740678270457-f36cn0cesm62dc38etp038tqdrt03roi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWHI2GKTB8l85AiCqCKu0-onn8WKCjvj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740678270457-f36cn0cesm62dc38etp038tqdrt03roi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

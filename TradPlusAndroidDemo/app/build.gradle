@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+// Add the following line:
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
 
 repositories {
     google()
@@ -48,7 +50,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.tradplus.demo"
+        applicationId "com.unstall.meetdeleteapp"
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 7
@@ -68,6 +70,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    // Add the dependency for the Firebase SDK for Google Analytics
+    implementation 'com.google.firebase:firebase-analytics:21.1.0'
     //65535
     implementation 'androidx.multidex:multidex:2.0.0'
 
