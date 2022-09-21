@@ -51,7 +51,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 7
-        versionName "8.4.0.1"
+        versionName "8.5.0.1"
     }
 
     buildTypes {
@@ -105,7 +105,7 @@ dependencies {
 
     // Pangle 头条穿山甲（国外），国内穿山甲Toutiao的三方广告SDK只能选择一个
     implementation "com.tradplusad:tradplus-pangle:19.${tradplus_version}"
-//    implementation(name: 'open_ad_sdk_V4.5.0.7', ext: 'aar')
+//    implementation(name: 'open_ad_sdk_V4.7.0.3', ext: 'aar')
 
     // UnityAds
     implementation "com.tradplusad:tradplus-unity:5.${tradplus_version}"
@@ -180,18 +180,18 @@ dependencies {
     //海外穿山甲Pangle和国内穿山甲Toutiao的三方广告SDK 只能二而选一
     // Toutiao
     implementation "com.tradplusad:tradplus-toutiao:17.${tradplus_version}"
-    implementation(name: 'open_ad_sdk_cn_V4.6.0.7', ext: 'aar')
+    implementation(name: 'open_ad_sdk_cn_V4.7.1.2', ext: 'aar')
 
 
     // Kuaishou
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "com.tradplusad:tradplus-kwad:20.${tradplus_version}"
-    implementation(name: 'kssdk-ad-3.3.28', ext: 'aar')
+    implementation(name: 'kssdk-ad-3.3.29', ext: 'aar')
 
     // Sigmob
     implementation "com.tradplusad:tradplus-sigmob:21.${tradplus_version}"
-    implementation(name: 'wind-sdk-4.3.1', ext: 'aar')
-    implementation(name: 'wind-common-1.3.2', ext: 'aar')
+    implementation(name: 'wind-sdk-4.5.0', ext: 'aar')
+    implementation(name: 'wind-common-1.3.5', ext: 'aar')
 
 
     // Youdao
@@ -202,7 +202,7 @@ dependencies {
     // Tencent
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android:+'
     implementation "com.tradplusad:tradplus-txadnet:16.${tradplus_version}"
-    implementation(name: 'GDTSDK.unionNormal.4.471.1341', ext: 'aar')
+    implementation(name: 'GDTSDK.unionNormal.4.482.1352', ext: 'aar')
 
 
     //交叉推广
@@ -214,13 +214,13 @@ dependencies {
     //百度
     implementation "com.tradplusad:tradplus-baidu:43.${tradplus_version}"
     implementation files('libs/android-query-full.0.26.7.jar')
-    implementation(name: 'Baidu_MobAds_SDK-release_v9.23', ext: 'aar')
+    implementation(name: 'Baidu_MobAds_SDK-release_v9.231', ext: 'aar')
 //    implementation(name:'msa_mdid_1.0.13',ext:'aar')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     //米盟
     implementation "com.tradplusad:tradplus-mimo:46.${tradplus_version}"
-    implementation(name: 'mimo-ad-sdk-5.1.9', ext: 'aar')
+    implementation(name: 'mimo-ad-sdk-5.2.0', ext: 'aar')
 //    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
