@@ -109,7 +109,7 @@ public class FacebookInterstitialAdapter extends TPInterstitialAdapter {
                 Log.i(TAG, "onInterstitialDisplayed: ");
                 //使用mShowListener实现广告事件的展示回调
                 if (mShowListener != null) {
-                    mShowListener.onAdVideoStart();
+                    mShowListener.onAdShown();
                 }
 
             }
@@ -119,7 +119,7 @@ public class FacebookInterstitialAdapter extends TPInterstitialAdapter {
                 Log.i(TAG, "onInterstitialDismissed: ");
                 //使用mShowListener实现广告事件的关闭回调
                 if (mShowListener != null) {
-                    mShowListener.onAdVideoEnd();
+                    mShowListener.onAdClosed();
                 }
             }
         };
