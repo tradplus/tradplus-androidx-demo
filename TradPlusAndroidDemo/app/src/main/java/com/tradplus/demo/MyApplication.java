@@ -69,6 +69,7 @@ public class MyApplication extends MultiDexApplication {
             public void onFailed() {
                 // 一般为网络问题导致查询失败，开发者需要自己判断地区，然后进行隐私设置
                 // 然后在初始化SDK
+                TradPlusSdk.initSdk(application, TestAdUnitId.APPID);
             }
         });
 
