@@ -24,6 +24,8 @@ import com.tradplus.demo.nativeads.NativeBannerViewActivity;
 import com.tradplus.demo.nativeads.NativeSlotActivity;
 import com.tradplus.demo.offerwall.OfferWallActivity;
 import com.tradplus.demo.rewarded.RewardedVideoActivity;
+import com.tradplus.meditaiton.utils.ImportSDKUtil;
+import com.tradplus.utils.TestAdUnitId;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
@@ -75,9 +77,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 原生横幅
         nativebanner_ad = (Button)findViewById(R.id.nativebanner_ad);
         nativebanner_ad.setOnClickListener(this);
+
         // 互动
         interactive_ad = (Button)findViewById(R.id.interactive_ads);
         interactive_ad.setOnClickListener(this);
+
+        // 测试工具
+        Button tools = (Button)findViewById(R.id.tools);
+        tools.setOnClickListener(this);
 
         ((CheckBox) findViewById(R.id.is_personad)).setOnCheckedChangeListener(this);
         ((CheckBox) findViewById(R.id.is_privacyUser)).setOnCheckedChangeListener(this);
@@ -132,6 +139,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.interactive_ads:
                 startActivity(new Intent(MainActivity.this, InterActiveActivity.class));
+                break;
+            case R.id.tools:
+                ImportSDKUtil.getInstance().showTestTools(MainActivity.this, TestAdUnitId.APPID);
                 break;
         }
     }

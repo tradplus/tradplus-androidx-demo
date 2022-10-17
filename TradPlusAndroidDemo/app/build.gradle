@@ -104,7 +104,7 @@ dependencies {
     implementation "com.tradplusad:tradplus-adcolony:4.${tradplus_version}"
 
     // Pangle 头条穿山甲（国外），国内穿山甲Toutiao的三方广告SDK只能选择一个
-    implementation "com.tradplusad:tradplus-pangle:19.${tradplus_version}"
+//    implementation "com.tradplusad:tradplus-pangle:19.${tradplus_version}"
 //    implementation(name: 'open_ad_sdk_V4.7.0.3', ext: 'aar')
 
     // UnityAds
@@ -236,5 +236,7 @@ dependencies {
     //AdFly
     implementation 'pub.adfly:adfly-sdk:0.14.3'
     implementation "com.tradplusad:tradplus-adfly:52.${tradplus_version}"
+
+    implementation "com.tradplusad:tradplus-tool:${tradplus_tool}"
 
 }
