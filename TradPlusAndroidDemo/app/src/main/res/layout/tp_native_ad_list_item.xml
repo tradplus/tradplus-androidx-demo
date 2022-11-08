@@ -40,8 +40,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tp_layout_ad">
 
-
-
         <ImageView
             android:id="@+id/tp_native_icon_image"
             android:layout_width="64dp"
@@ -49,7 +47,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:background="@null" />
 
         <TextView
@@ -90,10 +88,9 @@
             <ImageView
                 android:id="@+id/tp_mopub_native_main_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </RelativeLayout>
-
 
         <Button
             android:id="@+id/tp_native_cta_btn"

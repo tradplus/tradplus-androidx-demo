@@ -105,7 +105,7 @@ dependencies {
 
     // Pangle 头条穿山甲（国外），国内穿山甲Toutiao的三方广告SDK只能选择一个
 //    implementation "com.tradplusad:tradplus-pangle:19.${tradplus_version}"
-//    implementation(name: 'open_ad_sdk_V4.7.0.3', ext: 'aar')
+//    implementation(name: 'open_ad_sdk_V4.7.0.8', ext: 'aar')
 
     // UnityAds
     implementation "com.tradplusad:tradplus-unity:5.${tradplus_version}"
@@ -202,7 +202,7 @@ dependencies {
     // Tencent
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android:+'
     implementation "com.tradplusad:tradplus-txadnet:16.${tradplus_version}"
-    implementation(name: 'GDTSDK.unionNormal.4.491.1361', ext: 'aar')
+    implementation(name: 'GDTSDK.unionNormal.4.492.1362', ext: 'aar')
 
 
     //交叉推广

@@ -17,8 +17,9 @@
             android:gravity="center"
             android:orientation="vertical">
 
+
             <ImageView
-                android:id="@+id/mopub_native_main_image"
+                android:id="@+id/tp_mopub_native_main_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.tradplus.ads.mgr.nativead.views.CustomImageView>
@@ -44,10 +45,11 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@+id/native_icon_image"
+                        android:id="@+id/tp_native_icon_image"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_centerInParent="true" />
+                        android:layout_centerInParent="true"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -58,14 +60,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/native_title"
+                        android:id="@+id/tp_native_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/native_text"
+                        android:id="@+id/tp_native_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -92,10 +94,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/native_cta_btn"
+                        android:id="@+id/tp_native_cta_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:background="@drawable/tp_bg_bottom_clickbtn"
                         android:gravity="center"
                         android:minWidth="80dp"
                         android:minHeight="40dp"
