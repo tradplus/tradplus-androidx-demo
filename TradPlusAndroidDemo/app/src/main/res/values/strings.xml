@@ -11,7 +11,8 @@
     <string name="RewardedVideo">RewardedVideo激励视频</string>
     <string name="OfferWall">OfferWall积分墙</string>
     <string name="AdvancedNative">Native原生</string>
-    <string name="NativeListView">NativeSlot原生信息流</string>
+    <string name="NativeListView">NativeList原生信息流</string>
+    <string name="NativeBannerListView">原生横幅List原生信息流</string>
     <string name="NativeBanner">NativeBanner原生横幅</string>
     <string name="NativeDraw">DrawVideo信息流</string>
     <string name="Splash">Splash开屏</string>

@@ -103,10 +103,13 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <activity
-            android:name=".nativeads.NativeSlotActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:name=".nativeads.NativeRecycleViewActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".nativeads.NativeBannerRecycleViewActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".nativeads.NativeBannerViewActivity"
             android:launchMode="singleTask"

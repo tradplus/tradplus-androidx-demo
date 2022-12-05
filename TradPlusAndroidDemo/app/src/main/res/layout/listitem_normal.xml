@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="HardcodedText"
-    android:layout_height="40dp">
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_idle"
-        android:layout_width="150dp"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="普通的view" />
+    <LinearLayout android:padding="5dp" android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:id="@+id/text_idle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="普通的view" />
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="普通的view title" />
+
+            <TextView
+                android:id="@+id/text_subtitle"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="普通的view sub title" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
