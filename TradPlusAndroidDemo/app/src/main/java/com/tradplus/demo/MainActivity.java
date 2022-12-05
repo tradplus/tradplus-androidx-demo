@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private CheckBox btn_box;
     private Button native_ad_cache, splash_ads, draw_video_view, nativelist_ad, native_advanced_btn, rewarded_video_btn,
-            offerwall_ad, interstitial_ad, banner_btn, nativebanner_ad, interactive_ad;
+            offerwall_ad, interstitial_ad, banner_btn, nativebanner_ad, interactive_ad, nativebannerlist_ad;
     private CheckBox gpdrChild;
     private CheckBox cbCCPA;
 
@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 信息流
         nativelist_ad = (Button) findViewById(R.id.nativelist_ad);
         nativelist_ad.setOnClickListener(this);
+
+        // 原生横幅 信息流
+        nativebannerlist_ad = (Button) findViewById(R.id.nativebannerlist_ad);
+        nativebannerlist_ad.setOnClickListener(this);
 
         // 标准原生
         native_advanced_btn = (Button) findViewById(R.id.native_ad_advanced);

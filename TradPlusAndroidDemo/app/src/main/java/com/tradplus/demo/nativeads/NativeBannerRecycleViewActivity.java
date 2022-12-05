@@ -1,5 +1,7 @@
 package com.tradplus.demo.nativeads;
 
+import static com.tradplus.utils.TestAdUnitId.NATIVEBANNER_ADUNITID;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
@@ -192,7 +194,7 @@ public class NativeBannerRecycleViewActivity extends Activity {
         tpNativeBanner.setAutoDestroy(false);
         tpNativeBanner.setNativeAdRender(new CustomAdRender());
         tpNativeBanner.setAdListener(bannerAdListener);
-        tpNativeBanner.loadAd("697C4F408EC710DEB2DD0703E7222B86");
+        tpNativeBanner.loadAd(NATIVEBANNER_ADUNITID);
     }
 
 

@@ -1,5 +1,7 @@
 package com.tradplus.demo.nativeads;
 
+import static com.tradplus.utils.TestAdUnitId.NATIVE_ADUNITID;
+
 import android.app.Activity;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -130,7 +132,7 @@ public class NativeRecycleViewActivity extends Activity {
     }
 
     private void initNative() {
-        tpNative = new TPNative(this, "04D8F97E539A50D52E01BA0898135E02");
+        tpNative = new TPNative(this, NATIVE_ADUNITID);
         tpNative.setAdListener(new NativeAdListener() {
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {
