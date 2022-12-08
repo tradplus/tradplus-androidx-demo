@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tradplus.ads.open.TradPlusSdk;
+import com.tradplus.ads.toutiao.ToutiaoInitManager;
 import com.tradplus.demo.banners.BannerActivity;
 import com.tradplus.demo.interstititals.InterstitialActivity;
 import com.tradplus.demo.nativeads.DrawNativeExpressVideoActivity;
@@ -20,6 +21,7 @@ import com.tradplus.demo.nativeads.NativeRecycleViewActivity;
 import com.tradplus.demo.offerwall.OfferWallActivity;
 import com.tradplus.demo.rewarded.RewardedVideoActivity;
 import com.tradplus.meditaiton.utils.ImportSDKUtil;
+import com.tradplus.privacy.CSJCustomUserData;
 import com.tradplus.utils.TestAdUnitId;
 
 
@@ -100,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.is_privacyUser:
                 // 隐私信息控制开关；默认是开启状态 true
                 TradPlusSdk.setPrivacyUserAgree(isChecked);
+                // 自定义设置隐私信息控制开关
+//                 ToutiaoInitManager.getInstance().setTTCustomController(new CSJCustomUserData());
                 break;
         }
     }
