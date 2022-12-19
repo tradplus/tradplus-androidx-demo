@@ -138,7 +138,7 @@ dependencies {
     //如果引入Admob源则不需要重复引入
 //    implementation 'com.google.android.gms:play-services-ads:21.1.0'
     implementation "com.tradplusad:tradplus-maio:31.${tradplus_version}"
-    implementation 'com.tradplusad:maio-ads:1.1.16'
+    implementation "com.maio:android-sdk:${maio_version}"
 
     // Criteo
     implementation "com.criteo.publisher:criteo-publisher-sdk:${criteo_version}"
