@@ -174,6 +174,14 @@ public class NativeRecycleViewActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(tpNative != null){
+            tpNative.onDestroy();
+        }
+    }
+
 
     public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
 
