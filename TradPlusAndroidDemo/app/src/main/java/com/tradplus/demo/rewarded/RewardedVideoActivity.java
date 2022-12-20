@@ -197,6 +197,11 @@ public class RewardedVideoActivity extends AppCompatActivity  {
             public void onBiddingEnd(TPAdInfo tpAdInfo, TPAdError tpAdError) {
 
             }
+
+            @Override
+            public void onAdIsLoading(String s) {
+               // 调用load之后如果收到此回调，说明广告位仍处于加载状态，无法触发新的一轮广告加载。V 9.0.0.1新增
+            }
         });
     }
 

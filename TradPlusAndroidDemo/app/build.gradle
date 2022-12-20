@@ -54,7 +54,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 7
-        versionName "8.9.0.1"
+        versionName "9.0.0.1"
     }
 
     buildTypes {
@@ -108,7 +108,7 @@ dependencies {
 
     // Pangle 头条穿山甲（国外），国内穿山甲Toutiao的三方广告SDK只能选择一个
 //    implementation "com.tradplusad:tradplus-pangle:19.${tradplus_version}"
-//    implementation "com.pangle.global:ads-sdk:${pangle_os_version}"
+//    implementation "com.pangle.global:ads-sdk-beta:${pangle_os_version}"
 
     // UnityAds
     implementation "com.tradplusad:tradplus-unity:5.${tradplus_version}"
