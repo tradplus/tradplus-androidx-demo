@@ -54,7 +54,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 7
-        versionName "8.9.0.1"
+        versionName "9.2.0.1"
     }
 
     buildTypes {
@@ -193,7 +193,7 @@ dependencies {
     // Sigmob
     implementation "com.tradplusad:tradplus-sigmob:21.${tradplus_version}"
     implementation 'com.tradplusad:sigmob-ads:4.8.2'
-    implementation 'com.tradplusad:sigmob-ads-common:1.4.0'
+    implementation 'com.tradplusad:sigmob-ads-common:1.4.2'
 
 
     // Youdao
