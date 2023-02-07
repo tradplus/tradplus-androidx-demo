@@ -33,7 +33,11 @@ public class NativeRecycleViewActivity extends Activity {
     public static final int INTERVAL = 15;
     //0 inside; 1 up; 2;down;3 up down
     public static final int STATUS_INSIDE = 0;
+    public static final int STATUS_UP = 1;
+    public static final int STATUS_DOWN = 2;
+    public static final int STATUS_UPDOWN = 3;
 
+    private int addAdsStatus = STATUS_INSIDE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,8 +110,23 @@ public class NativeRecycleViewActivity extends Activity {
     }
 
     private void addNativeAdToData() {
-        for (int i = firstVisible; i < lastVisible; i++) {
-            addAndReloadAds(i);
+        if(addAdsStatus == STATUS_INSIDE){
+            for (int i = firstVisible; i < lastVisible; i++) {
+                addAndReloadAds(i);
+            }
+        }else {
+            if (addAdsStatus == STATUS_UP || addAdsStatus == STATUS_UPDOWN) {
+                int upIndex = firstVisible < INTERVAL ? 0 : firstVisible - INTERVAL;
+                for (int i = upIndex; i < firstVisible; i++) {
+                    addAndReloadAds(i);
+                }
+            }
+            if (addAdsStatus == STATUS_DOWN || addAdsStatus == STATUS_UPDOWN) {
+                int downEndIndex = lastVisible + INTERVAL > mData.size() ? mData.size() : lastVisible + INTERVAL;
+                for (int i = lastVisible; i < downEndIndex; i++) {
+                    addAndReloadAds(i);
+                }
+            }
         }
 
     }
@@ -158,7 +177,7 @@ public class NativeRecycleViewActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (tpNative != null) {
+        if(tpNative != null){
             tpNative.onDestroy();
         }
     }
