@@ -14,7 +14,7 @@ import com.facebook.ads.NativeBannerAd;
 import com.tradplus.ads.base.adapter.nativead.TPNativeAdView;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.base.common.TPImageLoader;
-import com.tradplus.ads.mobileads.util.AppKeyManager;
+import com.tradplus.ads.base.util.AppKeyManager;
 
 import java.util.ArrayList;
 import java.util.List;

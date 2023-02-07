@@ -14,7 +14,6 @@ import com.facebook.ads.RewardedVideoAdListener;
 import com.tradplus.ads.base.adapter.reward.TPRewardAdapter;
 import com.tradplus.ads.common.DataKeys;
 import com.tradplus.ads.base.common.TPError;
-import com.tradplus.ads.mobileads.util.AppKeyManager;
 
 import java.util.Map;
 

@@ -22,10 +22,10 @@ import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeAdView;
 import com.facebook.ads.NativeBannerAd;
 import com.tradplus.ads.base.adapter.nativead.TPNativeAdapter;
+import com.tradplus.ads.base.util.AppKeyManager;
 import com.tradplus.ads.common.DataKeys;
 import com.tradplus.ads.common.util.DeviceUtils;
 import com.tradplus.ads.base.common.TPError;
-import com.tradplus.ads.mobileads.util.AppKeyManager;
 
 import java.lang.ref.WeakReference;
 import java.util.Map;

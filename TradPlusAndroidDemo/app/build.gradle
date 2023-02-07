@@ -195,12 +195,6 @@ dependencies {
     implementation 'com.tradplusad:sigmob-ads:4.8.2'
     implementation 'com.tradplusad:sigmob-ads-common:1.4.2'
 
-
-    // Youdao
-    implementation "com.tradplusad:tradplus-youdao:25.${tradplus_version}"
-    implementation 'com.tradplusad:youdao-ads:4.2.16'
-    implementation 'com.tradplusad:msa_mdid:1.0.13'
-
     // Tencent
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android:+'
     implementation "com.tradplusad:tradplus-txadnet:16.${tradplus_version}"

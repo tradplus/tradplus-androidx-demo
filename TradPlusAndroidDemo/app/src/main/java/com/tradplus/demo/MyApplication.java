@@ -6,9 +6,10 @@ import android.content.Context;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
+import com.tradplus.ads.base.Const;
 import com.tradplus.ads.base.common.TPPrivacyManager;
-import com.tradplus.ads.mobileads.gdpr.Const;
-import com.tradplus.ads.mobileads.util.TestDeviceUtil;
+
+import com.tradplus.ads.base.util.TestDeviceUtil;
 import com.tradplus.ads.open.TradPlusSdk;
 import com.tradplus.utils.TestAdUnitId;
 

@@ -7,8 +7,9 @@ import com.facebook.ads.AdSettings;
 import com.facebook.ads.AudienceNetworkAds;
 import com.tradplus.ads.base.adapter.TPLoadAdapterListener;
 import com.tradplus.ads.base.common.TPError;
-import com.tradplus.ads.mobileads.util.AppKeyManager;
-import com.tradplus.ads.mobileads.util.TestDeviceUtil;
+import com.tradplus.ads.base.util.AppKeyManager;
+import com.tradplus.ads.base.util.TestDeviceUtil;
+
 
 import static com.facebook.ads.BuildConfig.DEBUG;
 import static com.tradplus.ads.base.common.TPError.ADAPTER_ACTIVITY_ERROR;
