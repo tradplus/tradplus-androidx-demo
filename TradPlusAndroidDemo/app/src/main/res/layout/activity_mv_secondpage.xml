@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        android:background="@color/black"
         >
 
         <FrameLayout
             android:id="@+id/video_container"
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="203dp"
             android:layout_gravity="center">
 
         </FrameLayout>

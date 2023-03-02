@@ -15,22 +15,29 @@
 
         <Button
             android:id="@+id/btn_load"
-            android:layout_width="200.0dip"
+            android:layout_width="300.0dip"
             android:layout_height="50.0dip"
             android:gravity="center"
-            android:text="加载"
+            android:text="预加载"
             android:textAllCaps="false"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/second_page"
-            android:layout_width="wrap_content"
+            android:layout_width="300.0dip"
             android:layout_height="50.0dip"
             android:layout_gravity="center"
-            android:text="等广告加载完成后进入下一页">
+            android:text="预加载后进入下一页展示">
 
         </Button>
 
+        <Button
+            android:id="@+id/multiply_page"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center"
+            android:text="预加载完成后连续展示">
+        </Button>
 
     </LinearLayout>
 </LinearLayout>

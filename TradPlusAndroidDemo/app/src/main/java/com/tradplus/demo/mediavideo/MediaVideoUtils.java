@@ -42,6 +42,11 @@ public class MediaVideoUtils {
         return adContainer;
     }
 
+    public boolean isMeidaVideReady(TPMediaVideo tpMediaVideo) {
+        if (tpMediaVideo == null) return false;
+        return tpMediaVideo.isReady();
+    }
+
     public void showTpMeidaVide(TPMediaVideo tpMediaVideo) {
         if (tpMediaVideo == null) return;
 

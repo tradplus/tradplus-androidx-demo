@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ss.android.socialbase.downloader.network.connectionpool.IFakeDownloadHttpConnection;
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.open.mediavideo.MediaVideoAdListener;
@@ -16,23 +15,23 @@ import com.tradplus.ads.open.mediavideo.TPMediaVideo;
 import com.tradplus.demo.R;
 import com.tradplus.utils.TestAdUnitId;
 
-public class SecondPageActivity extends AppCompatActivity implements View.OnClickListener {
+public class MultiActivity extends AppCompatActivity {
 
     private static final String TAG = "TradPlusData";
     private ViewGroup mContainer;
     private TPMediaVideo tpMediaVideo;
     private MediaVideoUtils mediaVideoUtils;
+    private int isAdDisPlayer = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mv_secondpage);
+        setContentView(R.layout.activity_mv_multi);
 
         initLayout();
         initTPMediaView();
     }
 
-    private int isAdDisPlayer = 0;
     private void initTPMediaView() {
         tpMediaVideo = new TPMediaVideo(this, TestAdUnitId.MEDIAVIDEO_ADUNITID);
         mediaVideoUtils = MediaVideoUtils.getInstance();
@@ -41,7 +40,7 @@ public class SecondPageActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdLoaded: ");
-                Toast.makeText(SecondPageActivity.this,"广告加载完成",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MultiActivity.this,"广告加载完成，可以等当前广告播放完成后继续展示",Toast.LENGTH_LONG).show();
                 // 一次loadAd后，广告加载成功
                 // 从缓存中取出加载成功的广告
 
@@ -51,7 +50,7 @@ public class SecondPageActivity extends AppCompatActivity implements View.OnClic
             public void onAdFailed(TPAdError error) {
                 // 一次loadAd后，广告加载失败
                 Log.i(TAG, "onAdFailed: " + error.getErrorMsg());
-                Toast.makeText(SecondPageActivity.this,"广告加载失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MultiActivity.this,"广告加载失败",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -78,7 +77,9 @@ public class SecondPageActivity extends AppCompatActivity implements View.OnClic
                 Log.i(TAG, "onAdVideoStart:");
                 isAdDisPlayer = 1;
                 mContainer.setVisibility(View.VISIBLE);
-                Toast.makeText(SecondPageActivity.this,"广告展示",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MultiActivity.this,"广告展示",Toast.LENGTH_SHORT).show();
+                // 广告展示同时, 可以加载下一个广告
+                mediaVideoUtils.loadTpMeidaVide(tpMediaVideo,MultiActivity.this);
             }
 
             @Override
@@ -86,12 +87,18 @@ public class SecondPageActivity extends AppCompatActivity implements View.OnClic
                 // 视频播放结束
                 isAdDisPlayer = 0;
                 Log.i(TAG, "onAdVideoEnd: ");
+                // 广告播放结束，若播放开始时加载的广告已经loaded，可以直接展示下一个
+                boolean meidaVideReady = mediaVideoUtils.isMeidaVideReady(tpMediaVideo);
+                if (meidaVideReady) {
+                    showMediaVideAd();
+                }
             }
 
             @Override
             public void onAdVideoError(TPAdInfo tpAdInfo, TPAdError error) {
                 // 视频播放失败
                 Log.i(TAG, "onAdVideoError: " + error.getErrorMsg());
+                Toast.makeText(MultiActivity.this,"广告展示失败",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -112,46 +119,13 @@ public class SecondPageActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
+        if (mediaVideoUtils.isMeidaVideReady(tpMediaVideo)) {
+            showMediaVideAd();
+        }
     }
 
     private void initLayout() {
-        findViewById(R.id.btn_load).setOnClickListener(this);
-        findViewById(R.id.btn_show).setOnClickListener(this);
-        findViewById(R.id.btn_stop).setOnClickListener(this);
-        findViewById(R.id.btn_resume).setOnClickListener(this);
         mContainer = findViewById(R.id.video_container);
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_load:
-                if (tpMediaVideo != null) {
-                    // 加载广告
-                    mediaVideoUtils.loadTpMeidaVide(tpMediaVideo,this);
-                }
-                break;
-            case R.id.btn_show:
-                boolean meidaVideReady = mediaVideoUtils.isMeidaVideReady(tpMediaVideo);
-                if (!meidaVideReady) {
-                    Toast.makeText(SecondPageActivity.this,"无可用广告",Toast.LENGTH_SHORT).show();
-                }else {
-                    showMediaVideAd();
-                }
-                break;
-            case R.id.btn_stop:
-                // 播放暂停
-                if (mediaVideoUtils != null) {
-                    mediaVideoUtils.onAdPause();
-                }
-                break;
-            case R.id.btn_resume:
-                // 暂停后继续播放
-                if (mediaVideoUtils != null) {
-                    mediaVideoUtils.onAdResume();
-                }
-                break;
-        }
     }
 
     private void showMediaVideAd() {
@@ -163,8 +137,6 @@ public class SecondPageActivity extends AppCompatActivity implements View.OnClic
             mContainer.addView(adContainer);
             mContainer.setVisibility(View.INVISIBLE);
             mediaVideoUtils.showTpMeidaVide(tpMediaVideo);
-        }else {
-            Toast.makeText(SecondPageActivity.this,"广告展示中...",Toast.LENGTH_SHORT).show();
         }
     }
 
