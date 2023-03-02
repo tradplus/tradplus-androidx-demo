@@ -55,6 +55,7 @@ android {
         targetSdkVersion 31
         versionCode 7
         versionName "9.2.10.1"
+        multiDexEnabled true
     }
 
     buildTypes {
