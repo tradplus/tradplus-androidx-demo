@@ -18,6 +18,8 @@ public class TestAdUnitId {
     public static final String SPLASH_ADUNITID = "D9118E91DD06DF6D322369455CAED618" ;
     public static final String INTERACTIVE_ADUNITID = "153A71C4FE40D41B728B35BFC0B31650" ;
 
+    public static final String MEDIAVIDEO_ADUNITID = "280DD5C2DDFBF270A56A47DF65F1B362" ;
+
 
     public static final String ENTRY_AD_REWARD = "177010A4403105" ;
     public static final String ENTRY_AD_INTERSTITIAL = "01EAD2CCED1870" ;

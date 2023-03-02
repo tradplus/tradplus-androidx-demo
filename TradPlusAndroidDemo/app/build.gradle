@@ -46,6 +46,10 @@ android {
         targetCompatibility 1.8
     }
 
+    packagingOptions {
+        exclude 'META-INF/*.kotlin_module'
+    }
+
     compileSdkVersion 31
     buildToolsVersion "29.0.2"
 
@@ -54,7 +58,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 31
         versionCode 7
-        versionName "9.2.10.1"
+        versionName "9.3.0.1"
     }
 
     buildTypes {
@@ -232,6 +236,11 @@ dependencies {
     //AdFly
     implementation 'pub.adfly:adfly-sdk:0.14.3'
     implementation "com.tradplusad:tradplus-adfly:52.${tradplus_version}"
+
+    // Google IMA
+    implementation "com.tradplusad:tradplus-google-ima:48.${tradplus_version}"
+    implementation 'com.google.ads.interactivemedia.v3:interactivemedia:3.29.0'
+    implementation 'androidx.media:media:1.6.0'
 
     implementation "com.tradplusad:tradplus-tool:${tradplus_tool}"
 

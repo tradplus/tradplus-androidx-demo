@@ -13,6 +13,7 @@ import com.tradplus.ads.open.TradPlusSdk;
 import com.tradplus.ads.toutiao.ToutiaoInitManager;
 import com.tradplus.demo.banners.BannerActivity;
 import com.tradplus.demo.interstititals.InterstitialActivity;
+import com.tradplus.demo.mediavideo.FirstPageActivity;
 import com.tradplus.demo.nativeads.DrawNativeExpressVideoActivity;
 import com.tradplus.demo.nativeads.NativeActivity;
 import com.tradplus.demo.nativeads.NativeBannerRecycleViewActivity;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private CheckBox btn_box;
     private Button native_ad_cache, splash_ads, draw_video_view, nativelist_ad, native_advanced_btn, rewarded_video_btn,
-            offerwall_ad, interstitial_ad, banner_btn, nativebanner_ad, interactive_ad, nativebannerlist_ad;
+            offerwall_ad, interstitial_ad, banner_btn, nativebanner_ad, interactive_ad, nativebannerlist_ad,meidavideo_ads;
     private CheckBox gpdrChild;
     private CheckBox cbCCPA;
 
@@ -82,6 +83,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 互动
         interactive_ad = (Button) findViewById(R.id.interactive_ads);
         interactive_ad.setOnClickListener(this);
+
+        // 插播广告
+        meidavideo_ads = (Button) findViewById(R.id.meidavideo_ads);
+        meidavideo_ads.setOnClickListener(this);
 
         // 测试工具
         Button tools = (Button) findViewById(R.id.tools);
@@ -145,6 +150,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.interactive_ads:
                 startActivity(new Intent(MainActivity.this, InterActiveActivity.class));
+                break;
+            case R.id.meidavideo_ads:
+                startActivity(new Intent(MainActivity.this, FirstPageActivity.class));
                 break;
             case R.id.tools:
                 ImportSDKUtil.getInstance().showTestTools(MainActivity.this, TestAdUnitId.APPID);

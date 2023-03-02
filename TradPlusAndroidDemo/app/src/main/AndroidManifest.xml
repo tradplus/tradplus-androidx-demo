@@ -120,6 +120,15 @@
             android:launchMode="singleTask"
             android:configChanges="keyboardHidden|orientation|screenSize" />
 
+        <activity
+            android:name=".mediavideo.FirstPageActivity"
+            android:launchMode="singleTask"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        <activity
+            android:name=".mediavideo.SecondPageActivity"
+            android:launchMode="singleTask"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
 
         <activity
             android:name=".InterActiveActivity"
