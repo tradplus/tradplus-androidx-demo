@@ -1,16 +1,21 @@
 package com.tradplus.demo;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Toast;
 
 import com.tradplus.ads.base.GlobalTradPlus;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.open.splash.SplashAdListener;
 import com.tradplus.ads.open.splash.TPSplash;
+import com.tradplus.demo.mediavideo.MultiActivity;
 import com.tradplus.utils.TestAdUnitId;
 
 
@@ -19,23 +24,45 @@ import com.tradplus.utils.TestAdUnitId;
  * 开屏广告是打开app的时候展示一个3-5s的全屏的广告
  * 开屏广告分冷启动和热启动，冷启动时要尽可能提前开始加载广告，这样才能确保在进入app之前加载到并展示广告
  * 热启动是app切换到后台，并没有真正的退出，这种情况下要能检测到并提前加载广告
- *
+ * <p>
  * 开屏广告一般要配合app的启动页来使用，在加载的时间先给用户看启动页，等广告加载成功后展示广告，广告结束进入app内部
  */
 public class SplashActivity extends AppCompatActivity {
 
+    private TPSplash tpSplash;
     private static final String TAG = "SplashActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // load并展示开屏
-        loadSplashAd();
+        findViewById(R.id.splash_start_loadad).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // load并展示开屏
+                loadSplashAd();
+            }
+        });
+
+
+        findViewById(R.id.splash_start_showad).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //======================================================================================================
+                // 需要传入一个容器（容器一般要求全屏或者至少占屏幕75%以上，其余部分可以展示app的logo信息）
+                if (tpSplash != null) {
+                    tpSplash.showAd(findViewById(R.id.splash_container));
+
+                }
+            }
+        });
+
 
         // 开屏广告一般要配合app的启动页来使用，在加载的时间先给用户看启动页，等广告加载成功后展示广告，广告结束进入app内部
         // 启动超时定时器
         startTimeoutTimer();
+
     }
 
     private void startTimeoutTimer() {
@@ -46,7 +73,7 @@ public class SplashActivity extends AppCompatActivity {
     //开屏页一定要禁止用户对返回按钮的控制，否则将可能导致用户手动退出了App而广告无法正常曝光和计费
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(KeyEvent.KEYCODE_BACK==keyCode|| KeyEvent.KEYCODE_HOME==keyCode){
+        if (KeyEvent.KEYCODE_BACK == keyCode || KeyEvent.KEYCODE_HOME == keyCode) {
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -60,7 +87,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void loadSplashAd() {
         // 初始化广告位,注意快手的sdk需要传入的activity是FragmentActivity，否则无法展示快手开屏
-        TPSplash tpSplash = new TPSplash(SplashActivity.this, TestAdUnitId.SPLASH_ADUNITID);
+        tpSplash = new TPSplash(SplashActivity.this, TestAdUnitId.SPLASH_ADUNITID);
         // 设置监听
         tpSplash.setAdListener(new SplashAdListener() {
             @Override
@@ -87,9 +114,7 @@ public class SplashActivity extends AppCompatActivity {
                 // 加载成功后展示广告
                 //======================================================================================================
                 // 这里一定要注意，需要判断一下是否已经进入app内部，如果加载时间过长，已经进入到app内部，这次load结果就不展示了
-                //======================================================================================================
-                // 需要传入一个容器（容器一般要求全屏或者至少占屏幕75%以上，其余部分可以展示app的logo信息）
-                tpSplash.showAd(findViewById(R.id.splash_container));
+                Toast.makeText(SplashActivity.this, "广告加载成功", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -98,11 +123,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-
-
     /**
      * ==============================================================================================================
-     *                         以下是高级用法，一般情况下用不到，包含了缓存，预加载，内置一份默认配置等功能
+     * 以下是高级用法，一般情况下用不到，包含了缓存，预加载，内置一份默认配置等功能
      * ==============================================================================================================
      */
 
@@ -139,7 +162,7 @@ public class SplashActivity extends AppCompatActivity {
                 //======================================================================================================
 
                 // 如果是预加载的广告，在loaded成功后把tpSplash保存下来，展示前调用isReady
-                if(tpSplash.isReady()) {
+                if (tpSplash.isReady()) {
                     tpSplash.showAd(findViewById(R.id.splash_container));
                 }
             }
