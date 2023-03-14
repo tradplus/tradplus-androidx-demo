@@ -124,7 +124,7 @@ public class SplashActivity extends AppCompatActivity {
                 // 广告加载失败
                 //======================================================================================================
                 // 这里一定要注意，需要判断一下是否已经进入app内部，如果加载时间过长，已经进入到app内部，这次load结果就不展示了
-                Toast.makeText(SplashActivity.this, "广告加载成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SplashActivity.this, "广告加载失败", Toast.LENGTH_SHORT).show();
             }
 
         });
