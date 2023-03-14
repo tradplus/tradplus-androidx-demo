@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.tradplus.ads.base.GlobalTradPlus;
+import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.open.splash.SplashAdListener;
@@ -40,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
         findViewById(R.id.splash_start_loadad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // load并展示开屏
+                // 加载广告
                 loadSplashAd();
             }
         });
@@ -49,8 +50,8 @@ public class SplashActivity extends AppCompatActivity {
         findViewById(R.id.splash_start_showad).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //======================================================================================================
-                // 需要传入一个容器（容器一般要求全屏或者至少占屏幕75%以上，其余部分可以展示app的logo信息）
+                // 广告加载成功后调用show方法 展示广告
+                // 传入一个容器（容器一般要求全屏或者至少占屏幕75%以上，其余部分可以展示app的logo信息）
                 if (tpSplash != null) {
                     tpSplash.showAd(findViewById(R.id.splash_container));
 
@@ -116,6 +117,16 @@ public class SplashActivity extends AppCompatActivity {
                 // 这里一定要注意，需要判断一下是否已经进入app内部，如果加载时间过长，已经进入到app内部，这次load结果就不展示了
                 Toast.makeText(SplashActivity.this, "广告加载成功", Toast.LENGTH_SHORT).show();
             }
+
+            @Override
+            public void onAdLoadFailed(TPAdError tpAdInfo) {
+                Log.i(TAG, "onAdLoadFailed: ");
+                // 广告加载失败
+                //======================================================================================================
+                // 这里一定要注意，需要判断一下是否已经进入app内部，如果加载时间过长，已经进入到app内部，这次load结果就不展示了
+                Toast.makeText(SplashActivity.this, "广告加载成功", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
         // 开始加载开屏
