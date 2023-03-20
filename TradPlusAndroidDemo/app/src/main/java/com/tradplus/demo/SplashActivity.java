@@ -85,7 +85,6 @@ public class SplashActivity extends AppCompatActivity {
      * 开屏的基本用法，如果没有特殊需求，按照如下代码接入即可
      * --------------------------------------------------------------------------------------------------------------
      */
-
     private void loadSplashAd() {
         // 初始化广告位,注意快手的sdk需要传入的activity是FragmentActivity，否则无法展示快手开屏
         if (tpSplash == null) {
