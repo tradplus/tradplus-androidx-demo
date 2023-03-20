@@ -88,7 +88,9 @@ public class SplashActivity extends AppCompatActivity {
 
     private void loadSplashAd() {
         // 初始化广告位,注意快手的sdk需要传入的activity是FragmentActivity，否则无法展示快手开屏
-        tpSplash = new TPSplash(SplashActivity.this, TestAdUnitId.SPLASH_ADUNITID);
+        if (tpSplash == null) {
+            tpSplash = new TPSplash(SplashActivity.this, TestAdUnitId.SPLASH_ADUNITID);
+        }
         // 设置监听
         tpSplash.setAdListener(new SplashAdListener() {
             @Override
