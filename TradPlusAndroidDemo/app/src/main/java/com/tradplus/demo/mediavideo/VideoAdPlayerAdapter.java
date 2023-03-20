@@ -219,7 +219,6 @@ public class VideoAdPlayerAdapter implements VideoAdPlayer {
         }
 
         return new VideoProgressUpdate(adPosition, adDuration);
-
     }
 
     /** Returns current volume as a percent of max volume. */
