@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -156,7 +157,7 @@ public class SecondPageActivity extends AppCompatActivity implements View.OnClic
 
     private void showMediaVideAd() {
         if (isAdDisPlayer == 0) {
-            ViewGroup adContainer = mediaVideoUtils.getAdContainer();
+            RelativeLayout adContainer = mediaVideoUtils.getAdContainer();
             if (adContainer.getParent() != null) {
                 ((ViewGroup) adContainer.getParent()).removeView(adContainer);
             }

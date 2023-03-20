@@ -127,6 +127,7 @@
 
         <activity
             android:name=".mediavideo.SecondPageActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:launchMode="singleTask"
             android:configChanges="keyboardHidden|orientation|screenSize" />
 
