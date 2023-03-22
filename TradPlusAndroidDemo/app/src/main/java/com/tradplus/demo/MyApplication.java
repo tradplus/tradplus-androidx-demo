@@ -2,6 +2,7 @@ package com.tradplus.demo;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
@@ -62,8 +63,16 @@ public class MyApplication extends MultiDexApplication {
                     TradPlusSdk.setCCPADoNotSell(application, false);
                 }
 
+                // 初始化是否成功 （可选）
+                TradPlusSdk.setTradPlusInitListener(new TradPlusSdk.TradPlusInitListener() {
+                    @Override
+                    public void onInitSuccess() {
+                        Log.i("TradPlusLog", "onInitSuccess: ");
+                    }
+                });
                 // 初始化SDK
                 TradPlusSdk.initSdk(application, TestAdUnitId.APPID);
+
             }
 
             @Override
