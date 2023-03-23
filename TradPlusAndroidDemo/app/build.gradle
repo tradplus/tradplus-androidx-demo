@@ -102,6 +102,13 @@ dependencies {
     implementation "com.ironsource.sdk:mediationsdk:${ironsource_version}"
     implementation "com.tradplusad:tradplus-ironsource:10.${tradplus_version}"
 
+    // Inmobi
+    implementation "com.inmobi.monetization:inmobi-ads:${inmobi_version}"
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.android.support:customtabs:28.5.0'
+    implementation "com.tradplusad:tradplus-inmobix:23.${tradplus_version}"
+
     // Tapjoy
     implementation "com.tapjoy:tapjoy-android-sdk:${tapjoy_version}@aar"
     implementation "com.tradplusad:tradplus-tapjoy:6.${tradplus_version}"
