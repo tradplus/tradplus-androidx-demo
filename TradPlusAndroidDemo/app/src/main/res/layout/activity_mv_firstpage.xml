@@ -39,5 +39,18 @@
             android:text="预加载完成后连续展示">
         </Button>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#FF000000" />
+
+        <Button
+            android:id="@+id/repeated_page"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center"
+            android:text="加载2次成功后再展示">
+        </Button>
+
     </LinearLayout>
 </LinearLayout>

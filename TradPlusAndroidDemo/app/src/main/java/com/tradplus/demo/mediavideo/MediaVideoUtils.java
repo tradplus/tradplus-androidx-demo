@@ -1,6 +1,7 @@
 package com.tradplus.demo.mediavideo;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;

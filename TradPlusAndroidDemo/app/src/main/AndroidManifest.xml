@@ -16,6 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
+        <activity
+            android:name=".RepeatedActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -24,36 +31,24 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-
-        <!-- Google Play Services -->
+        </activity> <!-- Google Play Services -->
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-
-        <!-- 添加Google AdMob App ID -->
+            android:value="@integer/google_play_services_version" /> <!-- 添加Google AdMob App ID -->
         <!-- Google AdMob 后台获取，正式上线时替换成自己广告账户下的APPID -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
-
-        <!-- AppLovin -->
+            android:value="ca-app-pub-3940256099942544~3347511713" /> <!-- AppLovin -->
         <!-- 添加您的Applovin SDK Key -->
         <!-- Applovin 后台获取 -->
         <meta-data
             android:name="applovin.sdk.key"
-            android:value="-Xtl_oRuS0L4WSmxnIHXusTCoMrq2cslufstvSvGFnVQWLcoeZCu-_NXWZE0c6-QqiZ-BIFRxm6zBs2zwByKPb" />
-
-
-        <!--file_paths.xml已经添加到Mimo Adapter中-->
+            android:value="-Xtl_oRuS0L4WSmxnIHXusTCoMrq2cslufstvSvGFnVQWLcoeZCu-_NXWZE0c6-QqiZ-BIFRxm6zBs2zwByKPb" /> <!-- file_paths.xml已经添加到Mimo Adapter中 -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -62,9 +57,7 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
-
-        <!--sigmob_provider_paths.xml已经添加到Sigmob Adapter中-->
+        </provider> <!-- sigmob_provider_paths.xml已经添加到Sigmob Adapter中 -->
         <provider
             android:name="com.sigmob.sdk.SigmobFileProvider"
             android:authorities="${applicationId}.sigprovider"
@@ -78,29 +71,24 @@
 
         <activity
             android:name=".banners.BannerActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
         <activity
             android:name=".interstititals.InterstitialActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
         <activity
             android:name=".rewarded.RewardedVideoActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
         <activity
             android:name=".offerwall.OfferWallActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
         <activity
             android:name=".nativeads.NativeActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
         <activity
             android:name=".nativeads.NativeRecycleViewActivity"
             android:configChanges="keyboard|orientation|screenSize"
@@ -111,45 +99,43 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".nativeads.NativeBannerViewActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".mediavideo.FirstPageActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
         <activity
             android:name=".mediavideo.SecondPageActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".mediavideo.MultiActivity"
-            android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
 
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".mediavideo.RepeatedActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
         <activity
             android:name=".InterActiveActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".nativeads.DrawNativeExpressVideoActivity"
-            android:launchMode="singleTask"
             android:configChanges="keyboard|orientation|screenSize"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
-
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

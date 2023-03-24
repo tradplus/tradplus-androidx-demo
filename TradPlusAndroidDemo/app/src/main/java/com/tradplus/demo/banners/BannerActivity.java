@@ -76,7 +76,7 @@ public class BannerActivity extends AppCompatActivity {
             }
         });
         adContainer.addView(tpBanner);
-        tpBanner.loadAd(TestAdUnitId.BANNER_ADUNITID);
+        tpBanner.loadAd("BE6A7BB1F5DF38AC63089524155C34CD");
     }
 
 

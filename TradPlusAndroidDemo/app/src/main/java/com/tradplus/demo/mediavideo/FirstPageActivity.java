@@ -97,6 +97,7 @@ public class FirstPageActivity extends AppCompatActivity implements View.OnClick
         findViewById(R.id.btn_load).setOnClickListener(this);
         findViewById(R.id.second_page).setOnClickListener(this);
         findViewById(R.id.multiply_page).setOnClickListener(this);
+        findViewById(R.id.repeated_page).setOnClickListener(this);
     }
 
     @Override
@@ -116,6 +117,11 @@ public class FirstPageActivity extends AppCompatActivity implements View.OnClick
                 // 进入下一页
                 Intent intentmultiply = new Intent(FirstPageActivity.this, MultiActivity.class);
                 startActivity(intentmultiply);
+                break;
+            case R.id.repeated_page:
+                // 进入下一页
+                Intent intentrepeated = new Intent(FirstPageActivity.this, RepeatedActivity.class);
+                startActivity(intentrepeated);
                 break;
         }
     }
