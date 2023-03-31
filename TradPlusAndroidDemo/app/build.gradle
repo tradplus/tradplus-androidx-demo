@@ -46,13 +46,13 @@ android {
         targetCompatibility 1.8
     }
 
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "com.tradplus.demo"
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 7
         versionName "9.2.10.1"
         multiDexEnabled true
