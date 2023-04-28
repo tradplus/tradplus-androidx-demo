@@ -19,6 +19,7 @@ import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.base.common.TPImageLoader;
+import com.tradplus.ads.base.util.AppKeyManager;
 import com.tradplus.ads.mgr.nativead.TPCustomNativeAd;
 import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.nativead.NativeAdListener;
@@ -28,6 +29,8 @@ import com.tradplus.demo.R;
 import com.tradplus.utils.TestAdUnitId;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 标准原生广告，这个广告是可以由开发者控制大小，尽可能融入到app的内容中去，从而提升广告的点击和转化
@@ -208,7 +211,23 @@ public class NativeActivity extends AppCompatActivity {
         // 进入广告场景埋点，用来统计广告触达率，一般是进入某个页面开始调用
         tpNative.entryAdScenario("adSceneId");
 
+//        tpNative.setCustomParams(setLocalCustomParams());
         tpNative.loadAd();
+    }
+
+    private Map<String, Object> setLocalCustomParams() {
+        HashMap<String, Object> mLocalExtras = new HashMap<>();
+        // 华为dislike关闭 右上角显示
+        mLocalExtras.put("huawei_close_position", 2);
+        // 华为模板渲染  1 大图（默认） 2 小图 3 三小图
+        // 自渲染类型开发者需要高级自定义的方式获取多图tpNativeAdView.getPicObject()，获取返回的图片自行添加到布局中
+        mLocalExtras.put("huawei_native_template_type", 1);
+        // 华为下载类广告下载控件点击直接安装
+        // 自动下载 1 ，默认关闭 0
+        // 模板渲染类型展示后直接使用，自渲染类型开发者需要高级自定义的方式实现获取tpNativeAdView.getAppDownloadButton(),判断不为空的时候替换cta按钮
+        mLocalExtras.put("huawei_autoinstall", 0);
+        return mLocalExtras;
+
     }
 
     private void renderNativeAd() {
