@@ -99,7 +99,6 @@ public class NativeActivity extends AppCompatActivity {
                 Log.i(TAG, "onAdClosed: "+ tpAdInfo.adSourceName + "广告关闭");
             }
         });
-
         tpNative.loadAd();
     }
 

@@ -51,7 +51,9 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider> <!-- sigmob_provider_paths.xml已经添加到Sigmob Adapter中 -->
+        </provider>
+
+        <!-- sigmob_provider_paths.xml已经添加到Sigmob Adapter中 -->
         <provider
             android:name="com.sigmob.sdk.SigmobFileProvider"
             android:authorities="${applicationId}.sigprovider"

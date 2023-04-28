@@ -41,6 +41,7 @@ repositories {
     }
 }
 
+
 android {
     compileOptions {
         sourceCompatibility 1.8
@@ -51,15 +52,15 @@ android {
         exclude 'META-INF/*.kotlin_module'
     }
 
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "com.tradplus.demo"
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 7
-        versionName "9.4.0.1"
+        versionName "9.6.10.1"
     }
 
     buildTypes {
@@ -111,8 +112,8 @@ dependencies {
     implementation "com.tradplusad:tradplus-inmobix:23.${tradplus_version}"
 
     // Tapjoy
-    implementation "com.tapjoy:tapjoy-android-sdk:${tapjoy_version}@aar"
-    implementation "com.tradplusad:tradplus-tapjoy:6.${tradplus_version}"
+//    implementation "com.tapjoy:tapjoy-android-sdk:${tapjoy_version}@aar"
+//    implementation "com.tradplusad:tradplus-tapjoy:6.${tradplus_version}"
 
     // Adcolony
     implementation "com.adcolony:sdk:${adcolony_version}"
@@ -128,7 +129,7 @@ dependencies {
 
     // Chartboost
     implementation "com.tradplusad:tradplus-chartboostx:15.${tradplus_version}"
-//    implementation 'com.google.android.gms:play-services-base:17.4.0'
+    implementation 'com.google.android.gms:play-services-base:17.4.0'
     implementation "com.chartboost:chartboost-sdk:${chartboost_version}"
 
     // Mintegral
@@ -144,7 +145,7 @@ dependencies {
 
     // Fyber
     implementation "com.fyber:marketplace-sdk:${fyber_version}"
-//    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
     implementation "com.tradplusad:tradplus-fyber:24.${tradplus_version}"
     // Maio
     //如果引入Admob源则不需要重复引入
@@ -154,8 +155,8 @@ dependencies {
 
     // Criteo
     implementation "com.criteo.publisher:criteo-publisher-sdk:${criteo_version}"
-//    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-//    implementation 'com.google.android.gms:play-services-base:17.0.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.google.android.gms:play-services-base:17.4.0'
     implementation "com.tradplusad:tradplus-criteo:32.${tradplus_version}"
 
 
