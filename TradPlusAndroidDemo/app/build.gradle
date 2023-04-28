@@ -147,6 +147,7 @@ dependencies {
     implementation "com.fyber:marketplace-sdk:${fyber_version}"
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
     implementation "com.tradplusad:tradplus-fyber:24.${tradplus_version}"
+
     // Maio
     //如果引入Admob源则不需要重复引入
 //    implementation 'com.google.android.gms:play-services-ads:21.1.0'
