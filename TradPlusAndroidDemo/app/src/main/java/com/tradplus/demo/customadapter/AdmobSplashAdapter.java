@@ -174,7 +174,7 @@ public class AdmobSplashAdapter extends TPSplashAdapter {
     @Override
     public String getNetworkVersion() {
         // 自定义三方广告源的版本号
-        return MobileAds.getVersionString();
+        return String.valueOf(MobileAds.getVersion());
     }
 }
 
