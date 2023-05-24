@@ -25,7 +25,7 @@ repositories {
     }
     // Ogury
     maven { url 'https://maven.ogury.co'}
-    //s maato
+    //smaato
     maven {
         url "https://s3.amazonaws.com/smaato-sdk-releases/"
     }
@@ -60,7 +60,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 7
-        versionName "9.6.10.1"
+        versionName "9.7.10.1"
     }
 
     buildTypes {

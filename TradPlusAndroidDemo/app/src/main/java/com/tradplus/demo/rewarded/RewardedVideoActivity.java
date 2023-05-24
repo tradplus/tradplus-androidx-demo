@@ -78,18 +78,7 @@ public class RewardedVideoActivity extends AppCompatActivity  {
         initRewardAd();
     }
 
-    /**
-     * 初始化广告位
-     * 如果要开启自动加载，初始化广告位的时机要尽可能提前，这样才能保住在进入广告场景后有可用的广告
-     * 如果不开启自动加载，那么初始化广告位后，在合适的时机来调用load
-     */
     private void initRewardAd() {
-
-        /*
-         * 1、参数2：广告位
-         *
-         * 2、参数3：自动reload模式，true 开启 ，false 关闭（详细请参考接入文档或者类和方法的注释）
-         */
         mTpReward = new TPReward(this,TestAdUnitId.REWRDVIDEO_ADUNITID);
 
         //进入广告场景，广告场景ID后台创建
