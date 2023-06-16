@@ -43,27 +43,7 @@
         <meta-data
             android:name="applovin.sdk.key"
             android:value="-Xtl_oRuS0L4WSmxnIHXusTCoMrq2cslufstvSvGFnVQWLcoeZCu-_NXWZE0c6-QqiZ-BIFRxm6zBs2zwByKPb" /> <!-- file_paths.xml已经添加到Mimo Adapter中 -->
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
 
-        <!-- sigmob_provider_paths.xml已经添加到Sigmob Adapter中 -->
-        <provider
-            android:name="com.sigmob.sdk.SigmobFileProvider"
-            android:authorities="${applicationId}.sigprovider"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            android:initOrder="200">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/sigmob_provider_paths" />
-        </provider>
 
         <activity
             android:name=".banners.BannerActivity"

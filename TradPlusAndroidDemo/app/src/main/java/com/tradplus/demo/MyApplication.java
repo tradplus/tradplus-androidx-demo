@@ -30,10 +30,6 @@ public class MyApplication extends MultiDexApplication {
         super.onCreate();
         application = this;
 
-        // 设置测试模式
-        // 正式上线前注释
-        TestDeviceUtil.getInstance().setNeedTestDevice(true);
-
         // 判断用户是否已经选择过，返回true表示已经进行过选择，就不需要再次弹窗
         boolean firstShowGDPR = TradPlusSdk.isFirstShowGDPR(this);
 
