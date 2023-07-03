@@ -54,8 +54,7 @@ public class NativeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_native);
 
         adContainer = findViewById(R.id.ad_container);
-//        loadNormalNative();
-        loadNativeExpress();
+        loadNormalNative();
     }
 
 
