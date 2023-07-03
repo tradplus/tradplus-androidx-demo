@@ -9,17 +9,20 @@ import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.tradplus.ads.base.GlobalTradPlus;
 import com.tradplus.ads.base.adapter.nativead.TPNativeAdView;
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.base.common.TPImageLoader;
 import com.tradplus.ads.base.util.AppKeyManager;
+import com.tradplus.ads.common.util.ResourceUtils;
 import com.tradplus.ads.mgr.nativead.TPCustomNativeAd;
 import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.nativead.NativeAdListener;
@@ -51,7 +54,8 @@ public class NativeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_native);
 
         adContainer = findViewById(R.id.ad_container);
-        loadNormalNative();
+//        loadNormalNative();
+        loadNativeExpress();
     }
 
 
@@ -270,6 +274,16 @@ public class NativeActivity extends AppCompatActivity {
                         iconView.setImageDrawable(tpNativeAdView.getIconImage());
                     } else if(tpNativeAdView.getIconImageUrl() != null){
                         TPImageLoader.getInstance().loadImage(iconView, tpNativeAdView.getIconImageUrl());
+                    } else if (tpNativeAdView.getIconView() != null) {
+                        ViewGroup.LayoutParams params = iconView.getLayoutParams();
+                        ViewParent viewParent = iconView.getParent();
+                        if (viewParent != null) {
+                            int index = ((ViewGroup)viewParent).indexOfChild(iconView);
+                            ((ViewGroup) viewParent).removeView(iconView);
+                            tpNativeAdView.getIconView().setId(R.id.tp_native_icon_image);
+                            ((ViewGroup) viewParent).addView(tpNativeAdView.getIconView(),index, params);
+
+                        }
                     }
                 }
 
