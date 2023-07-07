@@ -214,7 +214,7 @@ public class NativeBannerViewActivity extends AppCompatActivity {
                     iconView.setImageDrawable(tpNativeAdView.getIconImage());
                 } else if(tpNativeAdView.getIconImageUrl() != null){
                     TPImageLoader.getInstance().loadImage(iconView, tpNativeAdView.getIconImageUrl());
-                }else if (tpNativeAdView.getIconView() != null) {
+                } else if (tpNativeAdView.getIconView() != null) {
                     ViewGroup.LayoutParams params = iconView.getLayoutParams();
                     ViewParent viewParent = iconView.getParent();
                     if (viewParent != null) {
