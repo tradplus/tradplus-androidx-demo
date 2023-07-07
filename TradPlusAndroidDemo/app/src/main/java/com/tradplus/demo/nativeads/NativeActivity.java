@@ -19,6 +19,7 @@ import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.base.common.TPImageLoader;
+import com.tradplus.ads.common.DataKeys;
 import com.tradplus.ads.mgr.nativead.TPCustomNativeAd;
 import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.nativead.NativeAdListener;
@@ -28,6 +29,7 @@ import com.tradplus.demo.R;
 import com.tradplus.utils.TestAdUnitId;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 标准原生广告，这个广告是可以由开发者控制大小，尽可能融入到app的内容中去，从而提升广告的点击和转化
@@ -55,7 +57,9 @@ public class NativeActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         //释放资源
-        tpNative.onDestroy();
+        if(tpNative != null) {
+            tpNative.onDestroy();
+        }
         super.onDestroy();
     }
 
@@ -66,7 +70,7 @@ public class NativeActivity extends AppCompatActivity {
      * --------------------------------------------------------------------------------------------------------------
      */
     private void loadNormalNative() {
-        tpNative = new TPNative(NativeActivity.this,TestAdUnitId.NATIVE_ADUNITID);
+        tpNative = new TPNative(NativeActivity.this,"559CECCAFE841C9D197FB53C5D6CF5D6");
         tpNative.setAdListener(new NativeAdListener() {
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {

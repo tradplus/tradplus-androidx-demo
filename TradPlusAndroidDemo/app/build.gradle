@@ -143,49 +143,14 @@ dependencies {
     implementation "com.mbridge.msdk.oversea:newinterstitial:${mtg_os_version}"
     implementation "com.mbridge.msdk.oversea:mbbid:${mtg_os_version}"
 
-    // Fyber
-    implementation "com.fyber:marketplace-sdk:${fyber_version}"
-    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation "com.tradplusad:tradplus-fyber:24.${tradplus_version}"
-    // Maio
-    //如果引入Admob源则不需要重复引入
-//    implementation 'com.google.android.gms:play-services-ads:21.1.0'
-    implementation "com.tradplusad:tradplus-maio:31.${tradplus_version}"
-    implementation "com.maio:android-sdk:${maio_version}"
-
-    // Criteo
-    implementation "com.criteo.publisher:criteo-publisher-sdk:${criteo_version}"
-    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.google.android.gms:play-services-base:17.4.0'
-    implementation "com.tradplusad:tradplus-criteo:32.${tradplus_version}"
-
-
-    // MyTarget
-    implementation "com.my.target:mytarget-sdk:${mytarget_version}"
-    implementation "com.tradplusad:tradplus-mytarget:33.${tradplus_version}"
-
-    // Ogury
-    implementation "co.ogury:ogury-sdk:${ogury_version}"
-    implementation "com.tradplusad:tradplus-ogury:34.${tradplus_version}"
-
-
-    // Kidoz
-    implementation "com.tradplusad:tradplus-kidoz:37.${tradplus_version}"
-    implementation 'org.greenrobot:eventbus:3.2.0'
-    implementation 'com.kidoz.sdk:KidozSDK:8.9.0@aar'
-//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-
-    // StartApp
-    implementation "com.tradplusad:tradplus-startapp:28.${tradplus_version}"
-    implementation "com.startapp:inapp-sdk:${startapp_version}"
 
     //Smaato
     implementation "com.tradplusad:tradplus-smaato:38.${tradplus_version}"
-    implementation "com.smaato.android.sdk:smaato-sdk:${smaato_version}"
-    implementation "com.smaato.android.sdk:smaato-sdk-banner:${smaato_version}"
-    implementation "com.smaato.android.sdk:smaato-sdk-interstitial:${smaato_version}"
-    implementation "com.smaato.android.sdk:smaato-sdk-rewarded-ads:${smaato_version}"
-    implementation "com.smaato.android.sdk:smaato-sdk-native:${smaato_version}"
+    implementation "com.smaato.android.sdk:smaato-sdk:22.1.2"
+    implementation "com.smaato.android.sdk:smaato-sdk-banner:22.1.2"
+    implementation "com.smaato.android.sdk:smaato-sdk-interstitial:22.1.2"
+    implementation "com.smaato.android.sdk:smaato-sdk-rewarded-ads:22.1.2"
+    implementation "com.smaato.android.sdk:smaato-sdk-native:22.1.2"
 
     // Huawei
     implementation "com.tradplusad:tradplus-huawei:41.${tradplus_version}"
