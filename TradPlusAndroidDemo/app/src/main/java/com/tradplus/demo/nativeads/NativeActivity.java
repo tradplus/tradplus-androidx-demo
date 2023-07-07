@@ -70,7 +70,7 @@ public class NativeActivity extends AppCompatActivity {
      * --------------------------------------------------------------------------------------------------------------
      */
     private void loadNormalNative() {
-        tpNative = new TPNative(NativeActivity.this,"559CECCAFE841C9D197FB53C5D6CF5D6");
+        tpNative = new TPNative(NativeActivity.this,TestAdUnitId.NATIVE_ADUNITID);
         tpNative.setAdListener(new NativeAdListener() {
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
