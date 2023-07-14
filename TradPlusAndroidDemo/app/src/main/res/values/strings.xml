@@ -6,18 +6,18 @@
     <string name="gdpr_upload_data">GDPR数据是否上报</string>
     <string name="change_gdpr_select">更改GDPR数据上报选择</string>
     <string name="load_ad">进入加载广告页面</string>
-    <string name="Banner">Banner横幅</string>
-    <string name="Interstitial">Interstitial插屏</string>
-    <string name="RewardedVideo">RewardedVideo激励视频</string>
-    <string name="OfferWall">OfferWall积分墙</string>
-    <string name="AdvancedNative">Native原生</string>
-    <string name="NativeListView">NativeList原生信息流</string>
-    <string name="NativeBannerListView">原生横幅List原生信息流</string>
-    <string name="NativeBanner">NativeBanner原生横幅</string>
-    <string name="NativeDraw">DrawVideo信息流</string>
-    <string name="Splash">Splash开屏</string>
-    <string name="InterActivie">互动广告</string>
-    <string name="MeidaVideo">插播广告</string>
+    <string name="Banner">横幅Banner</string>
+    <string name="Interstitial">插屏Interstitial</string>
+    <string name="RewardedVideo">激励RewardedVideo</string>
+    <string name="OfferWall">积分墙OfferWall</string>
+    <string name="AdvancedNative">原生Native</string>
+    <string name="NativeListView">原生信息流NativeList</string>
+    <string name="NativeBannerListView">原生横幅NativeBannerList</string>
+    <string name="NativeBanner">原生横幅NativeBanner</string>
+    <string name="NativeDraw">信息流DrawVideo</string>
+    <string name="Splash">开屏Splash</string>
+    <string name="InterActivie">互动广告Interactive</string>
+    <string name="MeidaVideo">插播广告IMA</string>
 
     <string name="click_to_skip">点击跳过</string>
 
