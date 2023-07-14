@@ -1,10 +1,12 @@
 package com.tradplus.demo.interstititals;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,9 @@ import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.interstitial.InterstitialAdListener;
 import com.tradplus.ads.open.interstitial.TPInterstitial;
 import com.tradplus.demo.R;
+import com.tradplus.demo.banners.SecondPageActivity;
+import com.tradplus.demo.rewarded.RewardedVideoActivity;
+import com.tradplus.demo.rewarded.VideoUtils;
 import com.tradplus.utils.TestAdUnitId;
 
 import java.util.HashMap;
@@ -30,10 +35,9 @@ import java.util.HashMap;
  * 自动加载功能是TradPlus独有的针对部分需要频繁展示广告的场景做的自动补充和过期重新加载的功能，推荐在广告场景触发较多的场景下使用
  * 自动加载功能只需要初始化一次，后续在广告场景到来的时候判断isReady然后show广告即可，不需要额外的调用load
  */
-public class InterstitialActivity extends AppCompatActivity  {
+public class InterstitialActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button interstitial_show,  interstitial_load;
-    TextView tv;
+    private VideoUtils videoUtils;
     TPInterstitial mTPInterstitial;
     private static final String TAG = "tradpluslog";
 
@@ -43,34 +47,10 @@ public class InterstitialActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interstitial);
 
-        tv = findViewById(R.id.tv);
-        interstitial_load = (Button)findViewById(R.id.load);
-        interstitial_show = (Button)findViewById(R.id.show);
-
-        // load按钮
-        interstitial_load.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTPInterstitial.loadAd();
-            }
-        });
-
-        // show按钮
-        interstitial_show.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //是否有可用广告
-                if (!mTPInterstitial.isReady()) {
-                    // 无可用的广告，如果开启自动加载，可以什么都不做，如果没开启自动加载，可以在这里调用一次load（注意不要频繁触发）
-                    Log.i(TAG, "isReady: 无可用广告");
-                    tv.setText("isReady: 无可用广告");
-                }else{
-                    //展示
-                    mTPInterstitial.showAd(InterstitialActivity.this, TestAdUnitId.ENTRY_AD_INTERSTITIAL);
-                    Log.i(TAG, "showAd: 展示");
-                }
-            }
-        });
+        videoUtils = VideoUtils.getInstance();
+        findViewById(R.id.btn_load).setOnClickListener(this);
+        findViewById(R.id.btn_show).setOnClickListener(this);
+        findViewById(R.id.second_page).setOnClickListener(this);
 
         // 初始化广告
         initInterstitialAd();
@@ -97,27 +77,32 @@ public class InterstitialActivity extends AppCompatActivity  {
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdLoaded: ");
+                Toast.makeText(InterstitialActivity.this, "广告加载成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdClicked: 广告"+ tpAdInfo.adSourceName +"被点击");
+                Toast.makeText(InterstitialActivity.this, "广告被点击", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdImpression: 广告"+ tpAdInfo.adSourceName +"展示");
+                Toast.makeText(InterstitialActivity.this, "广告被展示", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onAdFailed(TPAdError tpAdError) {
                 Log.i(TAG, "onAdFailed: ");
+                Toast.makeText(InterstitialActivity.this, "广告加载失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdClosed(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdClosed: 广告"+ tpAdInfo.adSourceName +"被关闭");
+                Toast.makeText(InterstitialActivity.this, "广告加载关闭", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -142,7 +127,7 @@ public class InterstitialActivity extends AppCompatActivity  {
             @Override
             public void onAdAllLoaded(boolean b) {
                 Log.i(TAG, "onAdAllLoaded: 该广告位下所有广告加载结束，是否有广告加载成功 ：" + b);
-                tv.setText("onAdAllLoaded:广告加载结束");
+
             }
 
             @Override
@@ -154,7 +139,6 @@ public class InterstitialActivity extends AppCompatActivity  {
             @Override
             public void oneLayerLoaded(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "oneLayerLoaded:  广告"+ tpAdInfo.adSourceName +" 加载成功");
-                tv.setText("oneLayerLoaded:  广告"+ tpAdInfo.adSourceName +" 加载成功");
             }
 
             @Override
@@ -183,6 +167,30 @@ public class InterstitialActivity extends AppCompatActivity  {
             }
 
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_load:
+                if (mTPInterstitial != null) {
+                    videoUtils.loadInterstitial(mTPInterstitial);
+                }
+                break;
+            case R.id.btn_show:
+                if (videoUtils.isReadyInterstitial()) {
+                    videoUtils.showInterstitial(InterstitialActivity.this);
+                }else {
+                    Toast.makeText(InterstitialActivity.this, "无可用广告 or 已经展示", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.second_page:
+                // 进入下一页
+                Intent intent = new Intent(InterstitialActivity.this, SecondPageActivity.class);
+                intent.putExtra("type",TestAdUnitId.TYPE_INTERSTITIAL);
+                startActivity(intent);
+                break;
+        }
     }
 
     @Override

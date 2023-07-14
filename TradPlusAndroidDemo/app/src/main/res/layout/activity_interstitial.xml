@@ -3,74 +3,40 @@
     android:id="@+id/activity_interstitial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text=" "
-            android:textSize="16sp"/>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:gravity="center">
         <Button
-            android:id="@+id/load"
-            android:layout_width="200.0dip"
+            android:id="@+id/btn_load"
+            android:layout_width="300.0dip"
             android:layout_height="50.0dip"
             android:gravity="center"
-            android:text="Load"
+            android:text="加载"
             android:textAllCaps="false"
-            android:textSize="16sp"/>
-    </LinearLayout>
+            android:textSize="16sp" />
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        android:gravity="center">
         <Button
-            android:id="@+id/show"
-            android:layout_width="200.0dip"
+            android:id="@+id/btn_show"
+            android:layout_width="300.0dip"
             android:layout_height="50.0dip"
             android:gravity="center"
-            android:text="Show"
+            android:text="展示"
             android:textAllCaps="false"
-            android:textSize="16sp"/>
-    </LinearLayout>
+            android:textSize="16sp" />
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:layout_weight="1"-->
-<!--        android:gravity="center">-->
-<!--        <Button-->
-<!--            android:id="@+id/showEntryAdScenario"-->
-<!--            android:layout_width="200.0dip"-->
-<!--            android:layout_height="50.0dip"-->
-<!--            android:gravity="center"-->
-<!--            android:text="showEntryAdScenario"-->
-<!--            android:textAllCaps="false"-->
-<!--            android:textSize="16sp"/>-->
-<!--    </LinearLayout>-->
+        <Button
+            android:id="@+id/second_page"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center"
+            android:text="加载成功后下一页展示"/>
+
+    </LinearLayout>
 
 </LinearLayout>

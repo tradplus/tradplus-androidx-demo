@@ -1,11 +1,10 @@
 package com.tradplus.demo.rewarded;
 
-import android.app.Activity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -18,6 +17,7 @@ import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.reward.RewardAdListener;
 import com.tradplus.ads.open.reward.TPReward;
 import com.tradplus.demo.R;
+import com.tradplus.demo.banners.SecondPageActivity;
 import com.tradplus.utils.TestAdUnitId;
 
 import java.util.HashMap;
@@ -33,11 +33,10 @@ import java.util.Map;
  * 自动加载功能是TradPlus独有的针对部分需要频繁展示广告的场景做的自动补充和过期重新加载的功能，推荐在广告场景触发较多的场景下使用
  * 自动加载功能只需要初始化一次，后续在广告场景到来的时候判断isReady然后show广告即可，不需要额外的调用load
  */
-public class RewardedVideoActivity extends AppCompatActivity  {
+public class RewardedVideoActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button reward_show,reward_load;
-    TextView tv;
-    TPReward mTpReward;
+    private TPReward mTpReward;
+    private VideoUtils videoUtils;
     private static final String TAG = "tradpluslog";
 
     @Override
@@ -45,36 +44,11 @@ public class RewardedVideoActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interstitial);
 
-        tv = findViewById(R.id.tv);
-        reward_load = (Button)findViewById(R.id.load);
-        reward_show = (Button)findViewById(R.id.show);
+        videoUtils = VideoUtils.getInstance();
+        findViewById(R.id.btn_load).setOnClickListener(this);
+        findViewById(R.id.btn_show).setOnClickListener(this);
+        findViewById(R.id.second_page).setOnClickListener(this);
 
-        // load按钮
-        reward_load.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTpReward.loadAd();
-            }
-        });
-
-        // show按钮
-        reward_show.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //是否有可用广告
-                if (!mTpReward.isReady()) {
-                    // 无可用的广告，如果开启自动加载，可以什么都不做，如果没开启自动加载，可以在这里调用一次load（注意不要频繁触发）
-                    Log.i(TAG, "isReady: 无可用广告");
-                    tv.setText("isReady: 无可用广告");
-                }else{
-                    //展示
-                    mTpReward.showAd(RewardedVideoActivity.this, TestAdUnitId.ENTRY_AD_REWARD);
-                    Log.i(TAG, "showAd: 展示");
-                }
-            }
-        });
-
-        // 初始化广告
         initRewardAd();
     }
 
@@ -98,33 +72,39 @@ public class RewardedVideoActivity extends AppCompatActivity  {
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdLoaded: ");
+                Toast.makeText(RewardedVideoActivity.this, "广告加载成功", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdClicked: 广告"+ tpAdInfo.adSourceName +"被点击");
+                Toast.makeText(RewardedVideoActivity.this, "广告被点击", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdImpression: 广告"+ tpAdInfo.adSourceName +"展示");
+                Toast.makeText(RewardedVideoActivity.this, "广告展示", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onAdFailed(TPAdError tpAdError) {
                 Log.i(TAG, "onAdFailed: ");
+                Toast.makeText(RewardedVideoActivity.this, "广告加载失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdClosed(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdClosed: 广告"+ tpAdInfo.adSourceName +"被关闭");
+                Toast.makeText(RewardedVideoActivity.this, "广告关闭", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onAdReward(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdReward: 奖励项目：" + tpAdInfo.currencyName +" ， 奖励数量："+ tpAdInfo.amount);
+                Toast.makeText(RewardedVideoActivity.this, "广告奖励", Toast.LENGTH_SHORT).show();
                 // 给用户发放奖励
                 // 在V6.4.5以后的版本，可以根据三方广告平台的文档来增加奖励验证功能（奖励验证需要开发者后台配合，TradPlus不提供后台服务奖励验证的功能）
             }
@@ -151,7 +131,6 @@ public class RewardedVideoActivity extends AppCompatActivity  {
             @Override
             public void onAdAllLoaded(boolean b) {
                 Log.i(TAG, "onAdAllLoaded: 该广告位下所有广告加载结束，是否有广告加载成功 ：" + b);
-                tv.setText("onAdAllLoaded:广告加载结束");
             }
 
             @Override
@@ -163,7 +142,6 @@ public class RewardedVideoActivity extends AppCompatActivity  {
             @Override
             public void oneLayerLoaded(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "oneLayerLoaded:  广告"+ tpAdInfo.adSourceName +" 加载成功");
-                tv.setText("oneLayerLoaded:  广告"+ tpAdInfo.adSourceName +" 加载成功");
             }
 
             @Override
@@ -199,6 +177,30 @@ public class RewardedVideoActivity extends AppCompatActivity  {
 
         if(mTpReward != null){
             mTpReward.onDestroy();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_load:
+                if (mTpReward != null) {
+                    videoUtils.loadReward(mTpReward);
+                }
+                break;
+            case R.id.btn_show:
+                if (videoUtils.isReady()) {
+                    videoUtils.showReward(RewardedVideoActivity.this);
+                }else {
+                    Toast.makeText(RewardedVideoActivity.this, "无可用广告 or 已经展示", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.second_page:
+                // 进入下一页
+                Intent intent = new Intent(RewardedVideoActivity.this, SecondPageActivity.class);
+                intent.putExtra("type",TestAdUnitId.TYPE_REWARDED);
+                startActivity(intent);
+                break;
         }
     }
 }

@@ -188,6 +188,7 @@ public class BannerActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.second_page:
                 // 进入下一页
                 Intent intent = new Intent(BannerActivity.this, SecondPageActivity.class);
+                intent.putExtra("type",TestAdUnitId.TYPE_BANNER);
                 startActivity(intent);
                 break;
         }
