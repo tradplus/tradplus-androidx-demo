@@ -2,6 +2,7 @@ package com.tradplus.demo.nativeads;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,9 +33,9 @@ import com.tradplus.utils.TestAdUnitId;
  * nativebanner是用native来拼接的banner，跟native相比是少了大图，在特定的场景可以代替banner广告（填充率和点击率，素材内容和质量上有差异）
  * nativebanner是按照banner的逻辑来实现，所以load成功以后会自动show出来，同时nativebanner也会有自动刷新等功能
  */
-public class NativeBannerViewActivity extends AppCompatActivity {
+public class NativeBannerViewActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    private NativeUtils nativeUtils;
     private TPNativeBanner tpNativeBanner;
     private ViewGroup adContainer;
     private static final String TAG = "tradpluslog";
@@ -44,8 +46,12 @@ public class NativeBannerViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nativebanner);
 
         adContainer = findViewById(R.id.ad_container);
-
-        showNativeBanner();
+        nativeUtils = NativeUtils.getInstance();
+        findViewById(R.id.btn_load).setOnClickListener(this);
+        findViewById(R.id.btn_show).setOnClickListener(this);
+        findViewById(R.id.second_page).setOnClickListener(this);
+        findViewById(R.id.native_listview).setOnClickListener(this);
+        loadNativeBanner();
     }
 
     @Override
@@ -62,28 +68,33 @@ public class NativeBannerViewActivity extends AppCompatActivity {
      */
 
 
-    private void showNativeBanner() {
+    private void loadNativeBanner() {
         // 也可以把TPNativeBanner写在xml中，findViewById的方式来初始化，这样就省略了addView操作
         tpNativeBanner = new TPNativeBanner(NativeBannerViewActivity.this);
+        tpNativeBanner.closeAutoShow();
         tpNativeBanner.setAdListener(new BannerAdListener(){
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdClicked: " + tpAdInfo.adSourceName + "被点击了");
+                Toast.makeText(NativeBannerViewActivity.this, "广告被点击了", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
+                Toast.makeText(NativeBannerViewActivity.this, "广告加载完成", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdImpression: "+ tpAdInfo.adSourceName + "展示");
+                Toast.makeText(NativeBannerViewActivity.this, "广告展示", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdLoadFailed(TPAdError tpAdInfo) {
                 Log.i(TAG, "onAdLoadFailed:加载失败: code : "+ tpAdInfo.getErrorCode() + ", msg :" + tpAdInfo.getErrorMsg());
+                Toast.makeText(NativeBannerViewActivity.this, "广告加载失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -92,9 +103,6 @@ public class NativeBannerViewActivity extends AppCompatActivity {
             }
 
         });
-        adContainer.addView(tpNativeBanner);
-        tpNativeBanner.loadAd(TestAdUnitId.NATIVEBANNER_ADUNITID);
-
     }
 
 
@@ -107,7 +115,7 @@ public class NativeBannerViewActivity extends AppCompatActivity {
 
 
 
-    private void showCustomNativeBanner() {
+    private void loadCustomNativeBanner() {
         tpNativeBanner = new TPNativeBanner(NativeBannerViewActivity.this);
         tpNativeBanner.setAdListener(new BannerAdListener(){
             @Override
@@ -255,4 +263,33 @@ public class NativeBannerViewActivity extends AppCompatActivity {
             return viewGroup;
         }
     };
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_load:
+                if (tpNativeBanner != null) {
+                    nativeUtils.loadNativeBanner(tpNativeBanner,TestAdUnitId.NATIVEBANNER_ADUNITID);
+                }
+                break;
+            case R.id.btn_show:
+                if (nativeUtils.isReadyNativeBanner()) {
+                    nativeUtils.showNativeBanner(adContainer);
+                }else{
+                    Toast.makeText(NativeBannerViewActivity.this, "无可用广告", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.second_page:
+                // 进入下一页
+                Intent intent = new Intent(NativeBannerViewActivity.this, SecondPage.class);
+                intent.putExtra("type",TestAdUnitId.TYPE_NATIVEBANNER);
+                startActivity(intent);
+                break;
+            case R.id.native_listview:
+                // 进入下一页
+                Intent intentlist = new Intent(NativeBannerViewActivity.this, NativeBannerRecycleViewActivity.class);
+                startActivity(intentlist);
+                break;
+        }
+    }
 }

@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ss.android.socialbase.downloader.network.connectionpool.IFakeDownloadHttpConnection;
+
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.open.mediavideo.MediaVideoAdListener;

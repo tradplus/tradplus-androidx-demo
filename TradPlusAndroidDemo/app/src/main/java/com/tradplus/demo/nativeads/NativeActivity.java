@@ -1,28 +1,27 @@
 package com.tradplus.demo.nativeads;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.tradplus.ads.base.GlobalTradPlus;
 import com.tradplus.ads.base.adapter.nativead.TPNativeAdView;
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.base.common.TPImageLoader;
-import com.tradplus.ads.base.util.AppKeyManager;
-import com.tradplus.ads.common.util.ResourceUtils;
 import com.tradplus.ads.mgr.nativead.TPCustomNativeAd;
 import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.nativead.NativeAdListener;
@@ -32,7 +31,6 @@ import com.tradplus.demo.R;
 import com.tradplus.utils.TestAdUnitId;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,8 +40,9 @@ import java.util.Map;
  * native 自渲染广告是三方广告平台返回广告素材由开发者来拼接成对于的样式
  * native 模板渲染是三方广告平台返回渲染好的view（很多广告平台可以在对应的后台设置样式），开发者直接添加到一个容器就可以展示出来
  */
-public class NativeActivity extends AppCompatActivity {
+public class NativeActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private NativeUtils nativeUtils;
     private TPNative tpNative;
     private ViewGroup adContainer;
     private static final String TAG = "tradpluslog";
@@ -54,6 +53,11 @@ public class NativeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_native);
 
         adContainer = findViewById(R.id.ad_container);
+        nativeUtils = NativeUtils.getInstance();
+        findViewById(R.id.btn_load).setOnClickListener(this);
+        findViewById(R.id.btn_show).setOnClickListener(this);
+        findViewById(R.id.second_page).setOnClickListener(this);
+        findViewById(R.id.native_listview).setOnClickListener(this);
         loadNormalNative();
     }
 
@@ -77,17 +81,19 @@ public class NativeActivity extends AppCompatActivity {
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
-                tpNative.showAd(adContainer, R.layout.tp_native_ad_list_item,"");
+                Toast.makeText(NativeActivity.this, "广告加载完成", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdClicked: "+ tpAdInfo.adSourceName + "被点击");
+                Toast.makeText(NativeActivity.this, "广告被点击", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
                 Log.i(TAG, "onAdImpression: "+ tpAdInfo.adSourceName + "展示");
+                Toast.makeText(NativeActivity.this, "广告展示", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -98,6 +104,7 @@ public class NativeActivity extends AppCompatActivity {
             @Override
             public void onAdLoadFailed(TPAdError tpAdError) {
                 Log.i(TAG, "onAdLoadFailed: 加载失败 , code : "+ tpAdError.getErrorCode() + ", msg :" + tpAdError.getErrorMsg());
+                Toast.makeText(NativeActivity.this, "广告加载失败", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -105,10 +112,7 @@ public class NativeActivity extends AppCompatActivity {
                 Log.i(TAG, "onAdClosed: "+ tpAdInfo.adSourceName + "广告关闭");
             }
         });
-        tpNative.loadAd();
     }
-
-
 
 
 
@@ -117,8 +121,6 @@ public class NativeActivity extends AppCompatActivity {
      *                                       以下是高级用法，一般情况下用不到
      * ==============================================================================================================
      */
-
-
 
     private void loadNativeExpress() {
         tpNative = new TPNative(NativeActivity.this,TestAdUnitId.NATIVE_ADUNITID);
@@ -215,7 +217,7 @@ public class NativeActivity extends AppCompatActivity {
         tpNative.entryAdScenario("adSceneId");
 
 //        tpNative.setCustomParams(setLocalCustomParams());
-        tpNative.loadAd();
+//        tpNative.loadAd();
     }
 
     private Map<String, Object> setLocalCustomParams() {
@@ -342,4 +344,32 @@ public class NativeActivity extends AppCompatActivity {
         customNativeAd.showAd(adContainer, R.layout.tp_native_ad_list_item, "adSceneId");
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_load:
+                if (tpNative != null) {
+                    nativeUtils.loadNative(tpNative);
+                }
+                break;
+            case R.id.btn_show:
+                if (nativeUtils.isReady()) {
+                    nativeUtils.showNative(adContainer);
+                }else{
+                    Toast.makeText(NativeActivity.this, "无可用广告", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.second_page:
+                // 进入下一页
+                Intent intent = new Intent(NativeActivity.this, SecondPage.class);
+                intent.putExtra("type",TestAdUnitId.TYPE_NATIVE);
+                startActivity(intent);
+                break;
+            case R.id.native_listview:
+                // 进入下一页
+                Intent intentlist = new Intent(NativeActivity.this, NativeRecycleViewActivity.class);
+                startActivity(intentlist);
+                break;
+        }
+    }
 }

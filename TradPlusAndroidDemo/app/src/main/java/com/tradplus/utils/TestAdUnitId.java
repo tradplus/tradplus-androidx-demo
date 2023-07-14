@@ -22,4 +22,6 @@ public class TestAdUnitId {
 
     public static final String ENTRY_AD_REWARD = "177010A4403105" ;
     public static final String ENTRY_AD_INTERSTITIAL = "01EAD2CCED1870" ;
+    public static final String TYPE_NATIVE = "native" ;
+    public static final String TYPE_NATIVEBANNER = "nativebanner" ;
 }

@@ -66,29 +66,9 @@
                 android:gravity="center"
                 android:text="@string/RewardedVideo"
                 android:textAllCaps="false"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/offerwall_ad"
-                android:layout_width="200.0dip"
-                android:layout_height="50.0dip"
-                android:gravity="center"
-                android:text="@string/OfferWall"
-                android:textAllCaps="false"
                 android:textSize="16sp" />
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -115,58 +95,11 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/nativelist_ad"
-                android:layout_width="200.0dip"
-                android:layout_height="50.0dip"
-                android:gravity="center"
-                android:text="@string/NativeListView"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/nativebannerlist_ad"
-                android:layout_width="200.0dip"
-                android:layout_height="50.0dip"
-                android:gravity="center"
-                android:text="@string/NativeBannerListView"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
                 android:id="@+id/nativebanner_ad"
                 android:layout_width="200.0dip"
                 android:layout_height="50.0dip"
                 android:gravity="center"
                 android:text="@string/NativeBanner"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/draw_video_view"
-                android:layout_width="200.0dip"
-                android:layout_height="50.0dip"
-                android:gravity="center"
-                android:text="@string/NativeDraw"
                 android:textAllCaps="false"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -210,6 +143,22 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/offerwall_ad"
+                android:layout_width="200.0dip"
+                android:layout_height="50.0dip"
+                android:gravity="center"
+                android:text="@string/OfferWall"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
                 android:id="@+id/interactive_ads"
                 android:layout_width="200.0dip"
                 android:layout_height="50.0dip"
@@ -234,6 +183,27 @@
                 android:textAllCaps="false"
                 android:textSize="16sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/draw_video_view"
+                android:layout_width="200.0dip"
+                android:layout_height="50.0dip"
+                android:gravity="center"
+                android:text="@string/NativeDraw"
+                android:textAllCaps="false"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/background_dark" />
 
         <LinearLayout
             android:layout_width="match_parent"

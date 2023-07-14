@@ -29,8 +29,8 @@ import com.tradplus.utils.TestAdUnitId;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private CheckBox btn_box;
-    private Button native_ad_cache, splash_ads, draw_video_view, nativelist_ad, native_advanced_btn, rewarded_video_btn,
-            offerwall_ad, interstitial_ad, banner_btn, nativebanner_ad, interactive_ad, nativebannerlist_ad,meidavideo_ads;
+    private Button native_ad_cache, splash_ads, draw_video_view, native_advanced_btn, rewarded_video_btn,
+            offerwall_ad, interstitial_ad, banner_btn, nativebanner_ad, interactive_ad,meidavideo_ads;
     private CheckBox gpdrChild;
     private CheckBox cbCCPA;
 
@@ -47,14 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Draw信息流
         draw_video_view = (Button) findViewById(R.id.draw_video_view);
         draw_video_view.setOnClickListener(this);
-
-        // 信息流
-        nativelist_ad = (Button) findViewById(R.id.nativelist_ad);
-        nativelist_ad.setOnClickListener(this);
-
-        // 原生横幅 信息流
-        nativebannerlist_ad = (Button) findViewById(R.id.nativebannerlist_ad);
-        nativebannerlist_ad.setOnClickListener(this);
 
         // 标准原生
         native_advanced_btn = (Button) findViewById(R.id.native_ad_advanced);
@@ -121,12 +113,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.draw_video_view:
                 startActivity(new Intent(MainActivity.this, DrawNativeExpressVideoActivity.class));
-                break;
-            case R.id.nativelist_ad:
-                startActivity(new Intent(MainActivity.this, NativeRecycleViewActivity.class));
-                break;
-            case R.id.nativebannerlist_ad:
-                startActivity(new Intent(MainActivity.this, NativeBannerRecycleViewActivity.class));
                 break;
             case R.id.native_ad_advanced:
                 startActivity(new Intent(MainActivity.this, NativeActivity.class));

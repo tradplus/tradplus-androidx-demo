@@ -30,7 +30,7 @@ public class NativeRecycleViewActivity extends Activity {
     private int firstVisible;
     private int lastVisible;
 
-    public static final int INTERVAL = 15;
+    public static final int INTERVAL = 5;
     //0 inside; 1 up; 2;down;3 up down
     public static final int STATUS_INSIDE = 0;
     public static final int STATUS_UP = 1;

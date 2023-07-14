@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_native"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_load"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:gravity="center"
+            android:text="加载标准原生"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_show"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:gravity="center"
+            android:text="展示标准原生"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/second_page"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:text="加载成功后下一页展示"/>
+
+        <Button
+            android:id="@+id/native_listview"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:text="标准原生信息流"/>
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/ad_container"
@@ -12,4 +55,4 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"/>
 
-</RelativeLayout>
+</LinearLayout>

@@ -1,15 +1,17 @@
 package com.tradplus.demo.banners;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
-import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.banner.BannerAdListener;
 import com.tradplus.ads.open.banner.TPBanner;
 
@@ -23,8 +25,9 @@ import com.tradplus.utils.TestAdUnitId;
  * 广告loaded成功后，TradPlus SDK会自动的把广告内容填充到TPBanner中
  * banner自带有刷新功能，在TradPlus后台配置刷新时间，一次loaded后，间隔固定的时间SDK内部会自动触发下一次load并在loaded成功后替换内容
  */
-public class BannerActivity extends AppCompatActivity {
+public class BannerActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private BannerUtils bannerUtils;
     private TPBanner tpBanner;
     private ViewGroup adContainer;
     private static final String TAG = "tradpluslog";
@@ -35,7 +38,10 @@ public class BannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_banner);
 
         adContainer = findViewById(R.id.ad_container);
-
+        bannerUtils = BannerUtils.getInstance();
+        findViewById(R.id.btn_load).setOnClickListener(this);
+        findViewById(R.id.btn_show).setOnClickListener(this);
+        findViewById(R.id.second_page).setOnClickListener(this);
         loadBanner();
     }
 
@@ -47,46 +53,43 @@ public class BannerActivity extends AppCompatActivity {
      */
 
     private void loadBanner() {
-        // new TPBanner，也可以把TPBanner写在开发者的xml中，这里改成findViewById
         tpBanner = new TPBanner(this);
+        tpBanner.closeAutoShow();
         tpBanner.setAdListener(new BannerAdListener() {
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdClicked: " + tpAdInfo.adSourceName + "被点击了");
+                Toast.makeText(BannerActivity.this, "广告被点击了", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdImpression: " + tpAdInfo.adSourceName  + "展示了");
+                Toast.makeText(BannerActivity.this, "广告展示", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
+                Toast.makeText(BannerActivity.this, "广告加载完成", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAdLoadFailed(TPAdError error) {
-                Log.i(TAG, "onAdLoadFailed: 加载失败，code :" + error.getErrorCode() + ", msg : " + error.getErrorMsg());
+                Toast.makeText(BannerActivity.this, "广告加载失败", Toast.LENGTH_SHORT).show();
+                findViewById(R.id.btn_show).setClickable(false);
+                findViewById(R.id.second_page).setClickable(false);
             }
 
             @Override
             public void onAdClosed(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdClosed: "+tpAdInfo.adSourceName + "广告关闭");
+                Log.i(TAG, "onAdClosed: " + tpAdInfo.adSourceName + "广告关闭");
             }
         });
-        adContainer.addView(tpBanner);
-        tpBanner.loadAd("BE6A7BB1F5DF38AC63089524155C34CD");
+
     }
-
-
-
-
 
 
     /**
      * ==============================================================================================================
-     *                                       以下是高级用法，一般情况下用不到
+     * 以下是高级用法，一般情况下用不到
      * ==============================================================================================================
      */
 
@@ -101,7 +104,7 @@ public class BannerActivity extends AppCompatActivity {
 
             @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdImpression: " + tpAdInfo.adSourceName  + "展示了");
+                Log.i(TAG, "onAdImpression: " + tpAdInfo.adSourceName + "展示了");
             }
 
             @Override
@@ -121,7 +124,7 @@ public class BannerActivity extends AppCompatActivity {
 
             @Override
             public void onAdClosed(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdClosed: "+tpAdInfo.adSourceName + "广告关闭");
+                Log.i(TAG, "onAdClosed: " + tpAdInfo.adSourceName + "广告关闭");
             }
         });
 
@@ -165,9 +168,28 @@ public class BannerActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if(tpBanner != null){
-            tpBanner.onDestroy();
-        }
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_load:
+                if (tpBanner != null) {
+                    bannerUtils.loadBanner(tpBanner, TestAdUnitId.BANNER_ADUNITID);
+                }
+                break;
+            case R.id.btn_show:
+                if (bannerUtils.isReady()) {
+                    bannerUtils.showBanner(adContainer);
+                }else {
+                    Toast.makeText(BannerActivity.this, "无可用广告 or 已经展示", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.second_page:
+                // 进入下一页
+                Intent intent = new Intent(BannerActivity.this, SecondPageActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }
