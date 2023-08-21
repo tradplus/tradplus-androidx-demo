@@ -9,7 +9,9 @@ import android.widget.CompoundButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.tradplus.ads.kwad_ads.KuaishouInitManager;
 import com.tradplus.ads.open.TradPlusSdk;
+import com.tradplus.ads.sigmob.SigmobInitManager;
 import com.tradplus.ads.taptap.TapTapInitManager;
 import com.tradplus.ads.toutiao.ToutiaoInitManager;
 import com.tradplus.demo.banners.BannerActivity;
@@ -24,6 +26,8 @@ import com.tradplus.demo.offerwall.OfferWallActivity;
 import com.tradplus.demo.rewarded.RewardedVideoActivity;
 import com.tradplus.meditaiton.utils.ImportSDKUtil;
 import com.tradplus.privacy.CSJCustomUserData;
+import com.tradplus.privacy.KSUserDataObtainController;
+import com.tradplus.privacy.SigmobCustomController;
 import com.tradplus.privacy.TapTapUserDataCustomController;
 import com.tradplus.utils.TestAdUnitId;
 
@@ -102,8 +106,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // 隐私信息控制开关；默认是开启状态 true
                 TradPlusSdk.setPrivacyUserAgree(isChecked);
                 // 自定义设置隐私信息控制开关
-//                 ToutiaoInitManager.getInstance().setTTCustomController(new CSJCustomUserData());
+                // CSJ
+                 ToutiaoInitManager.getInstance().setTTCustomController(new CSJCustomUserData());
+                // TapTap
                 TapTapInitManager.getInstance().setTTCustomController(new TapTapUserDataCustomController());
+                // kuaishou
+                KuaishouInitManager.getInstance().setKsCustomController(new KSUserDataObtainController());
+                // sigmob
+                SigmobInitManager.getInstance().setTTCustomController(new SigmobCustomController());
                 break;
         }
     }

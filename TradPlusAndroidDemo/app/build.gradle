@@ -141,6 +141,12 @@ dependencies {
     implementation 'com.tradplusad:msa_mdid:1.0.13'
     implementation 'com.tradplusad:android-query-full:0.26.7'
 
+    // Sigmob
+    implementation 'com.tradplusad:tradplus-sigmob:21.9.9.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.tradplusad:sigmob-ads:4.12.2'
+    implementation 'com.tradplusad:sigmob-ads-common:1.4.6'
+
     //其他 无需引入
     implementation(name: 'circleimageview-2.2.0', ext: 'aar')
     implementation(name: 'LayoutManagerGroup', ext: 'aar')
