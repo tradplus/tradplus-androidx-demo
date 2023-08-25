@@ -6,39 +6,55 @@
     android:background="@android:color/white"
     android:gravity="center_horizontal">
 
-    <LinearLayout
-        android:id="@+id/tp_layout_ad"
+    <RelativeLayout
+        android:id="@+id/tp_native_main_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
 
-        <FrameLayout
-            android:id="@+id/tp_ad_choices_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="2dp" />
+        <ImageView
+            android:id="@+id/tp_mopub_native_main_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1.0"
             android:gravity="left"
             android:text="AD" />
 
-        <ImageView
-            android:id="@+id/tp_native_ad_choice"
-            android:layout_width="28dp"
-            android:layout_height="15dp"
-            android:layout_weight="1.0"
-            android:gravity="right" />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/tp_layout_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/tp_ad_choices_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp" />
+
+
+            <ImageView
+                android:id="@+id/tp_native_ad_choice"
+                android:layout_width="28dp"
+                android:layout_height="15dp"
+                android:layout_weight="1.0"
+                android:gravity="right" />
+        </LinearLayout>
+    </RelativeLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tp_layout_ad">
+        android:layout_below="@+id/tp_native_main_image">
 
         <ImageView
             android:id="@+id/tp_native_icon_image"
@@ -75,28 +91,12 @@
             android:maxLines="2"
             android:textColor="@android:color/darker_gray" />
 
-        <RelativeLayout
-            android:id="@+id/tp_native_main_image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@+id/tp_native_text"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp">
-
-            <ImageView
-                android:id="@+id/tp_mopub_native_main_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </RelativeLayout>
 
         <Button
             android:id="@+id/tp_native_cta_btn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@+id/tp_native_main_image"
+            android:layout_below="@+id/tp_native_text"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
