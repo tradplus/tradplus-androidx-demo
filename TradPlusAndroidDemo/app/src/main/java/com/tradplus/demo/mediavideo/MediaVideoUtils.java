@@ -33,8 +33,11 @@ public class MediaVideoUtils {
 
         videoView = new VideoView(context);
         // 最后一个参数是否静音，默认静音
-        VideoAdPlayerAdapter videoAdPlayerAdpter = new VideoAdPlayerAdapter(videoView, audioManager, true);
+        // Adx & IMA
+        NewVideoAdPlayerAdapter videoAdPlayerAdpter = new NewVideoAdPlayerAdapter(videoView, audioManager, true);
 
+        // Only IMA
+//        VideoAdPlayerAdapter videoAdPlayerAdpter = new VideoAdPlayerAdapter(videoView, audioManager, true);
         // 请求广告,传入展示广告容器和videoAdPlayer
         tpMediaVideo.loadAd(adContainer, videoAdPlayerAdpter);
     }
