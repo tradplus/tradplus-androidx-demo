@@ -92,9 +92,9 @@ dependencies {
     implementation 'com.tradplusad:tradplus-applovin:9.10.1.0.1'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
     // Pangle
-    implementation 'com.tradplusad:tradplus-pangle:19.10.1.0.1'
-    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.pangle.global:ads-sdk:5.4.0.8'
+//    implementation 'com.tradplusad:tradplus-pangle:19.10.1.0.1'
+//    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+//    implementation 'com.pangle.global:ads-sdk:5.4.0.8'
     // UnityAds
     implementation 'com.tradplusad:tradplus-unity:5.10.1.0.1'
     implementation 'com.unity3d.ads:unity-ads:4.6.1'
