@@ -153,6 +153,12 @@ dependencies {
     implementation 'com.tradplusad:tapad-sdk:3.16.3.13_3'
     implementation 'com.tradplusad:tradplus-taptap:63.10.1.0.1'
 
+    // Sigmob
+    implementation 'com.tradplusad:tradplus-sigmob:21.10.1.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.tradplusad:sigmob-ads:4.12.6'
+    implementation 'com.tradplusad:sigmob-ads-common:1.4.9'
+
     //其他 无需引入
     implementation(name: 'circleimageview-2.2.0', ext: 'aar')
     implementation(name: 'LayoutManagerGroup', ext: 'aar')
