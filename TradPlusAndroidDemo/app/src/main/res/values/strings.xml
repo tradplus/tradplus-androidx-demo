@@ -18,6 +18,7 @@
     <string name="Splash">开屏Splash</string>
     <string name="InterActivie">互动广告Interactive</string>
     <string name="MeidaVideo">插播广告IMA</string>
+    <string name="MeidaVideoVMAP">插播广告VMAP</string>
     <string name="click_to_skip">点击跳过</string>
 
 

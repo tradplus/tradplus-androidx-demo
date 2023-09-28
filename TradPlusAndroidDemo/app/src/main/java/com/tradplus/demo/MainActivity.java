@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         meidavideo_ads = (Button) findViewById(R.id.meidavideo_ads);
         meidavideo_ads.setOnClickListener(this);
 
+        findViewById(R.id.meidavideo_vmap_ads).setOnClickListener(this);
+
+
         // 测试工具
         Button tools = (Button) findViewById(R.id.tools);
         tools.setOnClickListener(this);
@@ -152,6 +155,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.meidavideo_ads:
                 startActivity(new Intent(MainActivity.this, FirstPageActivity.class));
+                break;
+            case R.id.meidavideo_vmap_ads:
+                startActivity(new Intent(MainActivity.this, VWAPActivity.class));
                 break;
             case R.id.tools:
                 ImportSDKUtil.getInstance().showTestTools(MainActivity.this, TestAdUnitId.APPID);
