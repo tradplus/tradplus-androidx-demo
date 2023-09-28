@@ -15,6 +15,7 @@ import com.tradplus.ads.common.serialization.JSON;
 import com.tradplus.ads.mgr.mediavideo.TPCustomMediaVideoAd;
 import com.tradplus.ads.open.mediavideo.MediaVideoAdListener;
 import com.tradplus.ads.open.mediavideo.TPMediaVideo;
+import com.tradplus.utils.TestAdUnitId;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -136,7 +137,7 @@ public class VideoPlayerController {
 
   private TPMediaVideo tpMediaVideo;
   private void initTPMediaView() {
-    tpMediaVideo = new TPMediaVideo(context, "682C56A44DB4410BA1D380D51A45495C");// 插播
+    tpMediaVideo = new TPMediaVideo(context, TestAdUnitId.MEDIAVIDEO_ADUNITID_VWAP);// 插播
     Map<String , Object> map = new HashMap<>();
     map.put("ima_content_provider",videoPlayerWithAdPlayback.getContentProgressProvider());
     tpMediaVideo.setCustomParams(map);

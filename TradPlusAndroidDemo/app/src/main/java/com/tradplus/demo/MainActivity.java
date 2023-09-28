@@ -17,6 +17,7 @@ import com.tradplus.ads.toutiao.ToutiaoInitManager;
 import com.tradplus.demo.banners.BannerActivity;
 import com.tradplus.demo.interstititals.InterstitialActivity;
 import com.tradplus.demo.mediavideo.FirstPageActivity;
+import com.tradplus.demo.mediavideo.vmap.VWAPActivity;
 import com.tradplus.demo.nativeads.DrawNativeExpressVideoActivity;
 import com.tradplus.demo.nativeads.NativeActivity;
 import com.tradplus.demo.nativeads.NativeBannerRecycleViewActivity;
