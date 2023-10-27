@@ -139,8 +139,8 @@ dependencies {
 
     // Kuaishou
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.tradplusad:tradplus-kwad:20.10.4.0.1'
-    implementation 'com.tradplusad:ksad-ads:3.3.53.3'
+    implementation 'com.tradplusad:tradplus-kwad:20.10.4.10.1'
+    implementation 'com.tradplusad:ksad-ads:3.3.55'
     // Baidu
     implementation 'com.tradplusad:tradplus-baidu:43.10.4.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
