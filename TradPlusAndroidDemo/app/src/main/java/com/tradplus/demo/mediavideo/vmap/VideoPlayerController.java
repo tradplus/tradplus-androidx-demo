@@ -141,6 +141,51 @@ public class VideoPlayerController {
     Map<String , Object> map = new HashMap<>();
     map.put("ima_content_provider",videoPlayerWithAdPlayback.getContentProgressProvider());
     tpMediaVideo.setCustomParams(map);
+    tpMediaVideo.setIMAEventListener(new TPMediaVideoAdapter.OnIMAEventListener() {
+      @Override
+      public void onEvent(Object adEvent) {
+        Log.i(TAG,"AdEvent = "+((AdEvent)adEvent).getType());
+        switch (((AdEvent)adEvent).getType()) {
+          case LOADED:
+            // AdEventType.LOADED will be fired when ads are ready to be
+            // played. AdsManager.start() begins ad playback. This method is
+            // ignored for VMAP or ad rules playlists, as the SDK will
+            // automatically start executing the playlist.
+            break;
+          case CONTENT_PAUSE_REQUESTED:
+            // AdEventType.CONTENT_PAUSE_REQUESTED is fired immediately before
+            // a video ad is played.
+            pauseContent();
+            break;
+          case CONTENT_RESUME_REQUESTED:
+            // AdEventType.CONTENT_RESUME_REQUESTED is fired when the ad is
+            // completed and you should start playing your content.
+            resumeContent();
+            break;
+          case PAUSED:
+            isAdPlaying = false;
+            videoPlayerWithAdPlayback.enableControls();
+            break;
+          case RESUMED:
+            isAdPlaying = true;
+            videoPlayerWithAdPlayback.disableControls();
+            break;
+          case ALL_ADS_COMPLETED:
+
+            break;
+          case AD_BREAK_READY:
+            tpCustomMediaVideoAd.start("");
+
+            break;
+          case AD_BREAK_FETCH_ERROR:
+            log("Ad Fetch Error. Resuming content.");
+            // A CONTENT_RESUME_REQUESTED event should follow to trigger content playback.
+            break;
+          default:
+            break;
+        }
+      }
+    });
     tpMediaVideo.setAdListener(new MediaVideoAdListener() {
       @Override
       public void onAdLoaded(TPAdInfo tpAdInfo) {
@@ -151,52 +196,8 @@ public class VideoPlayerController {
           tpCustomMediaVideoAd = tpMediaVideo.getVideoAd();
         }
 
-        tpCustomMediaVideoAd.setIMAEventListener(new TPMediaVideoAdapter.OnIMAEventListener() {
-          @Override
-          public void onEvent(Object adEvent) {
-            Log.i(TAG,"AdEvent = "+((AdEvent)adEvent).getType());
-            switch (((AdEvent)adEvent).getType()) {
-              case LOADED:
-                // AdEventType.LOADED will be fired when ads are ready to be
-                // played. AdsManager.start() begins ad playback. This method is
-                // ignored for VMAP or ad rules playlists, as the SDK will
-                // automatically start executing the playlist.
-                break;
-              case CONTENT_PAUSE_REQUESTED:
-                // AdEventType.CONTENT_PAUSE_REQUESTED is fired immediately before
-                // a video ad is played.
-                pauseContent();
-                break;
-              case CONTENT_RESUME_REQUESTED:
-                // AdEventType.CONTENT_RESUME_REQUESTED is fired when the ad is
-                // completed and you should start playing your content.
-                resumeContent();
-                break;
-              case PAUSED:
-                isAdPlaying = false;
-                videoPlayerWithAdPlayback.enableControls();
-                break;
-              case RESUMED:
-                isAdPlaying = true;
-                videoPlayerWithAdPlayback.disableControls();
-                break;
-              case ALL_ADS_COMPLETED:
 
-                break;
-              case AD_BREAK_READY:
-                tpCustomMediaVideoAd.start("");
-
-                break;
-              case AD_BREAK_FETCH_ERROR:
-                log("Ad Fetch Error. Resuming content.");
-                // A CONTENT_RESUME_REQUESTED event should follow to trigger content playback.
-                break;
-              default:
-                break;
-            }
-          }
-        });
-        tpCustomMediaVideoAd.start("");
+//        tpCustomMediaVideoAd.start("");
       }
 
       @Override
