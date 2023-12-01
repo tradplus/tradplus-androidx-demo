@@ -42,7 +42,6 @@ public class MediaVideoUtils {
         tpMediaVideo.loadAd(adContainer, videoAdPlayerAdpter);
     }
 
-
     public RelativeLayout getAdContainer() {
         return adContainer;
     }
