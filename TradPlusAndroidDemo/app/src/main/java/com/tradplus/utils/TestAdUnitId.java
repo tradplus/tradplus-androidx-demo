@@ -8,6 +8,8 @@ public class TestAdUnitId {
     //正式上线时需要替换成申请的广告位ID和您的应用ID
     public static final String APPID = "44273068BFF4D8A8AFF3D5B11CBA3ADE";
 
+    // 测试的adUnitId在TradPlus后台配置了部分广告平台
+    // 如果复制adUnitId到自己项目中但是项目中没集成这些广告平台就会报adapter找不到
     public static final String REWRDVIDEO_ADUNITID = "39DAC7EAC046676C5404004A311D1DB1";
     public static final String OFFERWALL_ADUNITID = "4F7F1B9288B2FD513C8549A4A9F5D60F";
     public static final String NATIVE_ADUNITID = "DDBF26FBDA47FBE2765F1A089F1356BF";
