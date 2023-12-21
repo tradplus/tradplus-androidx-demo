@@ -142,7 +142,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.tradplusad:tp_exchange:40.10.8.0.1'
     implementation 'com.tradplusad:om-sdk:1.4.4'
-
     // CSJ
     implementation 'com.tradplusad:tradplus-toutiao:17.10.8.0.1'
     implementation 'com.pangle.cn:ads-sdk-pro:5.7.0.6'
