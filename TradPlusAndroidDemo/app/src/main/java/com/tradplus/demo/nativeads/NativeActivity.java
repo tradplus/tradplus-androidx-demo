@@ -259,6 +259,7 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
                         if(viewParent != null) {
                             ((ViewGroup)viewParent).removeView(imageView);
                             ((ViewGroup)viewParent).addView(tpNativeAdView.getMediaView(), params);
+                            getClickViews().add(tpNativeAdView.getMediaView());
                         }
                     } else if(tpNativeAdView.getMainImage() != null) {
                         // 部分三方平台返回的是drawable，可以直接设置

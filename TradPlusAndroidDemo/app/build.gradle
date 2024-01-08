@@ -60,7 +60,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 7
-        versionName "10.8.0.1"
+        versionName "10.9.0.1"
     }
 
     buildTypes {
@@ -80,83 +80,83 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.0'
 
     // TradPlus
-    implementation 'com.tradplusad:tradplus:10.8.0.1'
+    implementation 'com.tradplusad:tradplus:10.9.0.1'
     //noinspection GradleCompatible
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'
     // Admob
     implementation 'com.google.android.gms:play-services-ads:22.6.0'
-    implementation 'com.tradplusad:tradplus-googlex:2.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-googlex:2.10.9.0.1'
     // Meta
     implementation 'com.facebook.android:audience-network-sdk:6.16.0'
-    implementation 'com.tradplusad:tradplus-facebook:1.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-facebook:1.10.9.0.1'
     // Applovin
     implementation 'com.applovin:applovin-sdk:12.1.0'
-    implementation 'com.tradplusad:tradplus-applovin:9.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-applovin:9.10.9.0.1'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
     // Ironsource
     implementation 'com.ironsource.sdk:mediationsdk:7.6.0'
-    implementation 'com.tradplusad:tradplus-ironsource:10.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-ironsource:10.10.9.0.1'
     implementation 'com.google.android.gms:play-services-appset:16.0.0'
     implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
     implementation 'com.google.android.gms:play-services-basement:17.5.0'
     // Pangle
-//    implementation 'com.tradplusad:tradplus-pangle:19.10.8.0.1'
+//    implementation 'com.tradplusad:tradplus-pangle:19.10.9.0.1'
 //    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-//    implementation 'com.pangle.global:ads-sdk:5.6.0.3'
+//    implementation 'com.pangle.global:ads-sdk:5.6.0.4'
     // UnityAds
-    implementation 'com.tradplusad:tradplus-unity:5.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-unity:5.10.9.0.1'
     implementation 'com.unity3d.ads:unity-ads:4.9.2'
     // Mintegral
-    implementation 'com.tradplusad:tradplus-mintegralx_overseas:18.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-mintegralx_overseas:18.10.9.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.mbridge.msdk.oversea:reward:16.5.81'
-    implementation 'com.mbridge.msdk.oversea:mbsplash:16.5.81'
-    implementation 'com.mbridge.msdk.oversea:mbbanner:16.5.81'
-    implementation 'com.mbridge.msdk.oversea:mbnative:16.5.81'
-    implementation 'com.mbridge.msdk.oversea:mbnativeadvanced:16.5.81'
-    implementation 'com.mbridge.msdk.oversea:newinterstitial:16.5.81'
-    implementation 'com.mbridge.msdk.oversea:mbbid:16.5.81'
+    implementation 'com.mbridge.msdk.oversea:reward:16.5.91'
+    implementation 'com.mbridge.msdk.oversea:mbsplash:16.5.91'
+    implementation 'com.mbridge.msdk.oversea:mbbanner:16.5.91'
+    implementation 'com.mbridge.msdk.oversea:mbnative:16.5.91'
+    implementation 'com.mbridge.msdk.oversea:mbnativeadvanced:16.5.91'
+    implementation 'com.mbridge.msdk.oversea:newinterstitial:16.5.91'
+    implementation 'com.mbridge.msdk.oversea:mbbid:16.5.91'
     // Liftoff
-    implementation 'com.tradplusad:tradplus-vunglex:7.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-vunglex:7.10.9.0.1'
     implementation 'com.vungle:vungle-ads:7.1.0'
     // Bigo
-    implementation 'com.bigossp:bigo-ads:4.2.0'
-    implementation 'com.tradplusad:tradplus-bigo:57.10.8.0.1'
+    implementation 'com.bigossp:bigo-ads:4.3.2'
+    implementation 'com.tradplusad:tradplus-bigo:57.10.9.0.1'
     // TP Exchange
     // 请注意保持与主包版本同步更新
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.tradplusad:tp_exchange:40.10.8.0.1'
+    implementation 'com.tradplusad:tp_exchange:40.10.9.0.1'
     implementation 'com.tradplusad:om-sdk:1.4.4'
     // zMaticoo
-    implementation 'com.tradplusad:tradplus-zmaticoo:55.10.8.0.1'
-    implementation 'io.github.maticooads:maticoo-android-sdk:1.5.1'
+    implementation 'com.tradplusad:tradplus-zmaticoo:55.10.9.0.1'
+    implementation 'io.github.maticooads:maticoo-android-sdk:1.5.2'
 
     // Google IMA
     implementation 'androidx.browser:browser:1.4.0'
     implementation 'androidx.media:media:1.6.0'
-    implementation 'com.tradplusad:tradplus-google-ima:48.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-google-ima:48.10.9.0.1'
     implementation 'com.google.ads.interactivemedia.v3:interactivemedia:3.29.0'
     // TP Exchange
     // 请注意保持与主包版本同步更新
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.tradplusad:tp_exchange:40.10.8.0.1'
+    implementation 'com.tradplusad:tp_exchange:40.10.9.0.1'
     implementation 'com.tradplusad:om-sdk:1.4.4'
     // CSJ
-    implementation 'com.tradplusad:tradplus-toutiao:17.10.8.0.1'
-    implementation 'com.pangle.cn:ads-sdk-pro:5.7.0.6'
+    implementation 'com.tradplusad:tradplus-toutiao:17.10.9.0.1'
+    implementation 'com.pangle.cn:ads-sdk-pro:5.8.1.3'
     // Sigmob
-    implementation 'com.tradplusad:tradplus-sigmob:21.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-sigmob:21.10.9.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.tradplusad:sigmob-ads:4.12.11'
-    implementation 'com.tradplusad:sigmob-ads-common:1.5.8'
+    implementation 'com.tradplusad:sigmob-ads:4.15.1'
+    implementation 'com.tradplusad:sigmob-ads-common:1.6.0'
     // Tencent Ads
-    implementation 'com.tradplusad:tradplus-txadnet:16.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-txadnet:16.10.9.0.1'
     implementation 'com.qq.e.union:union:4.551.1421'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android:+'
     // Kuaishou
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.tradplusad:tradplus-kwad:20.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-kwad:20.10.9.0.1'
     implementation 'com.tradplusad:ksad-ads:3.3.57'
     // Taptap
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -167,12 +167,12 @@ dependencies {
     implementation "androidx.annotation:annotation:1.1.0"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.tradplusad:tapad-sdk:3.16.3.22'
-    implementation 'com.tradplusad:tradplus-taptap:63.10.8.0.1'
+    implementation 'com.tradplusad:tapad-sdk:3.16.3.25h1'
+    implementation 'com.tradplusad:tradplus-taptap:63.10.9.0.1'
     // Baidu
-    implementation 'com.tradplusad:tradplus-baidu:43.10.8.0.1'
+    implementation 'com.tradplusad:tradplus-baidu:43.10.9.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.tradplusad:baidu-ads:9.33'
+    implementation 'com.tradplusad:baidu-ads:9.332'
     implementation 'com.tradplusad:msa_mdid:1.0.13'
     implementation 'com.tradplusad:android-query-full:0.26.7'
     //其他 无需引入

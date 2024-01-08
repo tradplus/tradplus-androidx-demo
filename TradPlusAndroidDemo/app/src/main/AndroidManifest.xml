@@ -53,11 +53,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" /> <!-- AppLovin -->
-        <!-- 添加您的Applovin SDK Key -->
-        <!-- Applovin 后台获取 -->
-        <meta-data
-            android:name="applovin.sdk.key"
-            android:value="-Xtl_oRuS0L4WSmxnIHXusTCoMrq2cslufstvSvGFnVQWLcoeZCu-_NXWZE0c6-QqiZ-BIFRxm6zBs2zwByKPb" /> <!-- file_paths.xml已经添加到Mimo Adapter中 -->
         <activity
             android:name=".banners.BannerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
