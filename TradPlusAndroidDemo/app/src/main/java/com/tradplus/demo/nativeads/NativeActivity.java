@@ -222,7 +222,7 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
 
     private Map<String, Object> setLocalCustomParams() {
         HashMap<String, Object> mLocalExtras = new HashMap<>();
-        // 华为dislike关闭 右上角显示
+        // 华为dislike关闭 右下角显示
         mLocalExtras.put("huawei_close_position", 2);
         // 华为模板渲染  1 大图（默认） 2 小图 3 三小图
         // 自渲染类型开发者需要高级自定义的方式获取多图tpNativeAdView.getPicObject()，获取返回的图片自行添加到布局中
