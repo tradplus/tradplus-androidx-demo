@@ -176,4 +176,8 @@ dependencies {
 
     implementation "com.tradplusad:tradplus-tool:${tradplus_tool}"
 
+    // Google UMP
+    implementation "com.google.android.ump:user-messaging-platform:2.1.0"
+
+
 }
