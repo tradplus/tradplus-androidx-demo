@@ -56,11 +56,11 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.tradplus.demo"
+        applicationId "com.funcamerastudio.collagemaker"
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 7
-        versionName "11.1.0.1"
+        versionName "11.3.0.1"
     }
 
     buildTypes {
@@ -166,6 +166,10 @@ dependencies {
     //其他 无需引入
     implementation(name: 'circleimageview-2.2.0', ext: 'aar')
     implementation(name: 'LayoutManagerGroup', ext: 'aar')
+
+    // TaurusX
+    implementation 'com.taurusx.tax:ads:1.0.9'
+    implementation 'com.tradplusad:tradplus-taurusx:74.11.3.0.1'
 
     implementation "com.tradplusad:tradplus-tool:${tradplus_tool}"
 

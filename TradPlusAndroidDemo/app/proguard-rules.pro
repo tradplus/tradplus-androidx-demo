@@ -16,8 +16,8 @@
 #   public *;
 #}
 
--libraryjars libs/youdaosdk_4.2.16.aar
--libraryjars libs/msa_mdid_1.0.13.aar
+#-libraryjars libs/youdaosdk_4.2.16.aar
+#-libraryjars libs/msa_mdid_1.0.13.aar
 
 
 -keep public class com.tradplus.** { *; }
