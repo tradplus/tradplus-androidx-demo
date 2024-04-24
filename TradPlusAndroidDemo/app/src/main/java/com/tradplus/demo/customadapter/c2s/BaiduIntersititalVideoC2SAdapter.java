@@ -11,9 +11,11 @@ import com.baidu.mobads.sdk.api.AdSettings;
 import com.baidu.mobads.sdk.api.BDAdConfig;
 import com.baidu.mobads.sdk.api.BDDialogParams;
 import com.baidu.mobads.sdk.api.RewardVideoAd;
+import com.tradplus.ads.baidu.BaiduConstant;
 import com.tradplus.ads.base.adapter.reward.TPRewardAdapter;
 import com.tradplus.ads.base.common.TPError;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class BaiduIntersititalVideoC2SAdapter extends TPRewardAdapter {
@@ -113,7 +115,9 @@ public class BaiduIntersititalVideoC2SAdapter extends TPRewardAdapter {
                     onC2STokenListener.onC2SBiddingFailed("", "ecpmLevel is Empty");
                     return;
                 }
-                onC2STokenListener.onC2SBiddingResult(Double.parseDouble(ecpmLevel));
+                Map<String, Object> hashMap = new HashMap<>();
+                hashMap.put(BaiduConstant.ECPM, Double.parseDouble(ecpmLevel));
+                onC2STokenListener.onC2SBiddingResult(hashMap);
             }
             isBiddingLoaded = true;
         }
