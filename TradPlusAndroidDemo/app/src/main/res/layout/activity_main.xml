@@ -215,26 +215,5 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/background_dark" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/tools"
-                android:layout_width="200.0dip"
-                android:layout_height="50.0dip"
-                android:gravity="center"
-                android:text="测试工具"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-        </LinearLayout>
-
     </LinearLayout>
 </ScrollView>

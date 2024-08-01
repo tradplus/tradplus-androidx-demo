@@ -31,7 +31,6 @@ import com.tradplus.demo.nativeads.NativeBannerViewActivity;
 import com.tradplus.demo.nativeads.NativeRecycleViewActivity;
 import com.tradplus.demo.offerwall.OfferWallActivity;
 import com.tradplus.demo.rewarded.RewardedVideoActivity;
-import com.tradplus.meditaiton.utils.ImportSDKUtil;
 import com.tradplus.privacy.CSJCustomUserData;
 import com.tradplus.privacy.KSUserDataObtainController;
 import com.tradplus.privacy.SigmobCustomController;
@@ -224,9 +223,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.meidavideo_vmap_ads:
                 startActivity(new Intent(MainActivity.this, VWAPActivity.class));
                 break;
-            case R.id.tools:
-                ImportSDKUtil.getInstance().showTestTools(MainActivity.this, TestAdUnitId.APPID);
-                break;
         }
     }
 
@@ -271,10 +267,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         meidavideo_ads = (Button) findViewById(R.id.meidavideo_ads);
         meidavideo_ads.setOnClickListener(this);
         findViewById(R.id.meidavideo_vmap_ads).setOnClickListener(this);
-
-        // 测试工具
-        Button tools = (Button) findViewById(R.id.tools);
-        tools.setOnClickListener(this);
 
         ((CheckBox) findViewById(R.id.is_personad)).setOnCheckedChangeListener(this);
         ((CheckBox) findViewById(R.id.is_privacyUser)).setOnCheckedChangeListener(this);

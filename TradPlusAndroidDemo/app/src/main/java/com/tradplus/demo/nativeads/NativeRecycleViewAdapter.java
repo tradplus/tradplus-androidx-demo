@@ -50,7 +50,7 @@ public class NativeRecycleViewAdapter extends RecyclerView.Adapter {
             TPCustomNativeAd tpNativeAd = mData.get(i);
             ViewGroup adCardView = (ViewGroup) adViewHolder.itemView;
             adCardView.removeAllViews();
-            tpNativeAd.showAd(adCardView, R.layout.native_ad_list_item, "");
+            tpNativeAd.showAd(adCardView, R.layout. tp_native_ad_list_item, "");
         }
     }
 
