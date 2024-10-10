@@ -6,51 +6,80 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <FrameLayout
+        android:id="@+id/video_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="@color/black"
+        >
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_load"
-            android:layout_width="300.0dip"
+        <CheckBox
+            android:id="@+id/btn_mute"
+            android:layout_weight="1"
+            android:layout_width="0dip"
             android:layout_height="50.0dip"
             android:gravity="center"
-            android:text="预加载"
+            android:text="有声"
             android:textAllCaps="false"
             android:textSize="16sp" />
 
         <Button
-            android:id="@+id/second_page"
-            android:layout_width="300.0dip"
+            android:id="@+id/btn_load"
+            android:layout_weight="1"
+            android:layout_width="0dip"
             android:layout_height="50.0dip"
-            android:layout_gravity="center"
-            android:text="预加载后进入下一页展示">
-
-        </Button>
+            android:gravity="center"
+            android:text="加载"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
 
         <Button
-            android:id="@+id/multiply_page"
-            android:layout_width="300.0dip"
+            android:id="@+id/btn_show"
+            android:layout_weight="1"
+            android:layout_width="0dip"
             android:layout_height="50.0dip"
-            android:layout_gravity="center"
-            android:text="预加载完成后连续展示">
-        </Button>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#FF000000" />
+            android:gravity="center"
+            android:text="播放"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
 
         <Button
-            android:id="@+id/repeated_page"
-            android:layout_width="300.0dip"
+            android:id="@+id/btn_stop"
+            android:layout_weight="1"
+            android:layout_width="0dip"
             android:layout_height="50.0dip"
-            android:layout_gravity="center"
-            android:text="加载2次成功后再展示">
-        </Button>
+            android:gravity="center"
+            android:text="暂停"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
 
+        <Button
+            android:id="@+id/btn_resume"
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="50.0dip"
+            android:gravity="center"
+            android:text="继续"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_destroy"
+            android:layout_weight="1"
+            android:layout_width="0dip"
+            android:layout_height="50.0dip"
+            android:gravity="center"
+            android:text="销毁"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
     </LinearLayout>
+
 </LinearLayout>

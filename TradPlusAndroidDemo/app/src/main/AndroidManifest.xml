@@ -18,20 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup,networkSecurityConfig">
-        <activity
-            android:name=".SecondPage"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".SecondPageActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -100,27 +86,13 @@
             android:launchMode="singleTask"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".mediavideo.FirstPageActivity"
+            android:name=".mediavideo.NewMediaVideo"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
             android:name=".mediavideo.vmap.VWAPActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask" />
-        <activity
-            android:name=".mediavideo.SecondPageActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".mediavideo.MultiActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:launchMode="singleTask" />
-        <activity
-            android:name=".mediavideo.RepeatedActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".InterActiveActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

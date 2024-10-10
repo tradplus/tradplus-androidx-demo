@@ -16,7 +16,6 @@ import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.open.splash.SplashAdListener;
 import com.tradplus.ads.open.splash.TPSplash;
-import com.tradplus.demo.mediavideo.MultiActivity;
 import com.tradplus.utils.TestAdUnitId;
 
 

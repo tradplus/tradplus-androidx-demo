@@ -22,13 +22,11 @@ import com.tradplus.ads.taptap.TapTapInitManager;
 import com.tradplus.ads.toutiao.ToutiaoInitManager;
 import com.tradplus.demo.banners.BannerActivity;
 import com.tradplus.demo.interstititals.InterstitialActivity;
-import com.tradplus.demo.mediavideo.FirstPageActivity;
+import com.tradplus.demo.mediavideo.NewMediaVideo;
 import com.tradplus.demo.mediavideo.vmap.VWAPActivity;
 import com.tradplus.demo.nativeads.DrawNativeExpressVideoActivity;
 import com.tradplus.demo.nativeads.NativeActivity;
-import com.tradplus.demo.nativeads.NativeBannerRecycleViewActivity;
 import com.tradplus.demo.nativeads.NativeBannerViewActivity;
-import com.tradplus.demo.nativeads.NativeRecycleViewActivity;
 import com.tradplus.demo.offerwall.OfferWallActivity;
 import com.tradplus.demo.rewarded.RewardedVideoActivity;
 import com.tradplus.privacy.CSJCustomUserData;
@@ -218,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, InterActiveActivity.class));
                 break;
             case R.id.meidavideo_ads:
-                startActivity(new Intent(MainActivity.this, FirstPageActivity.class));
+                startActivity(new Intent(MainActivity.this, NewMediaVideo.class));
                 break;
             case R.id.meidavideo_vmap_ads:
                 startActivity(new Intent(MainActivity.this, VWAPActivity.class));

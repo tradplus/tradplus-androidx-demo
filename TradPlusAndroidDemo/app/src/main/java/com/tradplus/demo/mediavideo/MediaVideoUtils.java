@@ -1,21 +1,20 @@
 package com.tradplus.demo.mediavideo;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.media.AudioManager;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
-import com.tradplus.ads.mgr.mediavideo.TPCustomMediaVideoAd;
-import com.tradplus.ads.open.mediavideo.TPMediaVideo;
+import com.tradplus.ads.base.common.TPVideoAdPlayer;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class MediaVideoUtils {
 
     private static MediaVideoUtils sInstance;
-    private TPCustomMediaVideoAd tpCustomMediaVideoAd;
+    private NewVideoAdPlayerAdapter videoAdPlayerAdpter;
+    public HashMap<Object,Object> objectObjectHashMap = new HashMap<>();
 
     public synchronized static MediaVideoUtils getInstance() {
         if (sInstance == null) {
@@ -23,71 +22,35 @@ public class MediaVideoUtils {
         }
         return sInstance;
     }
+    private static final String TAG = "TradPlusData";
 
-    public RelativeLayout adContainer;
-    public VideoView videoView;
-
-    public void loadTpMeidaVide(TPMediaVideo tpMediaVideo, Context context) {
-        adContainer = new RelativeLayout(context);
+    public TPVideoAdPlayer getVideoAdPlayer(boolean isVideoMute, Context context) {
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
-        videoView = new VideoView(context);
-        // 最后一个参数是否静音，默认静音
-        // Adx & IMA
-        NewVideoAdPlayerAdapter videoAdPlayerAdpter = new NewVideoAdPlayerAdapter(videoView, audioManager, true);
-
-        // Only IMA
-//        VideoAdPlayerAdapter videoAdPlayerAdpter = new VideoAdPlayerAdapter(videoView, audioManager, true);
-        // 请求广告,传入展示广告容器和videoAdPlayer
-        tpMediaVideo.loadAd(adContainer, videoAdPlayerAdpter);
-    }
-
-    public RelativeLayout getAdContainer() {
-        return adContainer;
-    }
-
-    public boolean isMeidaVideReady(TPMediaVideo tpMediaVideo) {
-        if (tpMediaVideo == null) return false;
-        return tpMediaVideo.isReady();
-    }
-
-    public void showTpMeidaVide(TPMediaVideo tpMediaVideo) {
-        boolean ready = tpMediaVideo.isReady();
-        if (ready) {
-            tpCustomMediaVideoAd = tpMediaVideo.getVideoAd();
-
-            // VideoVideo居中显示
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams
-                    (RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-            layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
-            adContainer.addView(videoView,layoutParams);
-
-            // 自定义数据
-            Map<String, Object> showData = new HashMap<>();
-            showData.put("data", System.currentTimeMillis() + "");
-            tpCustomMediaVideoAd.setCustomShowData(showData);
-
-            // 展示广告前 设置 广告场景ID
-            tpCustomMediaVideoAd.start("adSceneId");
-        }
+        VideoView videoView = new VideoView(context);
+        videoAdPlayerAdpter = new NewVideoAdPlayerAdapter(videoView, audioManager, isVideoMute);
+        objectObjectHashMap.put(videoAdPlayerAdpter,videoView);
+        return videoAdPlayerAdpter;
     }
 
 
-    public void onAdPause() {
-        if (tpCustomMediaVideoAd != null) {
-            tpCustomMediaVideoAd.pause();
-        }
-    }
+    public void showTpMeidaVide(TPVideoAdPlayer tpAdVideoPlayer, ViewGroup AdDisplayContainer, ViewGroup adContainer) {
+        if (objectObjectHashMap != null && objectObjectHashMap.containsKey(tpAdVideoPlayer)) {
+            Object videoViewObj = objectObjectHashMap.get(tpAdVideoPlayer);
+            if (videoViewObj instanceof VideoView) {
+                VideoView videoView = (VideoView) videoViewObj;
+                if (videoView != null && videoView.getParent() != null) {
+                    ((ViewGroup) videoView.getParent()).removeView(videoView);
+                }
 
-    public void onAdResume() {
-        if (tpCustomMediaVideoAd != null) {
-            tpCustomMediaVideoAd.resume();
-        }
-    }
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams
+                        (RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
 
-    public void onAdDestroy() {
-        if (tpCustomMediaVideoAd != null) {
-            tpCustomMediaVideoAd.onDestroy();
+                adContainer.addView(videoView, layoutParams);
+
+                adContainer.addView(AdDisplayContainer);
+            }
         }
     }
 }

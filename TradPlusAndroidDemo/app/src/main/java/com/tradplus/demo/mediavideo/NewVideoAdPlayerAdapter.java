@@ -15,9 +15,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-// IMA's  & Adx's VideoAdPlayer interface
 public class NewVideoAdPlayerAdapter implements TPVideoAdPlayer {
-
     private static final String TAG = "NewVideoAdPlayerAdapter";
     public static long POLLING_TIME_MS = 250; // 可自定义
     public static long INITIAL_DELAY_MS = 250;
@@ -27,14 +25,15 @@ public class NewVideoAdPlayerAdapter implements TPVideoAdPlayer {
     private final List<TPVideoAdPlayerCallback> adCallbacks = new ArrayList<>();
     private Timer timer;
     private int adDuration;
-
     // The saved ad position, used to resumed ad playback following an ad click-through.
     private int savedAdPosition = 0;
     private int savedContentPosition = 0;
 
     private TPAdMediaInfo adMediaInfo;
     private boolean isAdDisplayed = false;
+    private boolean canMergeInfo = true;
 
+    private List<TPAdMediaInfo> tpAdMediaInfos = new ArrayList<>();
 
     public NewVideoAdPlayerAdapter(VideoView videoPlayer, AudioManager audioManager, boolean mute) {
         this.videoPlayer = videoPlayer;
@@ -46,14 +45,20 @@ public class NewVideoAdPlayerAdapter implements TPVideoAdPlayer {
     @Override
     public void loadAd(TPAdMediaInfo info, Object adPodInfo) {
         Log.i(TAG, "loadad: ");
-        adMediaInfo = info;
-        isAdDisplayed = false;
+
+        if(canMergeInfo) {
+            canMergeInfo = false;
+            adMediaInfo = info;
+        }else{
+            tpAdMediaInfos.add(info);
+        }
+//        isAdDisplayed = false;
     }
 
     @Override
     public void pauseAd(TPAdMediaInfo adMediaInfo) {
         savePosition();
-        stopAdTracking();
+        stopAdTracking(false);
         Log.i(TAG, "pauseAd: " + savedAdPosition);
         if (isAdDisplayed) {
             for (TPVideoAdPlayerCallback callback : adCallbacks) {
@@ -106,7 +111,7 @@ public class NewVideoAdPlayerAdapter implements TPVideoAdPlayer {
     @Override
     public void stopAd(TPAdMediaInfo adMediaInfo) {
         Log.i(TAG, "stopAd: ");
-        stopAdTracking();
+        stopAdTracking(true);
         // 停止播放
         videoPlayer.stopPlayback();
         isAdDisplayed = false;
@@ -194,15 +199,27 @@ public class NewVideoAdPlayerAdapter implements TPVideoAdPlayer {
     public void notifyImaOnContentCompleted() {
         Log.i(TAG, "notifyImaOnContentCompleted");
         for (TPVideoAdPlayerCallback callback : adCallbacks) {
-               callback.onContentComplete();
+            callback.onContentComplete();
         }
     }
 
-    public void stopAdTracking() {
+    public void stopAdTracking(boolean isPause) {
         Log.i(TAG, "stopAdTracking: ");
         if (timer != null) {
             timer.cancel();
             timer = null;
+        }
+
+        if(isPause) {
+            if (tpAdMediaInfos.size() > 0) {
+                adMediaInfo = tpAdMediaInfos.get(0);
+                tpAdMediaInfos.remove(0);
+
+
+            } else {
+
+                canMergeInfo = true;
+            }
         }
     }
 
@@ -246,5 +263,4 @@ public class NewVideoAdPlayerAdapter implements TPVideoAdPlayer {
     public boolean getIsAdDisplayed() {
         return isAdDisplayed;
     }
-
 }
