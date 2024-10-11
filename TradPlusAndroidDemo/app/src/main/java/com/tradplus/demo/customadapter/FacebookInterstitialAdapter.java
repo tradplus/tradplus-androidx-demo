@@ -95,7 +95,7 @@ public class FacebookInterstitialAdapter extends TPInterstitialAdapter {
                 Log.i(TAG, "onAdClicked: ");
                 //使用mShowListener实现广告事件的点击回调
                 if (mShowListener != null) {
-                    mShowListener.onAdVideoClicked();
+                    mShowListener.onAdClicked();
                 }
             }
 
@@ -133,10 +133,10 @@ public class FacebookInterstitialAdapter extends TPInterstitialAdapter {
     public void showAd() {
         /*
          * mShowListener在showAd()重写时生成，用户实现调用show()后的事件回调
-         * 回调方法onAdVideoStart ：广告开始展示
-         * 回调方法onAdVideoEnd ：广告关闭
+         * 回调方法onAdShown ：广告开始展示
+         * 回调方法onAdClosed ：广告关闭
          * 回调方法onAdVideoError ：广告展示失败 ，参数一：ErrorCode错误码；参数2：ErrorMsg错误信息
-         * 回调方法onAdVideoClicked ：广告被点击
+         * 回调方法onAdClicked ：广告被点击
          * */
         if (mFacebookInterstitial != null && mFacebookInterstitial.isAdLoaded()) {
             mFacebookInterstitial.show();
