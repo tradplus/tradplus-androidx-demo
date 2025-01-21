@@ -279,11 +279,12 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
                     } else if (tpNativeAdView.getIconView() != null) {
                         ViewGroup.LayoutParams params = iconView.getLayoutParams();
                         ViewParent viewParent = iconView.getParent();
+                        iconView = (ImageView)tpNativeAdView.getIconView();
                         if (viewParent != null) {
                             int index = ((ViewGroup)viewParent).indexOfChild(iconView);
                             ((ViewGroup) viewParent).removeView(iconView);
-                            tpNativeAdView.getIconView().setId(R.id.tp_native_icon_image);
-                            ((ViewGroup) viewParent).addView(tpNativeAdView.getIconView(),index, params);
+                            iconView.setId(R.id.tp_native_icon_image);
+                            ((ViewGroup) viewParent).addView(iconView,index, params);
 
                         }
                     }
