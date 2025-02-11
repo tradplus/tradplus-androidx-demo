@@ -117,7 +117,8 @@ public class HuaweiDownLoad extends AppCompatActivity {
             @Override
             public ViewGroup createAdLayoutView() {
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                // UI可根据需求自己调整
+                // 该布局为 原生拼成开屏
+                // 如果需要其他样式 根据需求自己调整UI
                 return (ViewGroup) inflater.inflate(R.layout.tp_native_splash_ad, null);
             }
 
