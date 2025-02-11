@@ -26,7 +26,6 @@ import com.tradplus.demo.interstititals.InterstitialActivity;
 import com.tradplus.demo.mediavideo.NewMediaVideo;
 import com.tradplus.demo.mediavideo.vmap.VWAPActivity;
 import com.tradplus.demo.nativeads.DrawNativeExpressVideoActivity;
-import com.tradplus.demo.nativeads.HuaweiDownLoad;
 import com.tradplus.demo.nativeads.NativeActivity;
 import com.tradplus.demo.nativeads.NativeBannerViewActivity;
 import com.tradplus.demo.offerwall.OfferWallActivity;
@@ -195,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, DrawNativeExpressVideoActivity.class));
                 break;
             case R.id.native_ad_advanced:
-                startActivity(new Intent(MainActivity.this, HuaweiDownLoad.class));
+                startActivity(new Intent(MainActivity.this, NativeActivity.class));
                 break;
             case R.id.rewarded_video_ad:
                 Intent intent = new Intent(MainActivity.this, RewardedVideoActivity.class);
