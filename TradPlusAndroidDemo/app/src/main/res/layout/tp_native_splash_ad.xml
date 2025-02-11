@@ -87,6 +87,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/tp_ad_call_to_action_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1.0"

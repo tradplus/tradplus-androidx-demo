@@ -4,6 +4,8 @@ buildscript {
     repositories {
         mavenCentral()
         google()
+        // pubmatic
+        maven { url 'https://repo.pubmatic.com/artifactory/public-repos'}
         // TaurusX
         maven { url "https://bitbucket.org/sdkcenter/sdkcenter/raw/release" }
         // IronSource
@@ -24,6 +26,8 @@ buildscript {
         }
         // 配置HMS Core SDK的Maven仓地址。
         maven {url 'https://developer.huawei.com/repo/'}
+        // Huawei
+        maven {url 'https://developer.huawei.com/repo/'}
     }
 
     dependencies {
@@ -38,6 +42,9 @@ allprojects {
     repositories {
         mavenCentral()
         google()
+        // Huawei
+        maven {url 'https://developer.huawei.com/repo/'}
+        maven { url 'https://repo.pubmatic.com/artifactory/public-repos'}
         // TaurusX
         maven { url "https://bitbucket.org/sdkcenter/sdkcenter/raw/release" }
         // IronSource

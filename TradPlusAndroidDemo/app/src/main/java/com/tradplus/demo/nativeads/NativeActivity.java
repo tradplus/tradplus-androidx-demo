@@ -1,9 +1,20 @@
 package com.tradplus.demo.nativeads;
 
+import static android.view.Gravity.CENTER;
+import static android.view.Gravity.CENTER_HORIZONTAL;
+import static android.widget.RelativeLayout.ALIGN_BOTTOM;
+import static android.widget.RelativeLayout.ALIGN_PARENT_BOTTOM;
+import static android.widget.RelativeLayout.ALIGN_PARENT_RIGHT;
+import static android.widget.RelativeLayout.ALIGN_PARENT_TOP;
+import static android.widget.RelativeLayout.BELOW;
+import static android.widget.RelativeLayout.ALIGN_PARENT_END;
+import static android.widget.RelativeLayout.CENTER_IN_PARENT;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +22,35 @@ import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.huawei.hms.ads.AppDownloadButton;
+import com.huawei.hms.ads.AppDownloadButtonStyle;
+import com.huawei.hms.ads.AppDownloadStatus;
 import com.tradplus.ads.base.adapter.nativead.TPNativeAdView;
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.bean.TPBaseAd;
 import com.tradplus.ads.base.common.TPImageLoader;
+import com.tradplus.ads.common.util.DeviceUtils;
+import com.tradplus.ads.huawei.HuaweiNativeAd;
 import com.tradplus.ads.mgr.nativead.TPCustomNativeAd;
 import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.nativead.NativeAdListener;
 import com.tradplus.ads.open.nativead.TPNative;
 import com.tradplus.ads.open.nativead.TPNativeAdRender;
+import com.tradplus.crosspro.ui.util.ViewUtil;
 import com.tradplus.demo.R;
 import com.tradplus.utils.TestAdUnitId;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;

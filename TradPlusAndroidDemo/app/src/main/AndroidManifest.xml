@@ -40,6 +40,12 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" /> <!-- AppLovin -->
+
+        <activity
+            android:name=".nativeads.HuaweiDownLoad"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".banners.BannerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

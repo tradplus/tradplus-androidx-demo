@@ -45,7 +45,6 @@ public class BaiduIntersititalVideoC2SAdapter extends TPRewardAdapter {
         // 初始化 BaiduSDK
         BDAdConfig bdAdConfig = new BDAdConfig.Builder()
                 .setAppsid(mAppId)
-                .setHttps(true)
                 .setDialogParams(new BDDialogParams.Builder()
                         .build())
                 .build(context);

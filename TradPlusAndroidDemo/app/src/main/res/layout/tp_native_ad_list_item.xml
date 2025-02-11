@@ -64,23 +64,39 @@
             android:maxLines="2"
             android:textColor="@android:color/darker_gray" />
 
-
-        <Button
-            android:id="@+id/tp_native_cta_btn"
+        <com.huawei.hms.ads.AppDownloadButton
+            xmlns:progress_button="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tp_app_download_btn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/tp_native_text"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@android:color/holo_blue_bright"
-            android:clickable="true"
             android:gravity="center"
-            android:text="Learn More"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            progress_button:hiad_fixedWidth="true"
+            progress_button:hiad_maxWidth="96dp"
+            progress_button:hiad_minWidth="48dp"
+            progress_button:hiad_textColor="@drawable/tp_native_button_rounded_corners_shape"
+            progress_button:hiad_textSize="10sp"
+            />
+
+<!--        <Button-->
+<!--            android:id="@+id/tp_native_cta_btn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_below="@+id/tp_native_text"-->
+<!--            android:layout_alignParentLeft="true"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:background="@android:color/holo_blue_bright"-->
+<!--            android:clickable="true"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Learn More"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:textSize="16sp" />-->
     </RelativeLayout>
 
 

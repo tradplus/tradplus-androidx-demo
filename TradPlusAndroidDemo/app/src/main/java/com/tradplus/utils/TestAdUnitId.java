@@ -7,12 +7,13 @@ public class TestAdUnitId {
     //AdUnitID，TradPlus后台设置 对应广告类型的广告位（非三方广告网络的placementId）
     //正式上线时需要替换成申请的广告位ID和您的应用ID
     public static final String APPID = "44273068BFF4D8A8AFF3D5B11CBA3ADE";
-
+//    public static final String APPID = "CD920EBEF5FA512718889D3ABD832316";
+//    public static final String NATIVE_ADUNITID = "BEF17C8ADF00F47B351C4DEE8DC732E6";
     // 测试的adUnitId在TradPlus后台配置了部分广告平台
     // 如果复制adUnitId到自己项目中但是项目中没集成这些广告平台就会报adapter找不到
     public static final String REWRDVIDEO_ADUNITID = "39DAC7EAC046676C5404004A311D1DB1";
     public static final String OFFERWALL_ADUNITID = "4F7F1B9288B2FD513C8549A4A9F5D60F";
-    public static final String NATIVE_ADUNITID = "DDBF26FBDA47FBE2765F1A089F1356BF";
+    public static final String NATIVE_ADUNITID = "A11BFAC79E0E76B572E2381C3D458353";
     public static final String NATIVEBANNER_ADUNITID = "9F4D76E204326B16BD42FA877AFE8E7D";
     public static final String INTERSTITIAL_ADUNITID = "E609A0A67AF53299F2176C3A7783C46D";
     public static final String BANNER_ADUNITID = "A24091715B4FCD50C0F2039A5AF7C4BB";

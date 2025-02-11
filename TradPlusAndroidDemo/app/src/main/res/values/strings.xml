@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Demo_v12.6.10.1</string>
+    <string name="app_name">Demo_v13.4.10.1</string>
     <string name="init_sdk">SDK初始化</string>
     <string name="check_area">查看地区</string>
     <string name="init_custom_sdk"> SDK初始化 自定义GDPR</string>
@@ -20,6 +20,7 @@
     <string name="MeidaVideo">插播广告IMA</string>
     <string name="MeidaVideoVMAP">插播广告VMAP</string>
     <string name="click_to_skip">点击跳过</string>
+    <string name="title_activity_huawei_native_down_load">HuaweiNativeDownLoad</string>
 
 
 </resources>
