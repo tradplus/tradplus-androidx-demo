@@ -229,7 +229,7 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
         });
 
         // 部分渠道不能在TradPlus后台设置宽高，可以在load前传入，尺寸dp
-        tpNative.setAdSize(300, 250);
+//        tpNative.setAdSize(300, 250);
 
         // 部分渠道有定制化参数，需要在这里用map的方式传递信息，
         // 例如：admob的native 角标可以自定义位置（key：Admob_Adchoices value：0-4），具体参考文档
@@ -238,8 +238,8 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
         // 进入广告场景埋点，用来统计广告触达率，一般是进入某个页面开始调用
         tpNative.entryAdScenario("adSceneId");
 
-//        tpNative.setCustomParams(setLocalCustomParams());
-//        tpNative.loadAd();
+        tpNative.setCustomParams(setLocalCustomParams());
+        tpNative.loadAd();
     }
 
     private Map<String, Object> setLocalCustomParams() {
@@ -275,6 +275,7 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
                 ImageView imageView = viewGroup.findViewById(R.id.tp_mopub_native_main_image);
                 if(imageView != null) {
                     if(tpNativeAdView.getMediaView() != null) {
+                        Log.i(TAG, "renderAdView getMediaView: ");
                         // 如果三方广告平台有mediaview，需要用三方提供的mediaview来替换原来布局中的imageview
                         ViewGroup.LayoutParams params = imageView.getLayoutParams();
                         ViewParent viewParent = imageView.getParent();
@@ -305,7 +306,6 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
                         if (viewParent != null) {
                             int index = ((ViewGroup)viewParent).indexOfChild(iconView);
                             ((ViewGroup) viewParent).removeView(iconView);
-                            iconView.setId(R.id.tp_native_icon_image);
                             ((ViewGroup) viewParent).addView(iconView,index, params);
 
                         }
@@ -327,16 +327,14 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
                     callToActionView.setText(tpNativeAdView.getCallToAction());
                 }
 
-                // facebook会需要一个adchoice的容器来填充adchoice
                 FrameLayout adChoiceView = viewGroup.findViewById(R.id.tp_ad_choices_container);
 
-                // 把主要的元素设置给三方广告平台，第二个参数是是否可以点击
                 setImageView(imageView, true);
                 setIconView(iconView, true);
                 setTitleView(titleView, true);
                 setSubTitleView(subTitleView, true);
                 setCallToActionView(callToActionView, true);
-                setAdChoicesContainer(adChoiceView, false);
+                setAdChoicesContainer(adChoiceView, true);
 
                 return viewGroup;
             }

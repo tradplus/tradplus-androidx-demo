@@ -67,7 +67,7 @@ public class AdmobSplashAdapter extends TPSplashAdapter {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
                 Log.i(TAG, "onInitializationComplete: ");
-                AppOpenAd.load(context, placementId, request, AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, appOpenAdLoadCallback);
+                AppOpenAd.load(context, placementId, request, appOpenAdLoadCallback);
             }
         });
     }

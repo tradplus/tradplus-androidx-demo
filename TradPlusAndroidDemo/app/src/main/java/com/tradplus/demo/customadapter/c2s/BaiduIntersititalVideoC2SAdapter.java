@@ -10,17 +10,25 @@ import android.util.Log;
 import com.baidu.mobads.sdk.api.AdSettings;
 import com.baidu.mobads.sdk.api.BDAdConfig;
 import com.baidu.mobads.sdk.api.BDDialogParams;
+import com.baidu.mobads.sdk.api.BiddingListener;
+import com.baidu.mobads.sdk.api.ExpressInterstitialAd;
+import com.baidu.mobads.sdk.api.ExpressResponse;
+import com.baidu.mobads.sdk.api.FullScreenVideoAd;
+import com.baidu.mobads.sdk.api.NativeResponse;
 import com.baidu.mobads.sdk.api.RewardVideoAd;
+import com.baidu.mobads.sdk.api.SplashAd;
+import com.tradplus.ads.baidu.BaiduBiddingNotice;
 import com.tradplus.ads.baidu.BaiduConstant;
 import com.tradplus.ads.base.adapter.reward.TPRewardAdapter;
 import com.tradplus.ads.base.common.TPError;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class BaiduIntersititalVideoC2SAdapter extends TPRewardAdapter {
 
-    private String mPlacementId, mAppId;
+    private String mPlacementId, mAppId,ecpmLevel;
     private RewardVideoAd mRewardVideoAd;
     private OnC2STokenListener onC2STokenListener;
     private boolean isBiddingLoaded;
@@ -108,7 +116,7 @@ public class BaiduIntersititalVideoC2SAdapter extends TPRewardAdapter {
         public void onVideoDownloadSuccess() {
             Log.i(TAG, "onVideoDownloadSuccess: 视频缓存成功");
             if (onC2STokenListener != null) {
-                String ecpmLevel = mRewardVideoAd.getECPMLevel();
+                ecpmLevel = mRewardVideoAd.getECPMLevel();
                 Log.i(TAG, "激励视频 bid price: " + ecpmLevel);
                 if (TextUtils.isEmpty(ecpmLevel)) {
                     onC2STokenListener.onC2SBiddingFailed("", "ecpmLevel is Empty");
@@ -168,6 +176,9 @@ public class BaiduIntersititalVideoC2SAdapter extends TPRewardAdapter {
     @Override
     public void showAd() {
         if (mRewardVideoAd != null && mRewardVideoAd.isReady()) {
+            if (!TextUtils.isEmpty(ecpmLevel)) {
+                onBidWinResult(ecpmLevel);
+            }
             mRewardVideoAd.show();
         } else {
             if (mShowListener != null) {
@@ -190,5 +201,58 @@ public class BaiduIntersititalVideoC2SAdapter extends TPRewardAdapter {
     public void getC2SBidding(final Context context, final Map<String, Object> localParams, final Map<String, String> tpParams, final OnC2STokenListener onC2STokenListener) {
         this.onC2STokenListener = onC2STokenListener;
         loadCustomAd(context, localParams, tpParams);
+    }
+
+    public void onBidWinResult(String ecpmLevel) {
+        try {
+            LinkedHashMap<String, Object> secondInfo = new LinkedHashMap<>();
+            // 单位：分
+            secondInfo.put("ecpm", (int) Math.round(Double.parseDouble(ecpmLevel)));
+
+            secondInfo.put("adn", 10);
+
+            secondInfo.put("ad_t", 7);
+            // 竞价时间，秒级时间戳
+            secondInfo.put("ad_time", (System.currentTimeMillis() / 1000L));
+
+            secondInfo.put("bid_t", 4);
+
+            BiddingListener winBiddingListener = new BiddingListener() {
+                @Override
+                public void onBiddingResult(boolean result, String message, HashMap<String, Object> ext) {
+                    Log.i(TAG, "onBiddingResult-win: " + result + ", msg信息：" + message);
+                }
+            };
+
+            Log.i(TAG, "biddingSuccess: " + ecpmLevel);
+            mRewardVideoAd.biddingSuccess(secondInfo, winBiddingListener);
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void setLossNotifications(String auctionPrice, String auctionPriceCny, String lossReason) {
+        try {
+            LinkedHashMap<String, Object> secondInfo = new LinkedHashMap<>();
+            // 单位：分
+            secondInfo.put("ecpm", (int) Math.round(Double.parseDouble(auctionPriceCny)));
+            secondInfo.put("adn", 10);
+            secondInfo.put("ad_t", 7);
+            secondInfo.put("ad_time", (System.currentTimeMillis() / 1000L));
+            secondInfo.put("bid_t", 4);
+
+            BiddingListener winBiddingListener = new BiddingListener() {
+                @Override
+                public void onBiddingResult(boolean result, String message, HashMap<String, Object> ext) {
+                    Log.i(TAG, "onBiddingResult-win: " + result + ", msg信息：" + message);
+                }
+            };
+            mRewardVideoAd.biddingFail(secondInfo,winBiddingListener);
+        } catch (Throwable throwable) {
+
+        }
     }
 }

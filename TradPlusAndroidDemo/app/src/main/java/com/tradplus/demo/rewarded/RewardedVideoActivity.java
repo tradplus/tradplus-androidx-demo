@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.ads.AdSettings;
 import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.util.SegmentUtils;

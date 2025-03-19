@@ -158,7 +158,6 @@ public class HuaweiDownLoad extends AppCompatActivity {
                         if (viewParent != null) {
                             int index = ((ViewGroup) viewParent).indexOfChild(iconView);
                             ((ViewGroup) viewParent).removeView(iconView);
-                            iconView.setId(com.tradplus.demo.R.id.tp_native_icon_image);
                             ((ViewGroup) viewParent).addView(iconView, index, params);
 
                         }
