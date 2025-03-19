@@ -72,7 +72,7 @@ public class InterstitialActivity extends AppCompatActivity implements View.OnCl
 
     private void initInterstitialAd() {
         if (mTPInterstitial == null) {
-            mTPInterstitial = new TPInterstitial(this, "788E1FCB278B0D7E97282231154458B7");
+            mTPInterstitial = new TPInterstitial(this, TestAdUnitId.INTERSTITIAL_ADUNITID);
 
             //进入广告场景，广告场景ID后台创建
             // 广告场景是用来统计进入广告场景的次数和进入场景后展示广告的次数，所以请在准确的位置调用
@@ -199,13 +199,11 @@ public class InterstitialActivity extends AppCompatActivity implements View.OnCl
                 initInterstitialAd();
                 break;
             case R.id.btn_show:
-//                if (videoUtils.isReadyInterstitial()) {
-//                    videoUtils.showInterstitial(InterstitialActivity.this);
-//                }else {
-//                    Toast.makeText(InterstitialActivity.this, "无可用广告 or 已经展示", Toast.LENGTH_SHORT).show();
-//                }
-
-                customNativeAdRender();
+                if (videoUtils.isReadyInterstitial()) {
+                    videoUtils.showInterstitial(InterstitialActivity.this);
+                }else {
+                    Toast.makeText(InterstitialActivity.this, "无可用广告 or 已经展示", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.second_page:
                 // 进入下一页
