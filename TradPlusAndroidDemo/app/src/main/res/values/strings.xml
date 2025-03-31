@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Demo_v13.4.10.1</string>
+    <string name="app_name">Demo_v13.7.0.1</string>
     <string name="init_sdk">SDK初始化</string>
     <string name="check_area">查看地区</string>
     <string name="init_custom_sdk"> SDK初始化 自定义GDPR</string>
