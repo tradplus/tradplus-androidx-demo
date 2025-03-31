@@ -15,6 +15,7 @@ import com.tradplus.ads.base.bean.TPAdError;
 import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.common.TPVideoAdPlayer;
 //import com.tradplus.ads.base.common.TPVideoPlayerListener;
+import com.tradplus.ads.base.common.TPVideoPlayerListener;
 import com.tradplus.ads.mgr.mediavideo.TPCustomMediaVideoAd;
 import com.tradplus.ads.open.mediavideo.MediaVideoAdListener;
 import com.tradplus.ads.open.mediavideo.TPMediaVideo;
@@ -147,30 +148,30 @@ public class NewMediaVideo extends AppCompatActivity implements View.OnClickList
                 isVideoMute = !isVideoMute;
                 break;
             case R.id.btn_load:
-//                TPVideoPlayerListener tpVideoPlayerListener = new TPVideoPlayerListener() {
-//                    @Override
-//                    public Object getTPVideoPlayer() {
-//                        TPVideoAdPlayer videoAdPlayer = mediaVideoUtils.getVideoAdPlayer(isVideoMute, NewMediaVideo.this);
-//                        return videoAdPlayer;
-//                    }
-//
-//                    @Override
-//                    public Object getContentProgressProvider() {
-//                        return null;
-//                    }
-//                };
-//                // 请求广告
-//                tpMediaVideo.loadAd(tpVideoPlayerListener);
+                TPVideoPlayerListener tpVideoPlayerListener = new TPVideoPlayerListener() {
+                    @Override
+                    public Object getTPVideoPlayer() {
+                        TPVideoAdPlayer videoAdPlayer = mediaVideoUtils.getVideoAdPlayer(isVideoMute, NewMediaVideo.this);
+                        return videoAdPlayer;
+                    }
+
+                    @Override
+                    public Object getContentProgressProvider() {
+                        return null;
+                    }
+                };
+                // 请求广告
+                tpMediaVideo.loadAd(tpVideoPlayerListener);
                 break;
             case R.id.btn_show:
                 boolean ready = tpMediaVideo.isReady();
                 if (ready) {
                     tpCustomMediaVideoAd = tpMediaVideo.getVideoAd();
-//                    Object tpAdVideoPlayerObj = tpCustomMediaVideoAd.getTPAdVideoPlayer();
+                    Object tpAdVideoPlayerObj = tpCustomMediaVideoAd.getTPAdVideoPlayer();
                     TPVideoAdPlayer tpAdVideoPlayer = null;
-//                    if (tpAdVideoPlayerObj instanceof TPVideoAdPlayer) {
-//                        tpAdVideoPlayer = (TPVideoAdPlayer)tpAdVideoPlayerObj;
-//                    }
+                    if (tpAdVideoPlayerObj instanceof TPVideoAdPlayer) {
+                        tpAdVideoPlayer = (TPVideoAdPlayer)tpAdVideoPlayerObj;
+                    }
                     Object adDisplayContainerObj = tpCustomMediaVideoAd.getAdDisplayContainer();
                     if (adDisplayContainerObj instanceof AdDisplayContainer) {
                         AdDisplayContainer adDisplayContainer = (AdDisplayContainer) adDisplayContainerObj;
