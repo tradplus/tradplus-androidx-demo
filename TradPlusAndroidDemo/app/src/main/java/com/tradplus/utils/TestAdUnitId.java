@@ -22,6 +22,8 @@ public class TestAdUnitId {
     public static final String MEDIAVIDEO_ADUNITID = "66841604967625EEBD3F6D603669D6CC" ;
     public static final String MEDIAVIDEO_ADUNITID_VWAP = "682C56A44DB4410BA1D380D51A45495C" ;
 
+    public static final String HUAWEI_BANNER_DOWNLOAD = "9AE96ADE96876C37B0B209927F65EF66";
+
 
     public static final String ENTRY_AD_REWARD = "177010A4403105" ;
     public static final String ENTRY_AD_INTERSTITIAL = "01EAD2CCED1870" ;

@@ -132,7 +132,6 @@
         <RelativeLayout
             android:layout_width="60dp"
             android:layout_height="50dp"
-            android:background="#4286F4"
             >
 
             <ImageView
@@ -163,7 +162,7 @@
                 android:paddingLeft="3dp"
                 android:paddingRight="3dp"
                 android:text="hello oooooooooo"
-                android:background="#00000000"
+                android:background="#4286F4"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 android:visibility="visible" />
