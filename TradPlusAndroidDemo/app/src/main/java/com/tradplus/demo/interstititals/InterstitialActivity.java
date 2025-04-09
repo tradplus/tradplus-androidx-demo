@@ -29,6 +29,7 @@ import com.tradplus.ads.base.bean.TPAdInfo;
 import com.tradplus.ads.base.common.TPImageLoader;
 import com.tradplus.ads.base.util.SegmentUtils;
 import com.tradplus.ads.common.util.DeviceUtils;
+import com.tradplus.ads.mgr.interstitial.TPCustomInterstitialAd;
 import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.interstitial.InterstitialAdListener;
 import com.tradplus.ads.open.interstitial.TPInterstitial;
@@ -227,127 +228,131 @@ public class InterstitialActivity extends AppCompatActivity implements View.OnCl
     // 使用前建议根据屏幕方向适配两套布局，
     public void customNativeAdRender() {
         if (mTPInterstitial != null) {
-            mTPInterstitial.setCustomNativeAdRender(new TPNativeAdRender() {
-                @Override
-                public ViewGroup createAdLayoutView() {
-                    LayoutInflater inflater = (LayoutInflater) InterstitialActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    // tp_native_inter_ad 为开发者自定义布局样式
-                    return (ViewGroup) inflater.inflate(R.layout.tp_native_inter_ad, null);
-                }
-
-                @Override
-                public ViewGroup renderAdView(TPNativeAdView tpNativeAdView) {
-                    ViewGroup viewGroup = createAdLayoutView();
-                    // 大图
-                    ImageView imageView = viewGroup.findViewById(R.id.tp_mopub_native_main_image);
-                    if (imageView != null) {
-                        if (tpNativeAdView.getMediaView() != null) {
-                            ViewGroup.LayoutParams params = imageView.getLayoutParams();
-                            ViewParent viewParent = imageView.getParent();
-                            if (viewParent != null) {
-                                ((ViewGroup) viewParent).removeView(imageView);
-                                ((ViewGroup) viewParent).addView(tpNativeAdView.getMediaView(), params);
-                                getClickViews().add(tpNativeAdView.getMediaView());
-                            }
-                        } else if (tpNativeAdView.getMainImage() != null) {
-                            imageView.setImageDrawable(tpNativeAdView.getMainImage());
-                        } else if (tpNativeAdView.getMainImageUrl() != null) {
-                            TPImageLoader.getInstance().loadImage(imageView, tpNativeAdView.getMainImageUrl());
-                        }
+            Object interstitialAd = mTPInterstitial.getInterstitialAd();
+            if (interstitialAd instanceof com.huawei.hms.ads.nativead.NativeAd) {
+                // 判断是华为
+                mTPInterstitial.setCustomNativeAdRender(new TPNativeAdRender() {
+                    @Override
+                    public ViewGroup createAdLayoutView() {
+                        LayoutInflater inflater = (LayoutInflater) InterstitialActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        // tp_native_inter_ad 为开发者自定义布局样式
+                        return (ViewGroup) inflater.inflate(R.layout.tp_native_inter_ad, null);
                     }
 
-                    // icon
-                    ImageView iconView = viewGroup.findViewById(R.id.tp_native_icon_image);
-                    if (iconView != null) {
-                        if (tpNativeAdView.getIconImage() != null) {
-                            iconView.setImageDrawable(tpNativeAdView.getIconImage());
-                        } else if (tpNativeAdView.getIconImageUrl() != null) {
-                            TPImageLoader.getInstance().loadImage(iconView, tpNativeAdView.getIconImageUrl());
-                        } else if (tpNativeAdView.getIconView() != null) {
-                            ViewGroup.LayoutParams params = iconView.getLayoutParams();
-                            ViewParent viewParent = iconView.getParent();
-                            iconView = (ImageView) tpNativeAdView.getIconView();
-                            if (viewParent != null) {
-                                int index = ((ViewGroup) viewParent).indexOfChild(iconView);
-                                ((ViewGroup) viewParent).removeView(iconView);
-                                iconView.setId(com.tradplus.demo.R.id.tp_native_icon_image);
-                                ((ViewGroup) viewParent).addView(iconView, index, params);
-
+                    @Override
+                    public ViewGroup renderAdView(TPNativeAdView tpNativeAdView) {
+                        ViewGroup viewGroup = createAdLayoutView();
+                        // 大图
+                        ImageView imageView = viewGroup.findViewById(R.id.tp_mopub_native_main_image);
+                        if (imageView != null) {
+                            if (tpNativeAdView.getMediaView() != null) {
+                                ViewGroup.LayoutParams params = imageView.getLayoutParams();
+                                ViewParent viewParent = imageView.getParent();
+                                if (viewParent != null) {
+                                    ((ViewGroup) viewParent).removeView(imageView);
+                                    ((ViewGroup) viewParent).addView(tpNativeAdView.getMediaView(), params);
+                                    getClickViews().add(tpNativeAdView.getMediaView());
+                                }
+                            } else if (tpNativeAdView.getMainImage() != null) {
+                                imageView.setImageDrawable(tpNativeAdView.getMainImage());
+                            } else if (tpNativeAdView.getMainImageUrl() != null) {
+                                TPImageLoader.getInstance().loadImage(imageView, tpNativeAdView.getMainImageUrl());
                             }
                         }
-                    }
 
-                    // 主标题
-                    TextView titleView = viewGroup.findViewById(R.id.tp_native_title);
-                    if (titleView != null && tpNativeAdView.getTitle() != null) {
-                        Log.i(TAG, "renderAdView Title: " + tpNativeAdView.getTitle());
-                        titleView.setText(tpNativeAdView.getTitle());
-                    }
+                        // icon
+                        ImageView iconView = viewGroup.findViewById(R.id.tp_native_icon_image);
+                        if (iconView != null) {
+                            if (tpNativeAdView.getIconImage() != null) {
+                                iconView.setImageDrawable(tpNativeAdView.getIconImage());
+                            } else if (tpNativeAdView.getIconImageUrl() != null) {
+                                TPImageLoader.getInstance().loadImage(iconView, tpNativeAdView.getIconImageUrl());
+                            } else if (tpNativeAdView.getIconView() != null) {
+                                ViewGroup.LayoutParams params = iconView.getLayoutParams();
+                                ViewParent viewParent = iconView.getParent();
+                                iconView = (ImageView) tpNativeAdView.getIconView();
+                                if (viewParent != null) {
+                                    int index = ((ViewGroup) viewParent).indexOfChild(iconView);
+                                    ((ViewGroup) viewParent).removeView(iconView);
+                                    iconView.setId(com.tradplus.demo.R.id.tp_native_icon_image);
+                                    ((ViewGroup) viewParent).addView(iconView, index, params);
 
-                    // 副标题
-                    TextView subTitleView = viewGroup.findViewById(R.id.tp_native_text);
-                    if (subTitleView != null && tpNativeAdView.getSubTitle() != null) {
-                        Log.i(TAG, "renderAdView SubTitle: " + tpNativeAdView.getSubTitle());
-                        subTitleView.setText(tpNativeAdView.getSubTitle());
-                    }
-
-                    // 点击按钮
-                    TextView callToActionView = viewGroup.findViewById(R.id.tp_native_cta_btn);
-                    if (callToActionView != null && tpNativeAdView.getCallToAction() != null) {
-                        callToActionView.setText(tpNativeAdView.getCallToAction());
-                    }
-
-                    // 华为下载按钮
-                    AppDownloadButton appDownloadButton = (AppDownloadButton) tpNativeAdView.getAppDownloadButton();
-                    if (appDownloadButton != null) {
-                        // 设置字体大小
-                        appDownloadButton.setTextSize(DeviceUtils.dip2px(InterstitialActivity.this, 16));
-                        // 设置按钮大小
-                        appDownloadButton.setPadding(DeviceUtils.dip2px(InterstitialActivity.this, 100), DeviceUtils.dip2px(InterstitialActivity.this, 15), DeviceUtils.dip2px(InterstitialActivity.this, 100), DeviceUtils.dip2px(InterstitialActivity.this, 15));
-                        // 设置应用下载按钮样式
-                        appDownloadButton.setAppDownloadButtonStyle(new MyAppDownloadStyle(InterstitialActivity.this));
-                        // 设置应用下载安装状态变更监听器
-                        appDownloadButton.setOnDownloadStatusChangedListener(new AppDownloadButton.OnDownloadStatusChangedListener() {
-                            @Override
-                            public void onStatusChanged(AppDownloadStatus appDownloadStatus) {
-                                // 下载安装状态变更
-                                Log.i(TAG, "====onStatusChanged: " + appDownloadStatus.name());
+                                }
                             }
+                        }
 
-                            @Override
-                            public void onUserCancel(String packageName, String uniqueId) {
-                                // 用户主动取消下载回调
-                                Log.i(TAG, "====onUserCancel: ");
-                            }
-                        });
-                        // 隐藏点击按钮
-                        callToActionView.setVisibility(View.INVISIBLE);
+                        // 主标题
+                        TextView titleView = viewGroup.findViewById(R.id.tp_native_title);
+                        if (titleView != null && tpNativeAdView.getTitle() != null) {
+                            Log.i(TAG, "renderAdView Title: " + tpNativeAdView.getTitle());
+                            titleView.setText(tpNativeAdView.getTitle());
+                        }
 
-                        // 设置下载按钮位置 可以自己调整
-                        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(DeviceUtils.dip2px(InterstitialActivity.this, 320), DeviceUtils.dip2px(InterstitialActivity.this, 50));
-                        layoutParams.gravity = CENTER;
-                        layoutParams.bottomMargin = DeviceUtils.dip2px(InterstitialActivity.this, 15);
-                        ViewGroup lastView = (ViewGroup) viewGroup.getChildAt(viewGroup.getChildCount() - 1);
-                        lastView.addView(appDownloadButton, layoutParams);
-                    } else {
-                        setCallToActionView(callToActionView, true);
+                        // 副标题
+                        TextView subTitleView = viewGroup.findViewById(R.id.tp_native_text);
+                        if (subTitleView != null && tpNativeAdView.getSubTitle() != null) {
+                            Log.i(TAG, "renderAdView SubTitle: " + tpNativeAdView.getSubTitle());
+                            subTitleView.setText(tpNativeAdView.getSubTitle());
+                        }
+
+                        // 点击按钮
+                        TextView callToActionView = viewGroup.findViewById(R.id.tp_native_cta_btn);
+                        if (callToActionView != null && tpNativeAdView.getCallToAction() != null) {
+                            callToActionView.setText(tpNativeAdView.getCallToAction());
+                        }
+
+                        // 华为下载按钮
+                        AppDownloadButton appDownloadButton = (AppDownloadButton) tpNativeAdView.getAppDownloadButton();
+                        if (appDownloadButton != null) {
+                            // 设置字体大小
+                            appDownloadButton.setTextSize(DeviceUtils.dip2px(InterstitialActivity.this, 16));
+                            // 设置按钮大小
+                            appDownloadButton.setPadding(DeviceUtils.dip2px(InterstitialActivity.this, 100), DeviceUtils.dip2px(InterstitialActivity.this, 15), DeviceUtils.dip2px(InterstitialActivity.this, 100), DeviceUtils.dip2px(InterstitialActivity.this, 15));
+                            // 设置应用下载按钮样式
+                            appDownloadButton.setAppDownloadButtonStyle(new MyAppDownloadStyle(InterstitialActivity.this));
+                            // 设置应用下载安装状态变更监听器
+                            appDownloadButton.setOnDownloadStatusChangedListener(new AppDownloadButton.OnDownloadStatusChangedListener() {
+                                @Override
+                                public void onStatusChanged(AppDownloadStatus appDownloadStatus) {
+                                    // 下载安装状态变更
+                                    Log.i(TAG, "====onStatusChanged: " + appDownloadStatus.name());
+                                }
+
+                                @Override
+                                public void onUserCancel(String packageName, String uniqueId) {
+                                    // 用户主动取消下载回调
+                                    Log.i(TAG, "====onUserCancel: ");
+                                }
+                            });
+                            // 隐藏点击按钮
+                            callToActionView.setVisibility(View.INVISIBLE);
+
+                            // 设置下载按钮位置 可以自己调整
+                            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(DeviceUtils.dip2px(InterstitialActivity.this, 320), DeviceUtils.dip2px(InterstitialActivity.this, 50));
+                            layoutParams.gravity = CENTER;
+                            layoutParams.bottomMargin = DeviceUtils.dip2px(InterstitialActivity.this, 15);
+                            ViewGroup lastView = (ViewGroup) viewGroup.getChildAt(viewGroup.getChildCount() - 1);
+                            lastView.addView(appDownloadButton, layoutParams);
+                        } else {
+                            setCallToActionView(callToActionView, true);
+                        }
+
+
+                        // adchoice
+                        FrameLayout adChoiceView = viewGroup.findViewById(R.id.tp_ad_choices_container);
+
+                        // 把主要的元素设置给三方广告平台，第二个参数是是否可以点击
+                        setImageView(imageView, true);
+                        setIconView(iconView, true);
+                        setTitleView(titleView, true);
+                        setSubTitleView(subTitleView, true);
+                        setImageView(imageView, true);
+                        setAdChoicesContainer(adChoiceView, true);
+
+                        return viewGroup;
                     }
-
-
-                    // adchoice
-                    FrameLayout adChoiceView = viewGroup.findViewById(R.id.tp_ad_choices_container);
-
-                    // 把主要的元素设置给三方广告平台，第二个参数是是否可以点击
-                    setImageView(imageView, true);
-                    setIconView(iconView, true);
-                    setTitleView(titleView, true);
-                    setSubTitleView(subTitleView, true);
-                    setImageView(imageView, true);
-                    setAdChoicesContainer(adChoiceView, true);
-
-                    return viewGroup;
-                }
-            });
+                });
+            }
             mTPInterstitial.showAd(InterstitialActivity.this, "");
         }
     }
