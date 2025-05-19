@@ -7,17 +7,10 @@ buildscript {
         maven {
             url = uri("https://storage.googleapis.com/r8-releases/raw")
         }
-        // pubmatic
-        maven { url 'https://repo.pubmatic.com/artifactory/public-repos'}
         // TaurusX
         maven { url "https://bitbucket.org/sdkcenter/sdkcenter/raw/release" }
         // IronSource
         maven { url 'https://android-sdk.is.com/' }
-        // Mintegral
-        // Non-listed GP market applications， Android X Version
-        maven {
-            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_china"
-        }
         // Mintegral
         // Launch GP market application， Android X Version
         maven {
@@ -29,12 +22,10 @@ buildscript {
         }
         // 配置HMS Core SDK的Maven仓地址。
         maven {url 'https://developer.huawei.com/repo/'}
-        // Huawei
-        maven {url 'https://developer.huawei.com/repo/'}
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.3.1'
         classpath 'com.android.tools:r8:8.1.44'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -47,16 +38,10 @@ allprojects {
         google()
         // Huawei
         maven {url 'https://developer.huawei.com/repo/'}
-        maven { url 'https://repo.pubmatic.com/artifactory/public-repos'}
         // TaurusX
         maven { url "https://bitbucket.org/sdkcenter/sdkcenter/raw/release" }
         // IronSource
         maven { url 'https://android-sdk.is.com/' }
-        // Mintegral
-        // Non-listed GP market applications， Android X Version
-        maven {
-            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_china"
-        }
         // Mintegral
         // Launch GP market application， Android X Version
         maven {
@@ -66,8 +51,6 @@ allprojects {
         maven {
             url 'https://artifact.bytedance.com/repository/pangle'
         }
-        // 配置HMS Core SDK的Maven仓地址。
-        maven {url 'https://developer.huawei.com/repo/'}
     }
 }
 

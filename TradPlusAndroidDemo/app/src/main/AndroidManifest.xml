@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tradplus.demo">
+    <uses-sdk tools:overrideLibrary="com.bytedance.sdk.openadsdk" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 限于中国大陆Android 应用市场 Sigmob权限 -->

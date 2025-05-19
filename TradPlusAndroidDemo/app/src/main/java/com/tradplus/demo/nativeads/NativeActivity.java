@@ -41,6 +41,7 @@ import com.tradplus.ads.base.common.TPImageLoader;
 import com.tradplus.ads.common.util.DeviceUtils;
 import com.tradplus.ads.huawei.HuaweiNativeAd;
 import com.tradplus.ads.mgr.nativead.TPCustomNativeAd;
+import com.tradplus.ads.mgr.nativead.TPNativeAdRenderImpl;
 import com.tradplus.ads.open.LoadAdEveryLayerListener;
 import com.tradplus.ads.open.nativead.NativeAdListener;
 import com.tradplus.ads.open.nativead.TPNative;
@@ -150,11 +151,8 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
-                // 自渲染的方式show广告
+                // 自渲染的方式show广告 ---- 用于获取三方广告素材
                 renderNativeAd();
-
-                // 获取广告源详细信息后再show广告（不能先用自渲染show出来然后再获取信息）
-//                getNativeAdInfoAndShowAd();
 
                 // 获取模板渲染的信息，返回三方广告平台渲染好的view，这种方式获取后show的广告tradplus会统计不到部分事件信息。
 //                View view = tpBaseAd.getRenderView();
@@ -257,6 +255,42 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    private void showNativeAd() {
+        tpNative.showAd(adContainer, new TPNativeAdRender() {
+
+            @Override
+            public ViewGroup createAdLayoutView() {
+
+                LayoutInflater inflater = (LayoutInflater) NativeActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                ViewGroup adLayout = (ViewGroup) inflater.inflate(R.layout.tp_native_ad_list_item, null);
+
+                TextView nativeTitleView = adLayout.findViewById(R.id.tp_native_title);
+                setTitleView(nativeTitleView, true);
+
+                Button nativeSubTitleView = adLayout.findViewById(R.id.tp_native_text);
+                setSubTitleView(nativeSubTitleView, true);
+
+                TextView nativeCTAView = adLayout.findViewById(R.id.tp_native_cta_btn);
+                setCallToActionView(nativeCTAView, true);
+
+                ImageView nativeIconImageView = adLayout.findViewById(R.id.tp_native_icon_image);
+                setIconView(nativeIconImageView, true);
+
+                ImageView nativeMainImageView = adLayout.findViewById(R.id.tp_mopub_native_main_image);
+                setImageView(nativeMainImageView, true);
+
+                FrameLayout adChoiceView = adLayout.findViewById(R.id.tp_ad_choices_container);
+                setAdChoicesContainer(adChoiceView, false);
+
+                ImageView nativeAdChoice = adLayout.findViewById(R.id.tp_native_ad_choice);
+                setAdChoiceView(nativeAdChoice, true);
+
+                return adLayout;
+            }
+        },"");
+    }
+
+    // 用于获取三方广告素材
     private void renderNativeAd() {
         // 如果三方广告平台是模板渲染，那么TPNativeAdRender中的方法不会被回调，会直接拿到三方平台渲染好的view，add到adContainer中
         tpNative.showAd(adContainer, new TPNativeAdRender() {
@@ -339,31 +373,6 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
                 return viewGroup;
             }
         }, "adSceneId");
-    }
-
-    private void getNativeAdInfoAndShowAd() {
-        // 获取TP的缓存对象，获取后就会从TradPlus的缓存池中删除，所以不能重复调用，
-        // 需要将get到的TPCustomNativeAd对象保存下来进行处理
-        TPCustomNativeAd customNativeAd = tpNative.getNativeAd();
-
-        String id = customNativeAd.getCustomNetworkId();  // 广告源的id
-        String name = customNativeAd.getCustomNetworkName(); // 广告源的名称
-
-        Object obj = customNativeAd.getCustomNetworkObj(); // 广告源对应的native对象，通过强转可以获取到三方广告的信息
-        if(obj instanceof com.google.android.gms.ads.formats.UnifiedNativeAd){
-
-        }else if(obj instanceof com.facebook.ads.NativeAd){
-
-        }else if(obj instanceof com.facebook.ads.NativeBannerAd){
-
-        }else if(obj instanceof com.kwad.sdk.api.KsDrawAd){
-        }else if(obj instanceof com.bytedance.sdk.openadsdk.TTNativeExpressAd){
-        }else if(obj instanceof com.qq.e.comm.pi.AdData){
-        }else{
-        }
-
-        // show 广告
-        customNativeAd.showAd(adContainer, R.layout.tp_native_ad_list_item, "adSceneId");
     }
 
     @Override
