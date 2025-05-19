@@ -48,32 +48,35 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.3.0-alpha02'
     // Admob
-//    implementation 'com.google.android.gms:play-services-ads:24.2.0'
-//    implementation 'com.tradplusad:tradplus-googlex:2.14.1.0.1'
-//    // Meta
-//    implementation 'com.facebook.android:audience-network-sdk:6.20.0'
-//    implementation 'com.tradplusad:tradplus-facebook:1.14.1.0.1'
-//    // Applovin
-//    implementation 'com.applovin:applovin-sdk:13.2.0'
-//    implementation 'com.tradplusad:tradplus-applovin:9.14.1.0.1'
+    implementation 'com.google.android.gms:play-services-ads:24.2.0'
+    implementation 'com.tradplusad:tradplus-googlex:2.14.1.0.1'
+    // Meta
+    implementation 'com.facebook.android:audience-network-sdk:6.20.0'
+    implementation 'com.tradplusad:tradplus-facebook:1.14.1.0.1'
+    // Applovin
+    implementation 'com.applovin:applovin-sdk:13.2.0'
+    implementation 'com.tradplusad:tradplus-applovin:9.14.1.0.1'
     // Pangle
 //    implementation 'com.tradplusad:tradplus-pangle:19.14.1.0.1'
 //    implementation 'com.pangle.global:pag-sdk:7.1.0.8'
 //    implementation 'com.google.android.gms:play-services-ads-identifier:18.2.0'
     // Mintegral
-//    implementation 'com.tradplusad:tradplus-mintegralx_overseas:18.14.1.0.1'
-//    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-//    implementation 'com.mbridge.msdk.oversea:mbridge_android_sdk:16.9.71'
+    implementation 'com.tradplusad:tradplus-mintegralx_overseas:18.14.1.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.mbridge.msdk.oversea:mbridge_android_sdk:16.9.71'
     // Google IMA
     implementation 'androidx.browser:browser:1.4.0'
     implementation 'androidx.media:media:1.6.0'
     implementation 'com.tradplusad:tradplus-google-ima:48.14.1.0.1'
     implementation 'com.google.ads.interactivemedia.v3:interactivemedia:3.36.0'
-//    // zMaticoo
-//    implementation 'com.tradplusad:tradplus-zmaticoo:55.14.1.0.1'
-//    implementation 'io.github.maticooads:maticoo-android-sdk:1.8.5'
-//    // Cross Promotion
-//    implementation 'com.tradplusad:tradplus-crosspromotion:27.14.1.0.1'
+    // zMaticoo
+    implementation 'com.tradplusad:tradplus-zmaticoo:55.14.1.0.1'
+    implementation 'io.github.maticooads:maticoo-android-sdk:1.8.5'
+    // Huawei
+    implementation 'com.tradplusad:tradplus-huawei:41.14.1.0.1'
+    implementation 'com.huawei.hms:ads-lite:13.4.77.300'
+    // Cross Promotion
+    implementation 'com.tradplusad:tradplus-crosspromotion:27.14.1.0.1'
     // TP Exchange
     // 请注意保持与主包版本同步更新
     implementation 'com.google.code.gson:gson:2.8.6'
@@ -119,6 +122,5 @@ dependencies {
 
     // Google UMP
     implementation "com.google.android.ump:user-messaging-platform:2.1.0"
-    implementation group: 'org.sonatype.central', name: 'central-publishing-maven-plugin', version: '0.7.0'
 
 }
