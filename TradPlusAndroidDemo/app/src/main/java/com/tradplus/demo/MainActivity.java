@@ -148,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void initTPSDK() {
-        TPSettingManager.getInstance().setGlobalCloseAutoload(true);
         if (!TradPlusSdk.getIsInit()) {
             // 初始化是否成功 （可选）
             TradPlusSdk.setTradPlusInitListener(new TradPlusSdk.TradPlusInitListener() {
