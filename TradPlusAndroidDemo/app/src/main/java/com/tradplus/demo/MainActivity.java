@@ -14,6 +14,7 @@ import com.google.android.ump.ConsentForm;
 import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.UserMessagingPlatform;
+import com.sigmob.windad.WindCustomController;
 import com.tradplus.ads.base.common.TPPrivacyManager;
 import com.tradplus.ads.base.network.TPSettingManager;
 import com.tradplus.ads.kwad_ads.KuaishouInitManager;
