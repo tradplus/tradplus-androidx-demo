@@ -363,11 +363,14 @@ public class NativeActivity extends AppCompatActivity implements View.OnClickLis
 
                 FrameLayout adChoiceView = viewGroup.findViewById(R.id.tp_ad_choices_container);
 
+                ImageView adChoice = viewGroup.findViewById(R.id.tp_native_ad_choice);
+
                 setImageView(imageView, true);
                 setIconView(iconView, true);
                 setTitleView(titleView, true);
                 setSubTitleView(subTitleView, true);
                 setCallToActionView(callToActionView, true);
+                setAdChoiceView(adChoice,true);
                 setAdChoicesContainer(adChoiceView, true);
 
                 return viewGroup;
