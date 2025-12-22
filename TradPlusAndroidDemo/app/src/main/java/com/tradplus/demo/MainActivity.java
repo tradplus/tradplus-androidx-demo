@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 查询地区
         TradPlusSdk.checkCurrentArea(this, new TPPrivacyManager.OnPrivacyRegionListener() {
             @Override
-            public void onSuccess(boolean isEu, boolean isCn, boolean isCalifornia) {
+            public void onSuccess(boolean isEu, boolean isCn, boolean isCalifornia,boolean isBr) {
                 // 获取到相关地域配置后，设置相关隐私API
 
                 // 集成Google UMP后无需处理欧洲地区
@@ -134,6 +134,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 if (!isEu) {
                     initTPSDK();
+                }
+
+                if (isBr) {
+                    // 巴西地区 设置LGPD
+                    // 0 设备数据允许上报 ；1 设备数据不允许上报
+                    TradPlusSdk.setLGPDConsent(MainActivity.this, 0);
                 }
 
             }
