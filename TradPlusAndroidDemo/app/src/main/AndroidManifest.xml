@@ -72,6 +72,10 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask" />
         <activity
+            android:name=".nativeads.NativeCustomActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
             android:name=".nativeads.SecondPage"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask" />
