@@ -2,6 +2,7 @@ package com.tradplus.demo.nativeads;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -81,11 +82,7 @@ public class NativeCustomActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
-                // 自渲染的方式show广告 ---- 用于获取三方广告素材
-                renderNativeAd();
-
-                // 获取模板渲染的信息，返回三方广告平台渲染好的view，这种方式获取后show的广告tradplus会统计不到部分事件信息。
-//                View view = tpBaseAd.getRenderView();
+                showNativeAd();
             }
 
             @Override
