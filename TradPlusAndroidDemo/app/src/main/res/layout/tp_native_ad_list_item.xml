@@ -44,13 +44,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="22dp"
             android:layout_toRightOf="@+id/tp_native_icon_image"
             android:ellipsize="end"
             android:maxLines="3"
             android:paddingLeft="10dp"
             android:textColor="@android:color/darker_gray"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tp_native_advertiser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="42dp"
+            android:layout_toRightOf="@+id/tp_native_icon_image"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:textColor="@android:color/darker_gray"
+            />
+
 
         <TextView
             android:id="@+id/tp_native_text"
@@ -64,7 +78,6 @@
             android:maxLines="2"
             android:textColor="@android:color/darker_gray" />
 
-
         <Button
             android:id="@+id/tp_native_cta_btn"
             android:layout_width="match_parent"
@@ -76,6 +89,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="@android:color/holo_blue_bright"
+            android:clickable="true"
             android:gravity="center"
             android:text="Learn More"
             android:textColor="@android:color/white"
