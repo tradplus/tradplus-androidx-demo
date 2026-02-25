@@ -22,10 +22,6 @@ buildscript {
         }
         // 配置HMS Core SDK的Maven仓地址。
         maven {url 'https://developer.huawei.com/repo/'}
-        //Anythink(Core)
-        maven {
-            url "https://jfrog.anythinktech.com/artifactory/overseas_sdk"
-        }
     }
 
     dependencies {
@@ -40,10 +36,7 @@ allprojects {
     repositories {
         mavenCentral()
         google()
-        //Anythink(Core)
-        maven {
-            url "https://jfrog.anythinktech.com/artifactory/overseas_sdk"
-        }
+
         // Huawei
         maven {url 'https://developer.huawei.com/repo/'}
         // TaurusX
