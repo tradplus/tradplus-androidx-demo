@@ -155,8 +155,7 @@ public class BaiduIntersititalVideoC2SAdapter extends TPRewardAdapter {
         }
 
         @Override
-        public void onRewardVerify(boolean rewardVerify) {
-            Log.i(TAG, "onRewardVerify: 发放奖励 " + rewardVerify);
+        public void onRewardVerify(boolean b, Map<String, Object> map) {
             if (mShowListener != null) {
                 mShowListener.onReward();
             }
