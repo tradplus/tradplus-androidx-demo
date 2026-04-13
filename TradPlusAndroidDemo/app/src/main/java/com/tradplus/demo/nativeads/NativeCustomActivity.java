@@ -183,47 +183,45 @@ public class NativeCustomActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void showNativeAd() {
-        tpNative.showAd(adContainer, new CustomAdRender(),"");
+        tpNative.showAd(adContainer, new TPNativeAdRender() {
+            @Override
+            public ViewGroup createAdLayoutView() {
+                LayoutInflater inflater = (LayoutInflater) NativeCustomActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                ViewGroup adLayout = (ViewGroup) inflater.inflate(R.layout.tp_native_ad_list_item, null);
+
+                // 设置标题
+                TextView nativeTitleView = adLayout.findViewById(R.id.tp_native_title);
+                setTitleView(nativeTitleView, true);
+
+                // 设置内容
+                TextView nativeSubTitleView = adLayout.findViewById(R.id.tp_native_text);
+                setSubTitleView(nativeSubTitleView, true);
+
+                // 设置下载按钮
+                TextView nativeCTAView = adLayout.findViewById(R.id.tp_native_cta_btn);
+                setCallToActionView(nativeCTAView, true);
+
+                // 设置icon
+                ImageView nativeIconImageView = adLayout.findViewById(R.id.tp_native_icon_image);
+                setIconView(nativeIconImageView, true);
+
+                // 设置image
+                ImageView nativeImageView = adLayout.findViewById(R.id.tp_mopub_native_main_image);
+                setImageView(nativeImageView, true);
+
+                // 设置角标
+                FrameLayout adChoiceView = adLayout.findViewById(R.id.tp_ad_choices_container);
+                setAdChoicesContainer(adChoiceView, false);
+
+                // 设置main AdChoice
+                ImageView nativeAdChoice = adLayout.findViewById(R.id.tp_native_ad_choice);
+                setAdChoiceView(nativeAdChoice, true);
+
+                return adLayout;
+            }
+        }, "");
     }
 
-
-    public class CustomAdRender extends TPNativeAdRender {
-        @Override
-        public ViewGroup createAdLayoutView() {
-            LayoutInflater inflater = (LayoutInflater) NativeCustomActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            ViewGroup adLayout = (ViewGroup) inflater.inflate(R.layout.tp_native_ad_list_item, null);
-
-            // 设置标题
-            TextView nativeTitleView = adLayout.findViewById(R.id.tp_native_title);
-            setTitleView(nativeTitleView, true);
-
-            // 设置内容
-            TextView nativeSubTitleView = adLayout.findViewById(R.id.tp_native_text);
-            setSubTitleView(nativeSubTitleView, true);
-
-            // 设置下载按钮
-            TextView nativeCTAView = adLayout.findViewById(R.id.tp_native_cta_btn);
-            setCallToActionView(nativeCTAView, true);
-
-            // 设置icon
-            ImageView nativeIconImageView = adLayout.findViewById(R.id.tp_native_icon_image);
-            setIconView(nativeIconImageView, true);
-
-            // 设置image
-            ImageView nativeImageView = adLayout.findViewById(R.id.tp_mopub_native_main_image);
-            setImageView(nativeImageView, true);
-
-            // 设置角标
-            FrameLayout adChoiceView = adLayout.findViewById(R.id.tp_ad_choices_container);
-            setAdChoicesContainer(adChoiceView, false);
-
-            // 设置main AdChoice
-            ImageView nativeAdChoice = adLayout.findViewById(R.id.tp_native_ad_choice);
-            setAdChoiceView(nativeAdChoice, true);
-
-            return adLayout;
-        }
-    }
 
     @Override
     public void onClick(View view) {
