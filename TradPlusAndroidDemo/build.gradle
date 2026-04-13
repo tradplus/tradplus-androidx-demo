@@ -53,6 +53,10 @@ allprojects {
             url 'https://artifact.bytedance.com/repository/pangle'
         }
 
+        maven {
+            url 'https://jfrog.anythinktech.com/artifactory/overseas_sdk'
+        }
+
     }
 }
 

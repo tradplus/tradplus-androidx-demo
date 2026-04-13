@@ -56,8 +56,8 @@ public class NativeCustomActivity extends AppCompatActivity implements View.OnCl
         nativeUtils = NativeUtils.getInstance();
         findViewById(R.id.btn_load).setOnClickListener(this);
         findViewById(R.id.btn_show).setOnClickListener(this);
-        findViewById(R.id.second_page).setOnClickListener(this);
-        findViewById(R.id.native_listview).setOnClickListener(this);
+        findViewById(R.id.second_page).setVisibility(View.GONE);
+        findViewById(R.id.native_listview).setVisibility(View.GONE);
         loadNativeExpress();
     }
 
@@ -72,7 +72,7 @@ public class NativeCustomActivity extends AppCompatActivity implements View.OnCl
 
     /**
      * ==============================================================================================================
-     *                                       以下是高级用法，一般情况下用不到
+     * 以下是高级用法，一般情况下用不到
      * ==============================================================================================================
      */
 
@@ -82,32 +82,32 @@ public class NativeCustomActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onAdLoaded(TPAdInfo tpAdInfo, TPBaseAd tpBaseAd) {
                 Log.i(TAG, "onAdLoaded: " + tpAdInfo.adSourceName + "加载成功");
-                showNativeAd();
+//                showNativeAd();
             }
 
             @Override
             public void onAdClicked(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdClicked: "+ tpAdInfo.adSourceName + "被点击");
+                Log.i(TAG, "onAdClicked: " + tpAdInfo.adSourceName + "被点击");
             }
 
             @Override
             public void onAdImpression(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdImpression: "+ tpAdInfo.adSourceName + "展示");
+                Log.i(TAG, "onAdImpression: " + tpAdInfo.adSourceName + "展示");
             }
 
             @Override
             public void onAdShowFailed(TPAdError tpAdError, TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdShowFailed: "+ tpAdInfo.adSourceName + "展示失败");
+                Log.i(TAG, "onAdShowFailed: " + tpAdInfo.adSourceName + "展示失败");
             }
 
             @Override
             public void onAdLoadFailed(TPAdError tpAdError) {
-                Log.i(TAG, "onAdLoadFailed: 加载失败 , code : "+ tpAdError.getErrorCode() + ", msg :" + tpAdError.getErrorMsg());
+                Log.i(TAG, "onAdLoadFailed: 加载失败 , code : " + tpAdError.getErrorCode() + ", msg :" + tpAdError.getErrorMsg());
             }
 
             @Override
             public void onAdClosed(TPAdInfo tpAdInfo) {
-                Log.i(TAG, "onAdClosed: "+ tpAdInfo.adSourceName + "广告关闭");
+                Log.i(TAG, "onAdClosed: " + tpAdInfo.adSourceName + "广告关闭");
             }
         });
 
@@ -164,7 +164,7 @@ public class NativeCustomActivity extends AppCompatActivity implements View.OnCl
         tpNative.entryAdScenario("adSceneId");
 
         tpNative.setCustomParams(setLocalCustomParams());
-        tpNative.loadAd();
+
     }
 
     private Map<String, Object> setLocalCustomParams() {
@@ -183,59 +183,62 @@ public class NativeCustomActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void showNativeAd() {
-        tpNative.showAd(adContainer, new TPNativeAdRender() {
+        tpNative.showAd(adContainer, new CustomAdRender(),"");
+    }
 
-            @Override
-            public ViewGroup createAdLayoutView() {
 
-                LayoutInflater inflater = (LayoutInflater) NativeCustomActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                ViewGroup adLayout = (ViewGroup) inflater.inflate(R.layout.tp_native_ad_list_item, null);
+    public class CustomAdRender extends TPNativeAdRender {
+        @Override
+        public ViewGroup createAdLayoutView() {
+            LayoutInflater inflater = (LayoutInflater) NativeCustomActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            ViewGroup adLayout = (ViewGroup) inflater.inflate(R.layout.tp_native_ad_list_item, null);
 
-                TextView nativeTitleView = adLayout.findViewById(R.id.tp_native_title);
-                setTitleView(nativeTitleView, true);
+            // 设置标题
+            TextView nativeTitleView = adLayout.findViewById(R.id.tp_native_title);
+            setTitleView(nativeTitleView, true);
 
-                Button nativeSubTitleView = adLayout.findViewById(R.id.tp_native_text);
-                setSubTitleView(nativeSubTitleView, true);
+            // 设置内容
+            TextView nativeSubTitleView = adLayout.findViewById(R.id.tp_native_text);
+            setSubTitleView(nativeSubTitleView, true);
 
-                TextView nativeCTAView = adLayout.findViewById(R.id.tp_native_cta_btn);
-                setCallToActionView(nativeCTAView, true);
+            // 设置下载按钮
+            TextView nativeCTAView = adLayout.findViewById(R.id.tp_native_cta_btn);
+            setCallToActionView(nativeCTAView, true);
 
-                ImageView nativeIconImageView = adLayout.findViewById(R.id.tp_native_icon_image);
-                setIconView(nativeIconImageView, true);
+            // 设置icon
+            ImageView nativeIconImageView = adLayout.findViewById(R.id.tp_native_icon_image);
+            setIconView(nativeIconImageView, true);
 
-                ImageView nativeMainImageView = adLayout.findViewById(R.id.tp_mopub_native_main_image);
-                setImageView(nativeMainImageView, true);
+            // 设置image
+            ImageView nativeImageView = adLayout.findViewById(R.id.tp_mopub_native_main_image);
+            setImageView(nativeImageView, true);
 
-                FrameLayout adChoiceView = adLayout.findViewById(R.id.tp_ad_choices_container);
-                setAdChoicesContainer(adChoiceView, false);
+            // 设置角标
+            FrameLayout adChoiceView = adLayout.findViewById(R.id.tp_ad_choices_container);
+            setAdChoicesContainer(adChoiceView, false);
 
-                ImageView nativeAdChoice = adLayout.findViewById(R.id.tp_native_ad_choice);
-                setAdChoiceView(nativeAdChoice, true);
+            // 设置main AdChoice
+            ImageView nativeAdChoice = adLayout.findViewById(R.id.tp_native_ad_choice);
+            setAdChoiceView(nativeAdChoice, true);
 
-                return adLayout;
-            }
-        },"");
+            return adLayout;
+        }
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_load:
-                if (tpNative != null) {
-                    nativeUtils.loadNative(tpNative);
-                }
+                tpNative.loadAd();
                 break;
             case R.id.btn_show:
-                if (nativeUtils.isReady()) {
-                    nativeUtils.showNative(adContainer);
-                }else{
-                    Toast.makeText(NativeCustomActivity.this, "无可用广告", Toast.LENGTH_SHORT).show();
-                }
+                if (tpNative.isReady())
+                showNativeAd();
                 break;
             case R.id.second_page:
                 // 进入下一页
                 Intent intent = new Intent(NativeCustomActivity.this, SecondPage.class);
-                intent.putExtra("type",TestAdUnitId.TYPE_NATIVE);
+                intent.putExtra("type", TestAdUnitId.TYPE_NATIVE);
                 startActivity(intent);
                 break;
             case R.id.native_listview:

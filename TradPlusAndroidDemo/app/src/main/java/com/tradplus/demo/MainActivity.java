@@ -30,6 +30,7 @@ import com.tradplus.demo.nativeads.DrawNativeExpressVideoActivity;
 import com.tradplus.demo.nativeads.HuaweiDownLoad;
 import com.tradplus.demo.nativeads.NativeActivity;
 import com.tradplus.demo.nativeads.NativeBannerViewActivity;
+import com.tradplus.demo.nativeads.NativeCustomActivity;
 import com.tradplus.demo.offerwall.OfferWallActivity;
 import com.tradplus.demo.rewarded.RewardedVideoActivity;
 import com.tradplus.privacy.CSJCustomUserData;
