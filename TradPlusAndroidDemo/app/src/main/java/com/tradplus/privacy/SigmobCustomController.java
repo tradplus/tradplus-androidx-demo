@@ -15,10 +15,6 @@ public class SigmobCustomController extends WindCustomController {
         return null;
     }
 
-    public boolean isCanUsePhoneState() {
-        return super.isCanUsePhoneState();
-    }
-
     public String getDevImei() {
         return null;
     }

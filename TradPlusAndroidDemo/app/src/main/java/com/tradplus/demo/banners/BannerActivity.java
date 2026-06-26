@@ -64,6 +64,7 @@ public class BannerActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.btn_load).setOnClickListener(this);
         findViewById(R.id.btn_show).setOnClickListener(this);
         findViewById(R.id.second_page).setOnClickListener(this);
+        findViewById(R.id.banner_listview).setOnClickListener(this);
         loadBanner();
 //        loadHuaweiDownNativeBanner();
     }
@@ -359,6 +360,9 @@ public class BannerActivity extends AppCompatActivity implements View.OnClickLis
                 Intent intent = new Intent(BannerActivity.this, SecondPageActivity.class);
                 intent.putExtra("type",TestAdUnitId.TYPE_BANNER);
                 startActivity(intent);
+                break;
+            case R.id.banner_listview:
+                startActivity(new Intent(BannerActivity.this, BannerRecycleViewActivity.class));
                 break;
         }
     }

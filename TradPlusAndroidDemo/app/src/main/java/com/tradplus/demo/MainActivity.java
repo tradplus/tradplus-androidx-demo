@@ -15,9 +15,11 @@ import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.ConsentRequestParameters;
 import com.google.android.ump.UserMessagingPlatform;
 import com.sigmob.windad.WindCustomController;
+import com.tradplus.ads.base.adapter.TPBaseAdapter;
 import com.tradplus.ads.base.common.TPPrivacyManager;
 import com.tradplus.ads.base.network.TPSettingManager;
 import com.tradplus.ads.kwad_ads.KuaishouInitManager;
+import com.tradplus.ads.mintegral.MIntegralInterstitialVideo;
 import com.tradplus.ads.open.TradPlusSdk;
 import com.tradplus.ads.sigmob.SigmobInitManager;
 import com.tradplus.ads.taptap.TapTapInitManager;
@@ -39,6 +41,9 @@ import com.tradplus.privacy.SigmobCustomController;
 import com.tradplus.privacy.TapTapUserDataCustomController;
 import com.tradplus.utils.TestAdUnitId;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
@@ -56,6 +61,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 海外隐私政策
         setPrivacyConsent();
         initView();
+//        MIntegralInterstitialVideo mIntegralInterstitialVideo = new MIntegralInterstitialVideo();
+//        mIntegralInterstitialVideo.getBiddingToken(this, new HashMap<>(), new HashMap<>(), new TPBaseAdapter.OnS2STokenListener() {
+//            @Override
+//            public void onTokenResult(String s, Map<String, Object> map) {
+//
+//            }
+//        });
+
     }
 
     private void setPrivacyConsent() {

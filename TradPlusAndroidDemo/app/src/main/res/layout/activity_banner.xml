@@ -38,6 +38,14 @@
             android:layout_gravity="center"
             android:text="加载成功后下一页展示"/>
 
+        <Button
+            android:id="@+id/banner_listview"
+            android:layout_width="300.0dip"
+            android:layout_height="50.0dip"
+            android:layout_gravity="center"
+            android:text="Banner信息流"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
